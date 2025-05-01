@@ -1,35 +1,36 @@
-import { useState, useEffect } from "react";
-
 import { useState, useEffect } from 'react';
 
-const TextAnimation = ({ sentences, speed = 100, delayBetweenSentences = 1000 }) => {
+const TextAnimation = ({ sentences, speed = 200, delayBetweenSentences = 1000 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
 
   useEffect(() => {
-    // If there are no more sentences, stop.
     if (currentSentenceIndex >= sentences.length) return;
 
     const currentSentence = sentences[currentSentenceIndex];
     let currentIndex = 0;
 
-    const interval = setInterval(() => {
-      setDisplayedText((prev) => prev + currentSentence[currentIndex]);
-      currentIndex += 1;
+    // Reset displayed text immediately when new sentence starts
+    setDisplayedText('');
 
-      if (currentIndex === currentSentence.length) {
-        clearInterval(interval);
-        // Wait for a moment before showing the next sentence
+    const typeCharacter = () => {
+      if (currentIndex < currentSentence.length) {
+        const char = currentSentence[currentIndex];
+        setDisplayedText((prev) => prev + char);
+        currentIndex += 1;
+        setTimeout(typeCharacter, speed);
+      } else {
+        // Wait before moving to the next sentence
         setTimeout(() => {
-          setDisplayedText('');
           setCurrentSentenceIndex((prev) => prev + 1);
         }, delayBetweenSentences);
       }
-    }, speed);
+    };
 
-    // Cleanup on effect cleanup
-    return () => clearInterval(interval);
-  }, [currentSentenceIndex, sentences, speed, delayBetweenSentences]);
+    typeCharacter();
+
+    // No cleanup needed
+  }, [currentSentenceIndex]);
 
   return (
     <div>
