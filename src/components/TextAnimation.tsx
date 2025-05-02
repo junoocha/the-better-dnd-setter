@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 
+type TextAnimationProps = {
+	sentences: string[];
+	speed?: number;
+	delayBetweenSentences?: number;
+	fadeDuration?: number;
+};
+
 const TextAnimation = ({
 	sentences,
-	speed = 250,
+	speed = 300,
 	delayBetweenSentences = 1000,
 	fadeDuration = 2000,
-}) => {
-	const [displayedText, setDisplayedText] = useState("");
-	const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
-	const [fadingOut, setFadingOut] = useState(false);
+}: TextAnimationProps) => {
+	const [displayedText, setDisplayedText] = useState<string>("");
+	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0);
+	const [fadingOut, setFadingOut] = useState<boolean>(false);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (currentSentenceIndex >= sentences.length) return;
 
@@ -18,7 +24,7 @@ const TextAnimation = ({
 		let currentIndex = 0;
 
 		setDisplayedText("");
-		setFadingOut(false); // ensure fade-in at start
+		setFadingOut(false);
 
 		const typeCharacter = () => {
 			if (currentIndex < currentSentence.length) {
@@ -27,7 +33,6 @@ const TextAnimation = ({
 				currentIndex += 1;
 				setTimeout(typeCharacter, speed);
 			} else {
-				// Wait, then fade out
 				setTimeout(() => {
 					setFadingOut(true);
 					setTimeout(() => {
@@ -40,12 +45,18 @@ const TextAnimation = ({
 		};
 
 		typeCharacter();
-	}, [currentSentenceIndex]);
+	}, [
+		currentSentenceIndex,
+		sentences,
+		speed,
+		delayBetweenSentences,
+		fadeDuration,
+	]);
 
 	return (
 		<div>
 			<p
-				className={`transition-opacity duration-${fadeDuration} ${
+				className={`transition-opacity duration-[${fadeDuration}ms] ${
 					fadingOut ? "opacity-0" : "opacity-100"
 				}`}
 			>
