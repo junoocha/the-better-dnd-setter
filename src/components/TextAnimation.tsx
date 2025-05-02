@@ -9,7 +9,7 @@ type TextAnimationProps = {
 
 const TextAnimation = ({
 	sentences,
-	speed = 300,
+	speed = 200,
 	delayBetweenSentences = 1000,
 	fadeDuration = 2000,
 }: TextAnimationProps) => {
