@@ -1,11 +1,15 @@
+import TextAnimation from "../TextAnimation";
+
 type Props = {
 	onComplete: () => void;
 };
 
 export default function IntroText({ onComplete }: Props) {
+	const sentences = ["Welcome to the D&D Character Creator."];
+
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			<p className="text-xl">Welcome to the D&D Character Creator.</p>
+			<TextAnimation sentences={sentences} />
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 			<button
 				onClick={onComplete}

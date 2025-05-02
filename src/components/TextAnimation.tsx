@@ -9,7 +9,7 @@ type TextAnimationProps = {
 
 const TextAnimation = ({
 	sentences,
-	speed = 300,
+	speed = 50,
 	delayBetweenSentences = 1000,
 	fadeDuration = 2000,
 }: TextAnimationProps) => {
@@ -56,9 +56,8 @@ const TextAnimation = ({
 	return (
 		<div>
 			<p
-				className={`transition-opacity duration-[${fadeDuration}ms] ${
-					fadingOut ? "opacity-0" : "opacity-100"
-				}`}
+				style={{ transitionDuration: `${fadeDuration}ms` }}
+				className={`transition-opacity ${fadingOut ? "opacity-0" : "opacity-100"}`}
 			>
 				{displayedText}
 			</p>
