@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 type TextAnimationProps = {
+	fadeTrue: boolean;
 	sentences: string[];
 	speed?: number;
 	delayBetweenSentences?: number;
@@ -9,6 +10,7 @@ type TextAnimationProps = {
 
 const TextAnimation = ({
 	sentences,
+	fadeTrue,
 	speed = 50,
 	delayBetweenSentences = 1000,
 	fadeDuration = 2000,
@@ -17,6 +19,7 @@ const TextAnimation = ({
 	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0);
 	const [fadingOut, setFadingOut] = useState<boolean>(false);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (currentSentenceIndex >= sentences.length) return;
 
@@ -33,12 +36,20 @@ const TextAnimation = ({
 				currentIndex += 1;
 				setTimeout(typeCharacter, speed);
 			} else {
+				// After sentence is fully typed
 				setTimeout(() => {
 					setFadingOut(true);
+
 					setTimeout(() => {
-						setDisplayedText("");
-						setFadingOut(false);
-						setCurrentSentenceIndex((prev) => prev + 1);
+						if (!fadeTrue) {
+							// setDisplayedText("");
+							setFadingOut(false);
+							setCurrentSentenceIndex((prev) => prev + 1);
+						} else {
+							// If fadeTrue is true, just fade out, do not clear or advance
+							setFadingOut(false);
+							setDisplayedText("");
+						}
 					}, fadeDuration);
 				}, delayBetweenSentences);
 			}
@@ -57,7 +68,11 @@ const TextAnimation = ({
 		<div>
 			<p
 				style={{ transitionDuration: `${fadeDuration}ms` }}
-				className={`transition-opacity ${fadingOut ? "opacity-0" : "opacity-100"}`}
+				className={
+					fadeTrue
+						? `transition-opacity ${fadingOut ? "opacity-0" : "opacity-100"}`
+						: ""
+				}
 			>
 				{displayedText}
 			</p>
