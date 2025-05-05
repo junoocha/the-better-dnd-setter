@@ -30,7 +30,7 @@ export const loopSentences = [
 	"You taking a short rest or a full campaign break?",
 	"Imagine if the fate of the realm depended on your mouse skills.",
 	"The bard just rolled a lullaby on loop. Help him out.",
-	"Look, even the skeletons are getting bored. Press the button",
+	"Look, even the skeletons are getting bored. Press the button.",
 	"Pressing buttons isn’t exactly a high-level spell, friend.",
 	"Legends say you’re still hovering over the button to this day...",
 	"Was that a yawn? Seriously? It's one click!",
