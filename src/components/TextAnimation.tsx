@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// props for tsx
 type TextAnimationProps = {
 	fadeTrue: boolean;
 	sentences: string[];
@@ -9,23 +10,26 @@ type TextAnimationProps = {
 };
 
 const TextAnimation = ({
-	sentences,
-	fadeTrue,
+	sentences, // array of sentences to be inputted
+	fadeTrue, // if true, should fade automatically, if not, will fade when step ends
 	speed = 50,
 	delayBetweenSentences = 1000,
 	fadeDuration = 2000,
 }: TextAnimationProps) => {
-	const [displayedText, setDisplayedText] = useState<string>("");
-	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0);
-	const [fadingOut, setFadingOut] = useState<boolean>(false);
+	const [displayedText, setDisplayedText] = useState<string>(""); // useState for the displayed text
+	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0); // use state for the current index of the sentence (if multiple sentences used)
+	const [fadingOut, setFadingOut] = useState<boolean>(false); // fade out boolean
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
+		// if the index reaches end of array, just end/return
 		if (currentSentenceIndex >= sentences.length) return;
 
+		// get the first sentence
 		const currentSentence = sentences[currentSentenceIndex];
 		let currentIndex = 0;
 
+		// set initial stuff
 		setDisplayedText("");
 		setFadingOut(false);
 
@@ -42,11 +46,11 @@ const TextAnimation = ({
 
 					setTimeout(() => {
 						if (!fadeTrue) {
-							// setDisplayedText("");
+							// don't fade out and just move on to the next sentence
 							setFadingOut(false);
 							setCurrentSentenceIndex((prev) => prev + 1);
 						} else {
-							// If fadeTrue is true, just fade out, do not clear or advance
+							// if fadeTrue is true, just fade out, do not clear or advance. clear the display text
 							setFadingOut(false);
 							setDisplayedText("");
 						}
@@ -69,7 +73,7 @@ const TextAnimation = ({
 			<p
 				style={{ transitionDuration: `${fadeDuration}ms` }}
 				className={
-					fadeTrue
+					fadeTrue // conditional. If fade exists, then fade it out. Otherwise, don't fade it out til the step completes
 						? `transition-opacity ${fadingOut ? "opacity-0" : "opacity-100"}`
 						: ""
 				}
