@@ -1,6 +1,6 @@
 export const intro = [
 	"Welcome to the D&D Character Stat Setter.",
-	"Hello? Are you still there?",
+	"...Hello? Are you still there?",
 	"You tryna make a character or what?",
 	"Hey man... press the blue button.",
 ];
