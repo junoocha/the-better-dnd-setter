@@ -27,7 +27,7 @@ const TextAnimation = ({
 	loopSentences,
 	fadeTrue, // if true, should fade automatically, if not, will fade when step ends
 	speed = 60,
-	delayBetweenSentences = 1000,
+	delayBetweenSentences = 1500,
 	fadeDuration = 2000,
 }: TextAnimationProps) => {
 	const [displayedText, setDisplayedText] = useState<string>(""); // useState for the displayed text
