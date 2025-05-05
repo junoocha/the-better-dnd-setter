@@ -1,0 +1,87 @@
+import { useState, useEffect } from "react";
+
+// props for tsx
+type TextAnimationProps = {
+	fadeTrue: boolean;
+	sentences: string[];
+	speed?: number;
+	delayBetweenSentences?: number;
+	fadeDuration?: number;
+};
+
+const TextAnimation = ({
+	sentences, // array of sentences to be inputted
+	fadeTrue, // if true, should fade automatically, if not, will fade when step ends
+	speed = 50,
+	delayBetweenSentences = 1000,
+	fadeDuration = 2000,
+}: TextAnimationProps) => {
+	const [displayedText, setDisplayedText] = useState<string>(""); // useState for the displayed text
+	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0); // use state for the current index of the sentence (if multiple sentences used)
+	const [fadingOut, setFadingOut] = useState<boolean>(false); // fade out boolean
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		// if the index reaches end of array, just end/return
+		if (currentSentenceIndex >= sentences.length) return;
+
+		// get the first sentence
+		const currentSentence = sentences[currentSentenceIndex];
+		let currentIndex = 0;
+
+		// set initial stuff
+		setDisplayedText("");
+		setFadingOut(false);
+
+		const typeCharacter = () => {
+			if (currentIndex < currentSentence.length) {
+				const char = currentSentence[currentIndex];
+				setDisplayedText((prev) => prev + char);
+				currentIndex += 1;
+				setTimeout(typeCharacter, speed);
+			} else {
+				// After sentence is fully typed
+				setTimeout(() => {
+					setFadingOut(true);
+
+					setTimeout(() => {
+						if (!fadeTrue) {
+							// don't fade out and just move on to the next sentence
+							setFadingOut(false);
+							setCurrentSentenceIndex((prev) => prev + 1);
+						} else {
+							// if fadeTrue is true, just fade out, do not clear or advance. clear the display text
+							setFadingOut(false);
+							setDisplayedText("");
+						}
+					}, fadeDuration);
+				}, delayBetweenSentences);
+			}
+		};
+
+		typeCharacter();
+	}, [
+		currentSentenceIndex,
+		sentences,
+		speed,
+		delayBetweenSentences,
+		fadeDuration,
+	]);
+
+	return (
+		<div>
+			<p
+				style={{ transitionDuration: `${fadeDuration}ms` }}
+				className={
+					fadeTrue // conditional. If fade exists, then fade it out. Otherwise, don't fade it out til the step completes
+						? `transition-opacity ${fadingOut ? "opacity-0" : "opacity-100"}`
+						: ""
+				}
+			>
+				{displayedText}
+			</p>
+		</div>
+	);
+};
+
+export default TextAnimation;
