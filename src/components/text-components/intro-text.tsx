@@ -1,15 +1,18 @@
-import TextAnimation from "../TextAnimation";
+import TextAnimation from "../text-animation/text-animation";
+import { intro, loopSentences } from "./sentence-arrays/intro-text-data";
 
 type Props = {
 	onComplete: () => void;
 };
 
 export default function IntroText({ onComplete }: Props) {
-	const sentences = ["Welcome to the D&D Character Creator."];
-
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			<TextAnimation sentences={sentences} fadeTrue={false} />
+			<TextAnimation
+				initialSentences={intro}
+				loopSentences={loopSentences}
+				fadeTrue={false}
+			/>
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 			<button
 				onClick={onComplete}
