@@ -1,6 +1,6 @@
 "use client";
 
-import TextAnimation from "../components/TextAnimation";
+import TextAnimation from "../components/text-animation/text-animation";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";

@@ -1,4 +1,4 @@
-import TextAnimation from "../TextAnimation";
+import TextAnimation from "../text-animation/text-animation";
 import { intro, loopSentences } from "./sentence-arrays/intro-text-data";
 
 type Props = {
