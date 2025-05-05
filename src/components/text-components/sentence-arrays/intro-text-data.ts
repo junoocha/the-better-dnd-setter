@@ -25,7 +25,7 @@ export const loopSentences = [
 	"I'm just the intro text, and even I want a break.",
 	"If passive-aggressive tooltips were a spell, you'd be toast.",
 	"Any slower and this would be a loading screen in Skyrim.",
-	"Even children on Roblox can press a button bro.",
+	"Even children on Roblox can press a button.",
 	"Still waiting... still a button... still blue.",
 	"You taking a short rest or a full campaign break?",
 	"Imagine if the fate of the realm depended on your mouse skills.",
