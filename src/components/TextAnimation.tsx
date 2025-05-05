@@ -38,9 +38,24 @@ const TextAnimation = ({
 				const char = currentSentence[currentIndex];
 				setDisplayedText((prev) => prev + char);
 				currentIndex += 1;
-				setTimeout(typeCharacter, speed);
+
+				let pause = speed;
+				// add a longer pause after certain characters
+				if (char === "." || char === "!" || char === "?") {
+					pause = speed + 600; // pause longer after sentence end
+				} else if (
+					char === "." &&
+					currentSentence.slice(currentIndex - 1, currentIndex + 2) === "..."
+				) {
+					pause = speed + 600;
+					currentIndex += 2; // skip the next 2 periods (already added one)
+					// biome-ignore lint/style/useTemplate: <explanation>
+					setDisplayedText((prev) => prev + "..");
+				}
+
+				setTimeout(typeCharacter, pause);
 			} else {
-				// After sentence is fully typed
+				// after sentence is fully typed
 				setTimeout(() => {
 					setFadingOut(true);
 
