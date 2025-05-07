@@ -3,8 +3,8 @@ import { shuffleArray } from "./shuffle-array";
 
 // custom hook split for reuse & organization
 type UseTextAnimationProps = {
-	initialSentences: string[];
-	loopSentences: string[];
+	initialSentences?: string[];
+	loopSentences?: string[];
 	fadeTrue: boolean;
 	speed?: number;
 	delayBetweenSentences?: number;
@@ -23,19 +23,22 @@ export const useTextAnimation = ({
 	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0); // use state for the current index of the sentence (if multiple sentences used)
 	const [fadingOut, setFadingOut] = useState<boolean>(false); // fade out boolean
 	const [isInLoopPhase, setIsInLoopPhase] = useState<boolean>(false); // determine whether the initial sentence array has been run through
-	const [currentLoopSentences, setCurrentLoopSentences] =
-		useState(loopSentences); // storing the new sentence array after being shuffled
+	const [currentLoopSentences, setCurrentLoopSentences] = useState<string[]>(
+		loopSentences ?? [], // fall back on empty array if undefined
+	); // storing the new sentence array after being shuffled
 
 	// flip flop between sentence array
-	const sentences = isInLoopPhase ? currentLoopSentences : initialSentences;
+	const sentences = isInLoopPhase
+		? currentLoopSentences
+		: (initialSentences ?? []); // in case nothing is passed
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		// if the index reaches end of array, just end/return
 		if (currentSentenceIndex >= sentences.length) {
 			// transition to loop sentences after initial ones
-			if (!isInLoopPhase && loopSentences.length > 0) {
-				setCurrentLoopSentences(shuffleArray(loopSentences));
+			if (!isInLoopPhase && (loopSentences?.length ?? 0) > 0) {
+				setCurrentLoopSentences(shuffleArray(loopSentences ?? [])); // fall back on empty array if undefined
 				setCurrentSentenceIndex(0);
 				setIsInLoopPhase(true);
 			} else if (isInLoopPhase) {

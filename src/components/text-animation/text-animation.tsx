@@ -2,8 +2,8 @@ import { useTextAnimation } from "./text-animator";
 
 // props for tsx
 type TextAnimationProps = {
-	initialSentences: string[];
-	loopSentences: string[];
+	initialSentences?: string[];
+	loopSentences?: string[];
 	fadeTrue: boolean;
 	speed?: number;
 	delayBetweenSentences?: number;
