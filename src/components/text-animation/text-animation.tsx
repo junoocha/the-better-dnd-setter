@@ -4,6 +4,7 @@ import { useTextAnimation } from "./text-animator";
 type TextAnimationProps = {
 	initialSentences?: string[];
 	loopSentences?: string[];
+	numSentences?: number;
 	fadeTrue: boolean;
 	speed?: number;
 	delayBetweenSentences?: number;

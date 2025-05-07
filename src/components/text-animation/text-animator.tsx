@@ -6,6 +6,7 @@ type UseTextAnimationProps = {
 	initialSentences?: string[];
 	loopSentences?: string[];
 	fadeTrue: boolean;
+	numSentences?: number;
 	speed?: number;
 	delayBetweenSentences?: number;
 	fadeDuration?: number;
@@ -15,6 +16,7 @@ export const useTextAnimation = ({
 	initialSentences, // array of sentences to be inputted
 	loopSentences,
 	fadeTrue, // if true, should fade automatically, if not, will fade when step ends
+	numSentences, // the number of sentences to be shown.
 	speed = 60,
 	delayBetweenSentences = 1500,
 	fadeDuration = 2000,
@@ -30,7 +32,9 @@ export const useTextAnimation = ({
 	// flip flop between sentence array
 	const sentences = isInLoopPhase
 		? currentLoopSentences
-		: (initialSentences ?? []); // in case nothing is passed
+		: numSentences
+			? shuffleArray(initialSentences ?? []).slice(0, numSentences) // shuffle and slice if numSentences is provided
+			: (initialSentences ?? []); // otherwise, just do the initialSentences
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {

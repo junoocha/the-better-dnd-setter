@@ -8,7 +8,11 @@ type Props = {
 export default function WakeUpText({ onComplete }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			<TextAnimation loopSentences={wakeupSentences} fadeTrue={false} />
+			<TextAnimation
+				loopSentences={wakeupSentences}
+				fadeTrue={true}
+				numSentences={1}
+			/>
 		</div>
 	);
 }

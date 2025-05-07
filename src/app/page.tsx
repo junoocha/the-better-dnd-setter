@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import IntroText from "@/components/text-components/intro-text";
 import ChooseStats from "@/components/text-components/choose-stats";
+import WakeUpText from "@/components/text-components/wake-up-text";
 import { AnimatePresence, motion } from "framer-motion";
 
 // export default function Home() {
@@ -43,7 +44,7 @@ export default function Home() {
 
 	const steps = [
 		<IntroText key="intro" onComplete={() => setStep(1)} />,
-		<ChooseStats key="stats" onComplete={() => setStep(2)} />,
+		<WakeUpText key="wakeuptext" onComplete={() => setStep(2)} />,
 	];
 
 	return (
