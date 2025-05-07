@@ -1,14 +1,14 @@
 import TextAnimation from "../text-animation/text-animation";
-import { intro, loopSentences } from "./sentence-arrays/intro-text-data";
+import { wakeupSentences } from "./sentence-arrays/wake-up-text-data";
 
 type Props = {
 	onComplete: () => void;
 };
 
-export default function IntroText({ onComplete }: Props) {
+export default function WakeUpText({ onComplete }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			<TextAnimation loopSentences={loopSentences} fadeTrue={false} />
+			<TextAnimation loopSentences={wakeupSentences} fadeTrue={false} />
 		</div>
 	);
 }

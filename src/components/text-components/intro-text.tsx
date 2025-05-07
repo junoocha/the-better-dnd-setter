@@ -1,5 +1,5 @@
 import TextAnimation from "../text-animation/text-animation";
-import { intro, loopSentences } from "./sentence-arrays/intro-text-data";
+import { intro, introLoopSentences } from "./sentence-arrays/intro-text-data";
 
 type Props = {
 	onComplete: () => void;
@@ -10,7 +10,7 @@ export default function IntroText({ onComplete }: Props) {
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
 				initialSentences={intro}
-				loopSentences={loopSentences}
+				loopSentences={introLoopSentences}
 				fadeTrue={false}
 			/>
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
