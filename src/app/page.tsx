@@ -48,6 +48,7 @@ export default function Home() {
 	const steps = [
 		<IntroText key="intro" onComplete={() => setStep(1)} />,
 		<WakeUpText key="wakeuptext" onComplete={() => setStep(2)} />,
+		<ChooseStats key="choosestats" onComplete={() => setStep(3)} />,
 	];
 
 	return (

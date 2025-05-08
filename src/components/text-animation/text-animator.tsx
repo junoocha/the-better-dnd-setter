@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { shuffleArray } from "./shuffle-array";
+import { useMemo } from "react";
 
 // custom hook split for reuse & organization
 type UseTextAnimationProps = {
@@ -33,11 +34,13 @@ export const useTextAnimation = (
 	); // storing the new sentence array after being shuffled
 
 	// flip flop between sentence array
-	const sentences = isInLoopPhase
-		? currentLoopSentences
-		: numSentences
-			? shuffleArray(initialSentences ?? []).slice(0, numSentences) // shuffle and slice if numSentences is provided
-			: (initialSentences ?? []); // otherwise, just do the initialSentences
+	const sentences = useMemo(() => {
+		return isInLoopPhase
+			? currentLoopSentences
+			: numSentences
+				? shuffleArray(initialSentences ?? []).slice(0, numSentences)
+				: (initialSentences ?? []);
+	}, [isInLoopPhase, currentLoopSentences, initialSentences, numSentences]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -56,6 +59,8 @@ export const useTextAnimation = (
 			}
 			return;
 		}
+
+		const timeouts: NodeJS.Timeout[] = [];
 
 		// get the first sentence
 		const currentSentence = sentences[currentSentenceIndex];
@@ -85,28 +90,35 @@ export const useTextAnimation = (
 					setDisplayedText((prev) => prev + "..");
 				}
 
-				setTimeout(typeCharacter, pause);
+				timeouts.push(setTimeout(typeCharacter, pause));
 			} else {
-				// after sentence is fully typed
-				setTimeout(() => {
-					setFadingOut(true);
-
+				timeouts.push(
 					setTimeout(() => {
-						if (!fadeTrue) {
-							// don't fade out and just move on to the next sentence
-							setFadingOut(false);
-							setCurrentSentenceIndex((prev) => prev + 1);
-						} else {
-							// if fadeTrue is true, just fade out, do not clear or advance. clear the display text
-							setFadingOut(false);
-							setDisplayedText("");
-						}
-					}, fadeDuration);
-				}, delayBetweenSentences);
+						setFadingOut(true);
+
+						timeouts.push(
+							setTimeout(() => {
+								if (!fadeTrue) {
+									// move on to next sentence
+									setFadingOut(false);
+									setCurrentSentenceIndex((prev) => prev + 1);
+								} else {
+									// don't fade out but just move on
+									setFadingOut(false);
+									setDisplayedText("");
+								}
+							}, fadeDuration),
+						);
+					}, delayBetweenSentences),
+				);
 			}
 		};
 
 		typeCharacter();
+
+		return () => {
+			timeouts.forEach(clearTimeout);
+		};
 	}, [
 		currentSentenceIndex,
 		sentences,
