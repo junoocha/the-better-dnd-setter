@@ -12,15 +12,18 @@ type UseTextAnimationProps = {
 	fadeDuration?: number;
 };
 
-export const useTextAnimation = ({
-	initialSentences, // array of sentences to be inputted
-	loopSentences,
-	fadeTrue, // if true, should fade automatically, if not, will fade when step ends
-	numSentences, // the number of sentences to be shown.
-	speed = 60,
-	delayBetweenSentences = 1500,
-	fadeDuration = 2000,
-}: UseTextAnimationProps) => {
+export const useTextAnimation = (
+	{
+		initialSentences, // array of sentences to be inputted
+		loopSentences,
+		fadeTrue, // if true, should fade automatically, if not, will fade when step ends
+		numSentences, // the number of sentences to be shown.
+		speed = 6,
+		delayBetweenSentences = 1500,
+		fadeDuration = 2000,
+	}: UseTextAnimationProps,
+	onLoopStart?: () => void,
+) => {
 	const [displayedText, setDisplayedText] = useState<string>(""); // useState for the displayed text
 	const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0); // use state for the current index of the sentence (if multiple sentences used)
 	const [fadingOut, setFadingOut] = useState<boolean>(false); // fade out boolean
@@ -45,6 +48,8 @@ export const useTextAnimation = ({
 				setCurrentLoopSentences(shuffleArray(loopSentences ?? [])); // fall back on empty array if undefined
 				setCurrentSentenceIndex(0);
 				setIsInLoopPhase(true);
+
+				if (onLoopStart) onLoopStart();
 			} else if (isInLoopPhase) {
 				setCurrentLoopSentences(shuffleArray(currentLoopSentences));
 				setCurrentSentenceIndex(0);
@@ -117,5 +122,6 @@ export const useTextAnimation = ({
 		fadingOut,
 		fadeDuration,
 		fadeTrue,
+		isInLoopPhase,
 	};
 };

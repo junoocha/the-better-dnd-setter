@@ -2,7 +2,7 @@
 
 import TextAnimation from "../components/text-animation/text-animation";
 import { useRouter } from "next/navigation";
-
+import { LoopPhaseProvider } from "@/components/text-animation/loop-phase-context";
 import { useState } from "react";
 import IntroText from "@/components/text-components/intro-text";
 import ChooseStats from "@/components/text-components/choose-stats";
@@ -40,6 +40,9 @@ export default function Home() {
 	const onSubmit = async () => {
 		router.push("/default");
 	};
+
+	const [wasLoopTriggered, setWasLoopTriggered] = useState(false);
+
 	const [step, setStep] = useState(0);
 
 	const steps = [
@@ -48,20 +51,22 @@ export default function Home() {
 	];
 
 	return (
-		<div className="min-h-screen grid place-items-center p-8 sm:p-20 font-sans bg-gray-950 text-white">
-			<main className="w-full max-w-3xl">
-				<AnimatePresence mode="wait">
-					<motion.div
-						key={step}
-						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -10 }}
-						transition={{ duration: 1 }}
-					>
-						{steps[step]}
-					</motion.div>
-				</AnimatePresence>
-			</main>
-		</div>
+		<LoopPhaseProvider>
+			<div className="min-h-screen grid place-items-center p-8 sm:p-20 font-sans bg-gray-950 text-white">
+				<main className="w-full max-w-3xl">
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={step}
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -10 }}
+							transition={{ duration: 1 }}
+						>
+							{steps[step]}
+						</motion.div>
+					</AnimatePresence>
+				</main>
+			</div>
+		</LoopPhaseProvider>
 	);
 }

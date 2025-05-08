@@ -9,11 +9,12 @@ type TextAnimationProps = {
 	speed?: number;
 	delayBetweenSentences?: number;
 	fadeDuration?: number;
+	onLoopStart?: () => void;
 };
 
 const TextAnimation = (props: TextAnimationProps) => {
-	const { displayedText, fadingOut, fadeDuration, fadeTrue } =
-		useTextAnimation(props);
+	const { displayedText, fadingOut, fadeDuration, fadeTrue, isInLoopPhase } =
+		useTextAnimation(props, props.onLoopStart);
 
 	return (
 		<div>
