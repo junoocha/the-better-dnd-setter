@@ -2,17 +2,19 @@ import { useTextAnimation } from "./text-animator";
 
 // props for tsx
 type TextAnimationProps = {
-	initialSentences: string[];
-	loopSentences: string[];
+	initialSentences?: string[];
+	loopSentences?: string[];
+	numSentences?: number;
 	fadeTrue: boolean;
 	speed?: number;
 	delayBetweenSentences?: number;
 	fadeDuration?: number;
+	onLoopStart?: () => void;
 };
 
 const TextAnimation = (props: TextAnimationProps) => {
-	const { displayedText, fadingOut, fadeDuration, fadeTrue } =
-		useTextAnimation(props);
+	const { displayedText, fadingOut, fadeDuration, fadeTrue, isInLoopPhase } =
+		useTextAnimation(props, props.onLoopStart);
 
 	return (
 		<div>

@@ -5,7 +5,7 @@ export const intro = [
 	"Hey man... press the blue button.",
 ];
 
-export const loopSentences = [
+export const introLoopSentences = [
 	"Can you wake him up? I've got stuff to do.",
 	"I hate my job.",
 	"See that blue rectangle? Wanna left click on that?",
