@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextAnimation from "../text-animation/text-animation";
 
 type Props = {
-	onComplete: () => void;
+	onComplete: (selection: keyof typeof descriptions) => void;
 };
 
 const descriptions = {
@@ -58,7 +58,8 @@ export default function ChooseStats({ onComplete }: Props) {
 
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 			<button
-				onClick={onComplete}
+				disabled={selectedOption === "default"}
+				onClick={() => onComplete(selectedOption)}
 				className="px-4 py-2 bg-green-600 rounded hover:bg-green-700 mt-4"
 			>
 				Confirm
