@@ -44,7 +44,7 @@ export default function Home() {
 		router.push("/default");
 	};
 
-	const [wasLoopTriggered, setWasLoopTriggered] = useState(false);
+	const [cameFromBack, setCameFromBack] = useState(false);
 	const [selectedPath, setSelectedPath] = useState<
 		"gamble" | "boring" | "shop" | "default" | null
 	>(null);
@@ -62,11 +62,35 @@ export default function Home() {
 			}}
 		/>,
 		selectedPath === "gamble" ? (
-			<GambleStats key="gamble" onComplete={() => setStep(4)} />
+			<GambleStats
+				key="gamble"
+				onComplete={() => setStep(4)}
+				onBack={() => {
+					setSelectedPath(null);
+					setCameFromBack(true);
+					setStep(2);
+				}}
+			/>
 		) : selectedPath === "boring" ? (
-			<GivenStats key="boring" onComplete={() => setStep(4)} />
+			<GivenStats
+				key="boring"
+				onComplete={() => setStep(4)}
+				onBack={() => {
+					setSelectedPath(null);
+					setCameFromBack(true);
+					setStep(2);
+				}}
+			/>
 		) : selectedPath === "shop" ? (
-			<ShopStats key="shop" onComplete={() => setStep(4)} />
+			<ShopStats
+				key="shop"
+				onComplete={() => setStep(4)}
+				onBack={() => {
+					setSelectedPath(null);
+					setCameFromBack(true);
+					setStep(2);
+				}}
+			/>
 		) : (
 			<div key="none">Error: No path selected</div>
 		),

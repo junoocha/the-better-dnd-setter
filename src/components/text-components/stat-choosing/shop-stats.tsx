@@ -9,9 +9,10 @@ import { useLoopPhase } from "../../text-animation/loop-phase-context";
 
 type Props = {
 	onComplete: () => void;
+	onBack: () => void;
 };
 
-export default function ShopStats({ onComplete }: Props) {
+export default function ShopStats({ onComplete, onBack }: Props) {
 	const { setIsIntroLoopPhase } = useLoopPhase();
 
 	const handleLoopStart = () => {
@@ -33,6 +34,14 @@ export default function ShopStats({ onComplete }: Props) {
 				className="px-4 py-2 bg-blue-600 rounded hover:bg-green-700"
 			>
 				Wake up the bard?
+			</button>
+
+			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+			<button
+				onClick={onBack}
+				className="px-4 py-2 bg-gray-600 rounded hover:bg-gray-700"
+			>
+				← Go Back
 			</button>
 		</div>
 	);
