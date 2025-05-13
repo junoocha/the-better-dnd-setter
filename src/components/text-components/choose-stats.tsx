@@ -6,16 +6,22 @@ type Props = {
 };
 
 const descriptions = {
+	default: ["Choose the path you would like to do."],
 	gamble: ["You roll the dice... anything can happen."],
 	boring: ["Standard stats: safe, predictable, dull."],
 	shop: ["Spend wisely. Your journey starts with gear."],
 };
 
 export default function ChooseStats({ onComplete }: Props) {
-	const [selectedOption, setSelectedOption] = useState<
-		null | keyof typeof descriptions
-	>(null);
+	// const [selectedOption, setSelectedOption] = useState<
+	// 	null | keyof typeof descriptions
+	// >(null);
+	const [selectedOption, setSelectedOption] =
+		useState<keyof typeof descriptions>("default");
 
+	const handleSelect = (option: keyof typeof descriptions) => {
+		setSelectedOption((prev) => (prev === option ? "default" : option));
+	};
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			{selectedOption && (
@@ -29,24 +35,24 @@ export default function ChooseStats({ onComplete }: Props) {
 			<div className="flex flex-row gap-2">
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 				<button
-					onClick={() => setSelectedOption("gamble")}
-					className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+					onClick={() => handleSelect("gamble")}
+					className={`px-4 py-2 w-30 bg-blue-600 rounded hover:bg-blue-700 ${selectedOption === "gamble" ? "animate-bounce" : "border-transparent"}`}
 				>
 					GAMBLE
 				</button>
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 				<button
-					onClick={() => setSelectedOption("boring")}
-					className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+					onClick={() => handleSelect("boring")}
+					className={`px-4 py-2 w-30 bg-blue-600 rounded hover:bg-blue-700 ${selectedOption === "boring" ? "animate-bounce" : "border-transparent"}`}
 				>
-					Boring Given Stats
+					Given Stats
 				</button>
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 				<button
-					onClick={() => setSelectedOption("shop")}
-					className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+					onClick={() => handleSelect("shop")}
+					className={`px-4 py-2 w-30 bg-blue-600 rounded hover:bg-blue-700 ${selectedOption === "shop" ? "animate-bounce" : "border-bg-blue-600"}`}
 				>
-					Les Go Shopping
+					Shop
 				</button>
 			</div>
 
