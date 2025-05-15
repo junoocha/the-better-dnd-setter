@@ -1,48 +1,34 @@
-import TextAnimation from "../../text-animation/text-animation";
-import { useTextAnimation } from "../../text-animation/text-animator";
-import {
-	intro,
-	introLoopSentences,
-} from ".././sentence-arrays/intro-text-data";
-import { useEffect } from "react";
-import { useLoopPhase } from "../../text-animation/loop-phase-context";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import IntroGambleText from "./gamble/intro-gamble-text";
+import ChooseDice from "./gamble/choose-dice-number";
 
-type Props = {
-	onComplete: () => void;
-	onBack: () => void;
-};
+export default function GambleStats({ onComplete, onBack }) {
+	const [subStep, setSubStep] = useState(0);
 
-export default function GambleStats({ onComplete, onBack }: Props) {
-	const { setIsIntroLoopPhase } = useLoopPhase();
-
-	const handleLoopStart = () => {
-		// console.log("Intro loop started, setting isIntroLoopPhase to true");
-		setIsIntroLoopPhase(true);
-	};
+	const subSteps = [
+		<IntroGambleText key="g-intro" onComplete={() => setSubStep(1)} />,
+		<ChooseDice key="g-choice" onComplete={() => setSubStep(2)} />,
+		// <GambleResult
+		// 	key="result"
+		// 	onFinish={() => {
+		// 		// Finalize and return control to parent
+		// 		onComplete();
+		// 	}}
+		// />,
+	];
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
-			<TextAnimation
-				initialSentences={intro}
-				loopSentences={introLoopSentences}
-				fadeTrue={false}
-				onLoopStart={handleLoopStart}
-			/>
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				onClick={onComplete}
-				className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+		<AnimatePresence mode="wait">
+			<motion.div
+				key={subStep}
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: -10 }}
+				transition={{ duration: 0.5 }}
 			>
-				Wake up the bard?
-			</button>
-
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				onClick={onBack}
-				className="px-4 py-2 bg-gray-600 rounded hover:bg-gray-700"
-			>
-				← Go Back
-			</button>
-		</div>
+				{subSteps[subStep]}
+			</motion.div>
+		</AnimatePresence>
 	);
 }
