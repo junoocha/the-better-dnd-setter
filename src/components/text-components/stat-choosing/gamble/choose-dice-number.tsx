@@ -1,6 +1,7 @@
 import TextAnimation from "@/components/text-animation/text-animation";
 import { explanationGambleText } from "../../sentence-arrays/gamble-text-data";
 import { useState } from "react";
+import Dice from "./dice-components/dice";
 
 type Props = {
 	onComplete: (dieInfo: { used: number; discarded: number }) => void; // return values
@@ -93,6 +94,7 @@ export default function ChooseDice({ onComplete }: Props) {
 			>
 				Submit
 			</button>
+			<Dice onRollComplete={(num) => console.log("You rolled", num)} />
 		</div>
 	);
 }
