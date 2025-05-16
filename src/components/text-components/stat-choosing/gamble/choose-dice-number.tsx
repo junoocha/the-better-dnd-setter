@@ -87,7 +87,7 @@ export default function ChooseDice({ onComplete }: Props) {
 
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 			<button
-				className="bg-blue-600 hover:bg-blue-700 transition px-6 py-2 mt-4 rounded text-white disabled:opacity-50"
+				className="bg-blue-600 hover:bg-blue-700 transition px-6 py-2 rounded text-white disabled:opacity-50"
 				disabled={submitDisabled}
 				onClick={handleSubmit}
 			>
