@@ -1,5 +1,9 @@
 export const introGambleText = ["I LOVE GAMBA", "OH YEAH", "FGILLER !"];
 
+export const explanationGambleText = [
+	"Choose the number of dice you want to roll and discard for each stat.",
+];
+
 export const goodGambleText = [
 	"I hate you for rolling good.",
 	"Damn, good rolls",

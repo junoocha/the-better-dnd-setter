@@ -1,5 +1,5 @@
 import TextAnimation from "@/components/text-animation/text-animation";
-import { introGambleText } from "../../sentence-arrays/gamble-text-data";
+import { explanationGambleText } from "../../sentence-arrays/gamble-text-data";
 import { useState } from "react";
 
 type Props = {
@@ -37,7 +37,7 @@ export default function ChooseDice({ onComplete }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
-				initialSentences={introGambleText}
+				initialSentences={explanationGambleText}
 				fadeTrue={false}
 				numSentences={1}
 				// onLoopStart={() => {
