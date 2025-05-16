@@ -94,7 +94,7 @@ export default function ChooseDice({ onComplete }: Props) {
 			>
 				Submit
 			</button>
-			<Dice onRollComplete={(num) => console.log("You rolled", num)} />
+			{/* <Dice onRollComplete={(num) => console.log("You rolled", num)} /> */}
 		</div>
 	);
 }

@@ -65,11 +65,11 @@ export default function Home() {
 			<GambleStats
 				key="gamble"
 				onComplete={() => setStep(4)}
-				onBack={() => {
-					setSelectedPath(null);
-					setCameFromBack(true);
-					setStep(2);
-				}}
+				// onBack={() => {
+				// 	setSelectedPath(null);
+				// 	setCameFromBack(true);
+				// 	setStep(2);
+				// }}
 			/>
 		) : selectedPath === "boring" ? (
 			<GivenStats
