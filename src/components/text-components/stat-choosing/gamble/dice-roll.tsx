@@ -105,11 +105,25 @@ export default function RollDice({
 			{/* Show Results So Far */}
 			<div className="text-white">
 				<h3 className="text-lg mt-4">Results So Far:</h3>
-				<ul className="space-y-1">
-					{finalSums.map((sum, i) => (
+				<ul className="space-y-4">
+					{rollResults.map((diceValues, i) => (
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<li key={i}>
-							Roll #{i + 1}: <span className="font-mono">{sum}</span>
+							<div className="flex items-center gap-2 justify-center">
+								<span className="font-mono text-sm">Roll #{i + 1}:</span>
+								{diceValues.map((val, idx) => (
+									<img
+										// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+										key={idx}
+										src={`/dice/${val}.png`}
+										alt={`Dice showing ${val}`}
+										className="w-6 h-6"
+									/>
+								))}
+								<span className="ml-2 font-bold text-green-400">
+									Sum: {finalSums[i]}
+								</span>
+							</div>
 						</li>
 					))}
 				</ul>
