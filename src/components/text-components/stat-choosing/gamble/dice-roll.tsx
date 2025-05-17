@@ -111,15 +111,33 @@ export default function RollDice({
 						<li key={i}>
 							<div className="flex items-center gap-2 justify-center">
 								<span className="font-mono text-sm">Roll #{i + 1}:</span>
-								{diceValues.map((val, idx) => (
-									<img
-										// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-										key={idx}
-										src={`/dice/${val}.png`}
-										alt={`Dice showing ${val}`}
-										className="w-6 h-6"
-									/>
-								))}
+								{(() => {
+									// Pair each value with its original index
+									const indexed = diceValues.map((val, idx) => ({ val, idx }));
+									// Sort to find which indices should be discarded
+									const sorted = [...indexed].sort((a, b) => a.val - b.val);
+									const discardedIndices = sorted
+										.slice(0, discarded)
+										.map((item) => item.idx); // get indices of discarded dice
+
+									return diceValues.map((val, idx) => {
+										const isDiscarded = discardedIndices.includes(idx);
+										const imageSrc = isDiscarded
+											? `/dice/${val}-remove.png`
+											: `/dice/${val}.png`;
+
+										return (
+											<img
+												// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+												key={idx}
+												src={imageSrc}
+												alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
+												className="w-6 h-6"
+											/>
+										);
+									});
+								})()}
+
 								<span className="ml-2 font-bold text-green-400">
 									Sum: {finalSums[i]}
 								</span>
