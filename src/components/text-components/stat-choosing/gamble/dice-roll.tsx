@@ -139,7 +139,7 @@ export default function RollDice({
 								})()}
 
 								<span className="ml-2 font-bold text-green-400">
-									Sum: {finalSums[i]}
+									{finalSums[i]}
 								</span>
 							</div>
 						</li>
