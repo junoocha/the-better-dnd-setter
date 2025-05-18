@@ -60,7 +60,7 @@ export default function RollDice({
 	};
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-4 items-center text-center">
 			<h2 className="text-xl text-white">Roll #{currentRoll + 1} of 6</h2>
 
 			{/* Show Dice */}
@@ -83,7 +83,9 @@ export default function RollDice({
 									setIsRolling(false);
 
 									if (currentRoll + 1 === 6) {
-										onComplete([...finalSums, sum]);
+										setTimeout(() => {
+											onComplete([...finalSums, sum]);
+										}, 1500); // half-second pause before transition
 									}
 								}
 							}}
@@ -103,48 +105,57 @@ export default function RollDice({
 			</div>
 
 			{/* Show Results So Far */}
-			<div className="text-white">
-				<h3 className="text-lg mt-4">Results So Far:</h3>
-				<ul className="space-y-4">
-					{rollResults.map((diceValues, i) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						<li key={i}>
-							<div className="flex items-center gap-2 justify-center">
-								<span className="font-mono text-sm">Roll #{i + 1}:</span>
-								{(() => {
-									// Pair each value with its original index
-									const indexed = diceValues.map((val, idx) => ({ val, idx }));
-									// Sort to find which indices should be discarded
-									const sorted = [...indexed].sort((a, b) => a.val - b.val);
-									const discardedIndices = sorted
-										.slice(0, discarded)
-										.map((item) => item.idx); // get indices of discarded dice
+			<div className="text-whitew-full max-w-md">
+				<h3 className="text-lg mt-4 pb-4">Results So Far:</h3>
+				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">
+					<ul className="space-y-4">
+						{rollResults.map((diceValues, i) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+							<li key={i}>
+								<div className="flex justify-center items-center gap-4">
+									<span className="font-mono text-sm  w-24 text-right">
+										{i === 5 ? "Final Roll" : `Roll #${i + 1}`}:
+									</span>
+									<div className="flex gap-1 items-center">
+										{(() => {
+											// Pair each value with its original index
+											const indexed = diceValues.map((val, idx) => ({
+												val,
+												idx,
+											}));
+											// Sort to find which indices should be discarded
+											const sorted = [...indexed].sort((a, b) => a.val - b.val);
+											const discardedIndices = sorted
+												.slice(0, discarded)
+												.map((item) => item.idx); // get indices of discarded dice
 
-									return diceValues.map((val, idx) => {
-										const isDiscarded = discardedIndices.includes(idx);
-										const imageSrc = isDiscarded
-											? `/dice/${val}-remove.png`
-											: `/dice/${val}.png`;
+											return diceValues.map((val, idx) => {
+												const isDiscarded = discardedIndices.includes(idx);
+												const imageSrc = isDiscarded
+													? `/dice/${val}-remove.png`
+													: `/dice/${val}.png`;
 
-										return (
-											<img
-												// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-												key={idx}
-												src={imageSrc}
-												alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
-												className="w-6 h-6"
-											/>
-										);
-									});
-								})()}
+												return (
+													<img
+														// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+														key={idx}
+														src={imageSrc}
+														alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
+														className="w-6 h-6"
+													/>
+												);
+											});
+										})()}
+									</div>
 
-								<span className="ml-2 font-bold text-green-400">
-									{finalSums[i]}
-								</span>
-							</div>
-						</li>
-					))}
-				</ul>
+									<span className="ml-2 font-bold text-green-400 w-10 text-left">
+										{finalSums[i]}
+									</span>
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		</div>
 	);
