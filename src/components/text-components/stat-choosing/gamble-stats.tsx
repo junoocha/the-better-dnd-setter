@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import IntroGambleText from "./gamble/intro-gamble-text";
 import ChooseDice from "./gamble/choose-dice-number";
 import RollDice from "./gamble/dice-roll";
+import EndingGambleText from "./gamble/ending-gamble-text";
 
 export default function GambleStats({ onComplete }) {
 	const [subStep, setSubStep] = useState(0);
@@ -28,6 +29,7 @@ export default function GambleStats({ onComplete }) {
 				onComplete={() => setSubStep(3)}
 			/>
 		),
+		<EndingGambleText key="g-ending" onComplete={() => setSubStep(4)} />,
 		// <GambleResult
 		// 	key="result"
 		// 	onFinish={() => {

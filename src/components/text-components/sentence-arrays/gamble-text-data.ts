@@ -1,5 +1,7 @@
 export const introGambleText = ["I LOVE GAMBA", "OH YEAH", "FGILLER !"];
 
+export const endingGambleText = ["FILLER TEXT BECAUSE I WANT TO PLAY LEAGUE"];
+
 export const explanationGambleText = [
 	"Choose the number of dice you want to roll and discard for each stat.",
 ];
