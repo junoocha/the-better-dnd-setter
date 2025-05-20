@@ -32,7 +32,10 @@ export default function GambleStats({ onComplete }: GambleStatsProps) {
 				key="roll"
 				used={diceInfo.used}
 				discarded={diceInfo.discarded}
-				onComplete={() => setSubStep(3)}
+				onComplete={(sums) => {
+					setFinalSums(sums);
+					setSubStep(3);
+				}}
 			/>
 		),
 		finalSums && (
