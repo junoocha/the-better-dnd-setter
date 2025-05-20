@@ -19,7 +19,7 @@ export const useTextAnimation = (
 		loopSentences,
 		fadeTrue, // if true, should fade automatically, if not, will fade when step ends
 		numSentences, // the number of sentences to be shown.
-		speed = 6,
+		speed = 3, //default is 30 but to make it quick... its now at 3
 		delayBetweenSentences = 1500,
 		fadeDuration = 2000,
 	}: UseTextAnimationProps,

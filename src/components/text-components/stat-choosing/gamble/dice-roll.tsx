@@ -61,7 +61,9 @@ export default function RollDice({
 
 	return (
 		<div className="flex flex-col gap-4 items-center text-center">
-			<h2 className="text-xl text-white">Roll #{currentRoll + 1} of 6</h2>
+			<h2 className="text-xl text-white">
+				{currentRoll === 6 ? "" : `Roll #${currentRoll + 1} of 6`}
+			</h2>
 
 			{/* Show Dice */}
 			<div className="flex gap-2 flex-wrap justify-center min-h-[60px]">
@@ -114,7 +116,7 @@ export default function RollDice({
 							<li key={i}>
 								<div className="flex justify-center items-center gap-4">
 									<span className="font-mono text-sm  w-24 text-right">
-										{i === 5 ? "Final Roll" : `Roll #${i + 1}`}:
+										{i === 5 ? "Roll #6" : `Roll #${i + 1}`}:
 									</span>
 									<div className="flex gap-1 items-center">
 										{(() => {
