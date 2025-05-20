@@ -76,7 +76,7 @@ export default function RollDice({
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -10 }}
 							transition={{ duration: 0.3 }}
-							className="flex gap-2 flex-wrap justify-center"
+							className="flex gap-2 pt-3 flex-wrap justify-center"
 						>
 							{Array.from({ length: used }).map((_, i) => (
 								<Dice
@@ -92,7 +92,7 @@ export default function RollDice({
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -10 }}
 							transition={{ duration: 0.5 }}
-							className="flex gap-2 flex-wrap justify-center"
+							className="flex gap-2 pt-3 flex-wrap justify-center"
 						>
 							{(() => {
 								const indexed = justRolled.map((val, idx) => ({ val, idx }));
