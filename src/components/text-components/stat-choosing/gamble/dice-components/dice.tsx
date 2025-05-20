@@ -37,7 +37,7 @@ export default function Dice({
 	}, [rollDelay, switchInterval, onRollComplete]);
 
 	return (
-		<div className="w-12 h-12">
+		<div className="w-10 h-10">
 			<img
 				src={`/dice/${value}.png`} // show dice image
 				alt={`Dice showing ${value}`}
