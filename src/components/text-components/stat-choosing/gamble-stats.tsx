@@ -5,12 +5,18 @@ import ChooseDice from "./gamble/choose-dice-number";
 import RollDice from "./gamble/dice-roll";
 import EndingGambleText from "./gamble/ending-gamble-text";
 
-export default function GambleStats({ onComplete }) {
+type GambleStatsProps = {
+	onComplete: (finalSums: number[]) => void;
+};
+
+export default function GambleStats({ onComplete }: GambleStatsProps) {
 	const [subStep, setSubStep] = useState(0);
 	const [diceInfo, setDiceInfo] = useState<{
 		used: number;
 		discarded: number;
 	} | null>(null);
+
+	const [finalSums, setFinalSums] = useState<number[] | null>(null);
 
 	const subSteps = [
 		<IntroGambleText key="g-intro" onComplete={() => setSubStep(1)} />,
@@ -29,14 +35,14 @@ export default function GambleStats({ onComplete }) {
 				onComplete={() => setSubStep(3)}
 			/>
 		),
-		<EndingGambleText key="g-ending" onComplete={() => setSubStep(4)} />,
-		// <GambleResult
-		// 	key="result"
-		// 	onFinish={() => {
-		// 		// Finalize and return control to parent
-		// 		onComplete();
-		// 	}}
-		// />,
+		finalSums && (
+			<EndingGambleText
+				key="g-ending"
+				onComplete={() => {
+					onComplete(finalSums); // pass final sums to parent
+				}}
+			/>
+		),
 	];
 
 	return (

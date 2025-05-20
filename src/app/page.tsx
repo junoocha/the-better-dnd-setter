@@ -64,7 +64,10 @@ export default function Home() {
 		selectedPath === "gamble" ? (
 			<GambleStats
 				key="gamble"
-				onComplete={() => setStep(4)}
+				onComplete={(finalSums) => {
+					console.log("test", finalSums);
+					setStep(4);
+				}}
 				// onBack={() => {
 				// 	setSelectedPath(null);
 				// 	setCameFromBack(true);
