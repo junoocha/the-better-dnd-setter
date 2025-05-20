@@ -2,6 +2,9 @@ import Dice from "./dice-components/dice";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+// if i don't get bored, maybe look into refactoring how dice are displayed, i do it like 3 times, maybe turn it into a component in the future but im lazy since its fine, but
+// if i need cleaner code, yea do the thing on top
+
 type RollDiceProps = {
 	used: number;
 	discarded: number;
