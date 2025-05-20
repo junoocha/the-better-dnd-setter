@@ -20,7 +20,7 @@ export default function RollDice({
 	const [justRolled, setJustRolled] = useState<number[] | null>(null);
 
 	const handleRoll = () => {
-		if (isRolling || currentRoll >= 6) return;
+		if (isRolling || currentRoll >= 6) return; // prevent roll
 
 		setIsRolling(true); // begin rolls and store results temp
 		const values: number[] = [];
@@ -29,16 +29,18 @@ export default function RollDice({
 		setRollResults((prev) => [...prev, Array(used).fill(0)]);
 	};
 
+	// called when single dice finishes rolling. Index and value of dice
 	const onDiceRollComplete = (val: number, idx: number) => {
 		if (!rollResults[currentRoll]) return;
 
-		// Update the dice value for the current roll and dice index
+		// update the dice value for the current roll and dice index
 		const newResults = [...rollResults];
 		newResults[currentRoll][idx] = val;
 		setRollResults(newResults);
 
 		// Check if all dice finished rolling
 		if (newResults[currentRoll].filter(Boolean).length === used) {
+			// sort and discard lowest values
 			const sorted = [...newResults[currentRoll]].sort((a, b) => a - b);
 			const kept = sorted.slice(discarded);
 			const sum = kept.reduce((a, b) => a + b, 0);
@@ -47,12 +49,12 @@ export default function RollDice({
 			setIsRolling(false);
 			setJustRolled(newResults[currentRoll]);
 
-			// After showing results for 1.5s, move to next roll & clear justRolled
+			// after showing results for 1.5s, move to next roll & clear justRolled for new roll
 			setTimeout(() => {
 				setJustRolled(null);
 				setCurrentRoll((prev) => prev + 1);
 
-				// If last roll, trigger onComplete callback
+				// if last roll, trigger onComplete callback
 				if (currentRoll + 1 === 6) {
 					onComplete([...finalSums, sum]);
 				}
@@ -66,9 +68,10 @@ export default function RollDice({
 				{currentRoll === 6 ? "" : `Roll #${currentRoll + 1} of 6`}
 			</h2>
 
-			{/* Show Dice Rolling or Just Rolled results */}
+			{/* show dice rolling + just rolled results */}
 			<div className="flex gap-2 flex-wrap justify-center min-h-[60px]">
 				<AnimatePresence mode="wait">
+					{/* animation for while rolling */}
 					{isRolling ? (
 						<motion.div
 							key="rolling"
@@ -80,12 +83,13 @@ export default function RollDice({
 						>
 							{Array.from({ length: used }).map((_, i) => (
 								<Dice
+									// biome-ignore lint/suspicious/noArrayIndexKey: static
 									key={i}
 									onRollComplete={(val) => onDiceRollComplete(val, i)}
 								/>
 							))}
 						</motion.div>
-					) : justRolled ? (
+					) : justRolled ? ( // animation for after its rolled
 						<motion.div
 							key="justRolled"
 							initial={{ opacity: 0, y: 10 }}
@@ -95,13 +99,14 @@ export default function RollDice({
 							className="flex gap-2 pt-3 flex-wrap justify-center"
 						>
 							{(() => {
-								const indexed = justRolled.map((val, idx) => ({ val, idx }));
+								const indexed = justRolled.map((val, idx) => ({ val, idx })); // same discard method
 								const sorted = [...indexed].sort((a, b) => a.val - b.val);
 								const discardedIndices = sorted
 									.slice(0, discarded)
 									.map((item) => item.idx);
 
 								return justRolled.map((val, idx) => {
+									// returning the dice image for each value, using the value as name
 									const isDiscarded = discardedIndices.includes(idx);
 									const imageSrc = isDiscarded
 										? `/dice/${val}-remove.png`
@@ -109,6 +114,7 @@ export default function RollDice({
 
 									return (
 										<motion.img
+											// biome-ignore lint/suspicious/noArrayIndexKey: static
 											key={idx}
 											src={imageSrc}
 											alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
@@ -123,7 +129,7 @@ export default function RollDice({
 							})()}
 						</motion.div>
 					) : (
-						<motion.button
+						<motion.button // green button to roll and also animation for the button
 							key="roll-button"
 							onClick={handleRoll}
 							disabled={isRolling || currentRoll >= 6}
@@ -139,14 +145,14 @@ export default function RollDice({
 				</AnimatePresence>
 			</div>
 
-			{/* Show Results So Far */}
+			{/* show Results So Far */}
 			<div className="text-whitew-full max-w-md">
 				<h3 className="text-lg mt-4 pb-4">Results So Far:</h3>
 				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">
 					<ul className="space-y-4">
 						<AnimatePresence mode="wait">
 							{rollResults.map((diceValues, i) => {
-								// Don't render if final sum hasn't been computed yet
+								// don't render if final sum hasn't been computed yet
 								if (finalSums[i] === undefined) return null;
 
 								return (
@@ -156,13 +162,18 @@ export default function RollDice({
 										initial={{ opacity: 0, y: 10 }}
 										animate={{ opacity: 1, y: 0 }}
 										exit={{ opacity: 0, y: -10 }}
-										transition={{ delay: justRolled ? 0.8 : 0, duration: 0.5 }}
+										transition={{
+											delay: currentRoll === 6 ? 1.5 : 0.8,
+											duration: 0.5,
+										}}
 									>
 										<div className="flex justify-center items-center gap-4">
+											{/* text to label each roll */}
 											<span className="font-mono text-sm w-24 text-right">
 												{`Roll #${i + 1}`}:
 											</span>
 
+											{/* same logic to determine which dice to show based off of value */}
 											<div className="flex gap-1 items-center">
 												{(() => {
 													const indexed = diceValues.map((val, idx) => ({
