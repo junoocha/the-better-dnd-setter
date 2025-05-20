@@ -94,12 +94,11 @@ export default function RollDice({
 						/>
 					))}
 
-				{!isRolling && (
+				{!isRolling && currentRoll < 6 && (
 					// biome-ignore lint/a11y/useButtonType: <explanation>
 					<button
 						onClick={handleRoll}
-						disabled={isRolling || currentRoll >= 6}
-						className="mt-4 px-6 py-2 bg-green-600 rounded hover:bg-green-700 disabled:opacity-50"
+						className="mt-4 px-6 py-2 bg-green-600 rounded hover:bg-green-700"
 					>
 						Roll Dice
 					</button>
