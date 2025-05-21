@@ -64,12 +64,15 @@ export default function Home() {
 		selectedPath === "gamble" ? (
 			<GambleStats
 				key="gamble"
-				onComplete={() => setStep(4)}
-				onBack={() => {
-					setSelectedPath(null);
-					setCameFromBack(true);
-					setStep(2);
+				onComplete={(finalSums) => {
+					console.log("test", finalSums);
+					setStep(4);
 				}}
+				// onBack={() => {
+				// 	setSelectedPath(null);
+				// 	setCameFromBack(true);
+				// 	setStep(2);
+				// }}
 			/>
 		) : selectedPath === "boring" ? (
 			<GivenStats

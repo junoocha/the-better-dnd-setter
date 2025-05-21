@@ -11,6 +11,7 @@ type UseTextAnimationProps = {
 	speed?: number;
 	delayBetweenSentences?: number;
 	fadeDuration?: number;
+	showAndStay?: boolean;
 };
 
 export const useTextAnimation = (
@@ -19,9 +20,10 @@ export const useTextAnimation = (
 		loopSentences,
 		fadeTrue, // if true, should fade automatically, if not, will fade when step ends
 		numSentences, // the number of sentences to be shown.
-		speed = 6,
+		speed = 3, //default is 30 but for testing sake, turn it to 3
 		delayBetweenSentences = 1500,
 		fadeDuration = 2000,
+		showAndStay = false,
 	}: UseTextAnimationProps,
 	onLoopStart?: () => void,
 ) => {
@@ -33,6 +35,9 @@ export const useTextAnimation = (
 		loopSentences ?? [], // fall back on empty array if undefined
 	); // storing the new sentence array after being shuffled
 
+	// conditional only for if I want to show one sentence, no loop, and no fade.
+	const singleSentenceMode = showAndStay && numSentences === 1;
+
 	// flip flop between sentence array
 	const sentences = useMemo(() => {
 		return isInLoopPhase
@@ -42,8 +47,53 @@ export const useTextAnimation = (
 				: (initialSentences ?? []);
 	}, [isInLoopPhase, currentLoopSentences, initialSentences, numSentences]);
 
+	// only for one sentence
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
+		if (!singleSentenceMode) return;
+
+		const pool = initialSentences ?? loopSentences ?? [];
+		const random = shuffleArray(pool)[0] ?? "";
+		let currentIndex = 0;
+
+		setDisplayedText("");
+		setFadingOut(false);
+
+		const timeouts: NodeJS.Timeout[] = [];
+
+		const typeChar = () => {
+			if (currentIndex < random.length) {
+				const char = random[currentIndex];
+				setDisplayedText((prev) => prev + char);
+				currentIndex++;
+
+				let pause = speed;
+				if (char === "." || char === "!" || char === "?") {
+					pause += 600;
+				} else if (
+					char === "." &&
+					random.slice(currentIndex - 1, currentIndex + 2) === "..."
+				) {
+					pause += 600;
+					currentIndex += 2;
+					// biome-ignore lint/style/useTemplate: <explanation>
+					setDisplayedText((prev) => prev + "..");
+				}
+
+				timeouts.push(setTimeout(typeChar, pause));
+			}
+		};
+
+		typeChar();
+
+		return () => timeouts.forEach(clearTimeout);
+	}, [showAndStay, numSentences, initialSentences, loopSentences, speed]);
+
+	// for all regular sentences
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		if (singleSentenceMode) return;
+
 		// if the index reaches end of array, just end/return
 		if (currentSentenceIndex >= sentences.length) {
 			// transition to loop sentences after initial ones
@@ -60,11 +110,10 @@ export const useTextAnimation = (
 			return;
 		}
 
-		const timeouts: NodeJS.Timeout[] = [];
-
 		// get the first sentence
 		const currentSentence = sentences[currentSentenceIndex];
 		let currentIndex = 0;
+		const timeouts: NodeJS.Timeout[] = [];
 
 		// set initial stuff
 		setDisplayedText("");
@@ -91,7 +140,8 @@ export const useTextAnimation = (
 				}
 
 				timeouts.push(setTimeout(typeCharacter, pause));
-			} else {
+			} else if (!singleSentenceMode) {
+				// Only run this block if not in single sentence mode
 				timeouts.push(
 					setTimeout(() => {
 						setFadingOut(true);
@@ -99,11 +149,9 @@ export const useTextAnimation = (
 						timeouts.push(
 							setTimeout(() => {
 								if (!fadeTrue) {
-									// move on to next sentence
 									setFadingOut(false);
 									setCurrentSentenceIndex((prev) => prev + 1);
 								} else {
-									// don't fade out but just move on
 									setFadingOut(false);
 									setDisplayedText("");
 								}

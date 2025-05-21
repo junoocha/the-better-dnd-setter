@@ -63,7 +63,7 @@ export const introLoopSentences = [
 	"Click the blue thing before I start beatboxing.",
 	"Stat-setting shouldn’t feel like a boss battle.",
 	"At this point, even a gelatinous cube would have figured it out.",
-	"This ain't a prophecy—it’s UI design!",
+	"This ain't a prophecy... it’s UI design!",
 	"That blue rectangle? It’s your destiny. Or whatever.",
 	"Do I need to roll persuasion or intimidation?",
 	"...Your mouse has performance anxiety, huh?",
