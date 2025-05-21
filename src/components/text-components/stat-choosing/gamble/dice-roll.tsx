@@ -157,88 +157,86 @@ export default function RollDice({
 				<h3 className="text-lg mt-4 pb-4">Results So Far:</h3>
 				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">
 					<ul className="space-y-4">
-						<AnimatePresence mode="wait">
-							{rollResults.map((diceValues, i) => {
-								// don't render if final sum hasn't been computed yet
-								if (finalSums[i] === undefined) return null;
+						{rollResults.map((diceValues, i) => {
+							// don't render if final sum hasn't been computed yet
+							if (finalSums[i] === undefined) return null;
 
-								return (
-									<motion.li
-										// biome-ignore lint/suspicious/noArrayIndexKey: using static list
-										key={i}
-										initial={{ opacity: 0, y: 10 }}
-										animate={{ opacity: 1, y: 0 }}
-										exit={{ opacity: 0, y: -10 }}
-										transition={{
-											delay: currentRoll === 6 ? 1.5 : 0.8,
-											duration: 0.5,
-										}}
-									>
-										<div className="flex justify-center items-center gap-4">
-											{/* text to label each roll */}
-											<span className="font-mono text-sm w-24 text-right">
-												{`Roll #${i + 1}`}:
-											</span>
+							return (
+								<motion.li
+									// biome-ignore lint/suspicious/noArrayIndexKey: using static list
+									key={i}
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -10 }}
+									transition={{
+										delay: currentRoll === 6 ? 1.5 : 0.8,
+										duration: 0.5,
+									}}
+								>
+									<div className="flex justify-center items-center gap-4">
+										{/* text to label each roll */}
+										<span className="font-mono text-sm w-24 text-right">
+											{`Roll #${i + 1}`}:
+										</span>
 
-											{/* same logic to determine which dice to show based off of value */}
-											<div className="flex gap-1 items-center">
-												{(() => {
-													const indexed = diceValues.map((val, idx) => ({
-														val,
-														idx,
-													}));
-													const sorted = [...indexed].sort(
-														(a, b) => a.val - b.val,
-													);
-													const discardedIndices = sorted
-														.slice(0, discarded)
-														.map((item) => item.idx);
+										{/* same logic to determine which dice to show based off of value */}
+										<div className="flex gap-1 items-center">
+											{(() => {
+												const indexed = diceValues.map((val, idx) => ({
+													val,
+													idx,
+												}));
+												const sorted = [...indexed].sort(
+													(a, b) => a.val - b.val,
+												);
+												const discardedIndices = sorted
+													.slice(0, discarded)
+													.map((item) => item.idx);
 
-													return diceValues.map((val, idx) => {
-														const isDiscarded = discardedIndices.includes(idx);
-														const imageSrc = isDiscarded
-															? `/dice/${val}-remove.png`
-															: `/dice/${val}.png`;
+												return diceValues.map((val, idx) => {
+													const isDiscarded = discardedIndices.includes(idx);
+													const imageSrc = isDiscarded
+														? `/dice/${val}-remove.png`
+														: `/dice/${val}.png`;
 
-														if (isDiscarded) {
-															return (
-																// biome-ignore lint/suspicious/noArrayIndexKey: using static list
-																<AnimatePresence key={idx}>
-																	<motion.img
-																		// biome-ignore lint/suspicious/noArrayIndexKey: using static list
-																		key={idx}
-																		src={imageSrc}
-																		alt={`Dice showing ${val} (discarded)`}
-																		initial={{ opacity: 1 }}
-																		animate={{ opacity: 0.5 }} // just dim it
-																		transition={{ duration: 0.5, delay: 0.5 }}
-																		className="w-6 h-6"
-																	/>
-																</AnimatePresence>
-															);
-														}
-
+													if (isDiscarded) {
 														return (
-															<img
-																// biome-ignore lint/suspicious/noArrayIndexKey: using static list
-																key={idx}
-																src={imageSrc}
-																alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
-																className="w-6 h-6"
-															/>
+															// biome-ignore lint/suspicious/noArrayIndexKey: using static list
+															<AnimatePresence key={idx}>
+																<motion.img
+																	// biome-ignore lint/suspicious/noArrayIndexKey: using static list
+																	key={idx}
+																	src={imageSrc}
+																	alt={`Dice showing ${val} (discarded)`}
+																	initial={{ opacity: 1 }}
+																	animate={{ opacity: 0.5 }} // just dim it
+																	transition={{ duration: 0.5, delay: 0.5 }}
+																	className="w-6 h-6"
+																/>
+															</AnimatePresence>
 														);
-													});
-												})()}
-											</div>
+													}
 
-											<span className="ml-2 font-bold text-green-400 w-10 text-left">
-												{finalSums[i]}
-											</span>
+													return (
+														<img
+															// biome-ignore lint/suspicious/noArrayIndexKey: using static list
+															key={idx}
+															src={imageSrc}
+															alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
+															className="w-6 h-6"
+														/>
+													);
+												});
+											})()}
 										</div>
-									</motion.li>
-								);
-							})}
-						</AnimatePresence>
+
+										<span className="ml-2 font-bold text-green-400 w-10 text-left">
+											{finalSums[i]}
+										</span>
+									</div>
+								</motion.li>
+							);
+						})}
 					</ul>
 				</div>
 			</div>
