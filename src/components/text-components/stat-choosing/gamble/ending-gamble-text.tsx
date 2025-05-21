@@ -62,25 +62,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 								},
 							}}
 						>
-							{/* The number */}
-							<span className="drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]">
-								{val}
-							</span>
-
-							{/* Sparkle */}
-							<motion.span
-								className="absolute top-0 left-1/2 w-3 h-3 bg-white rounded-full"
-								initial={{ opacity: 0, scale: 0 }}
-								animate={{
-									opacity: [0.8, 0],
-									scale: [0.5, 2],
-								}}
-								transition={{
-									duration: 1,
-									repeat: Number.POSITIVE_INFINITY,
-									repeatDelay: 2 + i * 0.3,
-								}}
-							/>
+							{val}
 						</motion.span>
 					))}
 				</h1>
