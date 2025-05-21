@@ -1,5 +1,5 @@
 export const introGambleText = [
-	"Ah yes, the ‘hope and cope’ method. Bold choice.",
+	'Ah yes, the "hope and cope" method. Bold choice.',
 	"Roll for stats? Roll for regrets later.",
 	"Let fate decide if you're a hero... or a glorified paperweight.",
 	"Your stats are in the hands of RNGesus now. Pray accordingly.",
@@ -14,7 +14,7 @@ export const introGambleText = [
 	"Statistically speaking, this will be a disaster.",
 	"Why plan when you can panic?",
 	"This is the way. The random way.",
-	"Gambling your potential? Strange but I shall allow it",
+	"Gambling your potential? Strange but I shall allow it.",
 	"Why min-max when you can just vibe and die at level 2?",
 	"Ah yes, the YOLO path. Respect.",
 	"In the realm of chance, even a goblin may dream of glory.",
