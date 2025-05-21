@@ -52,16 +52,20 @@ export default function RollDice({
 			setIsRolling(false);
 			setJustRolled(newResults[currentRoll]);
 
+			const isLastRoll = currentRoll + 1 === 6;
 			// after showing results for 1.5s, move to next roll & clear justRolled for new roll
-			setTimeout(() => {
-				setJustRolled(null);
-				setCurrentRoll((prev) => prev + 1);
+			setTimeout(
+				() => {
+					setJustRolled(null);
+					setCurrentRoll((prev) => prev + 1);
 
-				// if last roll, trigger onComplete callback
-				if (currentRoll + 1 === 6) {
-					onComplete([...finalSums, sum]);
-				}
-			}, 1500);
+					// if last roll, trigger onComplete callback
+					if (currentRoll + 1 === 6) {
+						onComplete([...finalSums, sum]);
+					}
+				},
+				isLastRoll ? 3000 : 1500,
+			);
 		}
 	};
 
