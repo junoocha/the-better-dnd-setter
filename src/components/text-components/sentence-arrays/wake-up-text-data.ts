@@ -45,7 +45,7 @@ export const wakeupSentences = [
 	"The parchment is blank, the quill is yours... begin.",
 	"I’ve seen this moment in twelve timelines... only one survives.",
 	"The world is on fire, and you’re rolling numbers? Perfect.",
-	"YES... YES... another mortal steps into the chaos!",
+	"YES... another mortal steps into the chaos!",
 	"Finally, someone brave enough to press a button.",
 	"Reality just blinked, and now it’s your turn to make history.",
 	"The cosmos screams, the dice tremble... let’s go.",

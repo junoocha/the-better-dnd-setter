@@ -24,7 +24,7 @@ export default function WakeUpText({ onComplete }: Props) {
 				numSentences={1}
 				onLoopStart={() => {
 					// Delay so the first loop sentence has time to show before moving on
-					setTimeout(onComplete, 2500); // tweak this number to match timing
+					setTimeout(onComplete, 2500); // 2500 for testing, seems like 4000 works for regular
 				}}
 			/>
 		</div>

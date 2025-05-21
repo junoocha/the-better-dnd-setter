@@ -9,6 +9,7 @@ type TextAnimationProps = {
 	speed?: number;
 	delayBetweenSentences?: number;
 	fadeDuration?: number;
+	showAndStay?: boolean;
 	onLoopStart?: () => void;
 };
 

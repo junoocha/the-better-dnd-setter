@@ -29,12 +29,9 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
 				loopSentences={selectedSentences}
-				fadeTrue={true}
+				fadeTrue={false}
 				numSentences={1}
-				onLoopStart={() => {
-					// Delay so the first loop sentence has time to show before moving on
-					setTimeout(onComplete, 2500); // tweak this number to match timing
-				}}
+				showAndStay={true}
 			/>
 
 			<motion.div
@@ -67,6 +64,15 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 					))}
 				</h1>
 			</motion.div>
+
+			<motion.button
+				onClick={onComplete}
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				className="px-6 py-3 mt-4 bg-black text-white rounded hover:bg-blue-700"
+			>
+				Continue
+			</motion.button>
 		</div>
 	);
 }
