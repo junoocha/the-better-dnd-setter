@@ -41,6 +41,7 @@ export default function GambleStats({ onComplete }: GambleStatsProps) {
 		finalSums && (
 			<EndingGambleText
 				key="g-ending"
+				finalSums={finalSums}
 				onComplete={() => {
 					onComplete(finalSums); // pass final sums to parent
 				}}
