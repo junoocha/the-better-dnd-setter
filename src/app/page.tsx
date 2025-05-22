@@ -48,6 +48,7 @@ export default function Home() {
 	const [selectedPath, setSelectedPath] = useState<
 		"gamble" | "boring" | "shop" | "default" | null
 	>(null);
+	const [finalSums, setFinalSums] = useState<number[]>([]);
 
 	const [step, setStep] = useState(0);
 
@@ -66,6 +67,7 @@ export default function Home() {
 				key="gamble"
 				onComplete={(finalSums) => {
 					console.log("test", finalSums);
+					setFinalSums(finalSums);
 					setStep(4);
 				}}
 				// onBack={() => {
@@ -77,7 +79,12 @@ export default function Home() {
 		) : selectedPath === "boring" ? (
 			<GivenStats
 				key="boring"
-				onComplete={() => setStep(4)}
+				onComplete={() => {
+					const finalSums = [8, 10, 12, 13, 14, 15];
+					setFinalSums(finalSums);
+					setStep(4);
+					console.log("standard", finalSums);
+				}}
 				onBack={() => {
 					setSelectedPath(null);
 					setCameFromBack(true);

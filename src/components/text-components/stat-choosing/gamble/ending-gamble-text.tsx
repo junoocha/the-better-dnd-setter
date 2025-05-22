@@ -37,7 +37,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 		selectedSentences = highSTDGambleText;
 	} else if (duplicates(finalSums)) {
 		selectedSentences = duplicateGambleText;
-	} else if (average > 13) {
+	} else if (average > 12) {
 		selectedSentences = goodGambleText;
 	} else if (average >= 9) {
 		selectedSentences = midGambleText;
