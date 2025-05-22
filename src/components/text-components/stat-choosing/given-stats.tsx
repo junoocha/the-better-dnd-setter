@@ -4,40 +4,11 @@ import { motion } from "framer-motion";
 
 type Props = {
 	onComplete: () => void;
+	onBack: () => void;
 };
 
-export default function StandardArrayText({ onComplete }: Props) {
+export default function StandardArrayText({ onComplete, onBack }: Props) {
 	const standardArray = [8, 10, 12, 13, 14, 15];
-	// const average =
-	// 	finalSums.reduce((sum, num) => sum + num, 0) / finalSums.length;
-
-	// // if every number is the same
-	// function duplicates(arr: number[]): boolean {
-	// 	const first = arr[0];
-	// 	return arr.every((v) => v === first);
-	// }
-
-	// // if the numbers are very far apart
-	// function isChaotic(arr: number[]): boolean {
-	// 	const variance =
-	// 		arr.reduce((sum, v) => sum + (v - average) ** 2, 0) / arr.length;
-	// 	const stdDev = Math.sqrt(variance);
-	// 	return stdDev > 4.5; // tweak this threshold as needed
-	// }
-
-	// // biome-ignore lint/suspicious/noImplicitAnyLet:
-	// let selectedSentences;
-	// if (isChaotic(finalSums)) {
-	// 	selectedSentences = highSTDGambleText;
-	// } else if (duplicates(finalSums)) {
-	// 	selectedSentences = duplicateGambleText;
-	// } else if (average > 12) {
-	// 	selectedSentences = goodGambleText;
-	// } else if (average >= 9) {
-	// 	selectedSentences = midGambleText;
-	// } else {
-	// 	selectedSentences = badGambleText;
-	// }
 
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
@@ -83,9 +54,18 @@ export default function StandardArrayText({ onComplete }: Props) {
 				onClick={onComplete}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
-				className="px-6 py-3 mt-4 bg-black text-white rounded hover:bg-blue-700"
+				className="px-6 py-3 mt-2 bg-black text-white rounded hover:bg-blue-700"
 			>
 				Continue
+			</motion.button>
+
+			<motion.button
+				onClick={onBack}
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				className="px-6 py-3 bg-black text-white rounded hover:bg-blue-700"
+			>
+				← Go Back
 			</motion.button>
 		</div>
 	);
