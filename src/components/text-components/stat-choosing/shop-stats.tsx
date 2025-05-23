@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import EyeAnimation from "./shop/animations/eye-animation";
 import IntroShopText from "./shop/intro-shop-stats";
 import ShopKeeper from "./shop/shopkeeper";
 import EndingShopText from "./shop/ending-shop-stats";
@@ -31,6 +32,8 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 			>
 				{/* {subSteps[subStep]} */}
 				<p>sup</p>
+
+				<EyeAnimation />
 			</motion.div>
 		</AnimatePresence>
 	);
