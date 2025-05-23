@@ -70,11 +70,10 @@ export default function Home() {
 					setFinalSums(finalSums);
 					setStep(4);
 				}}
-				// onBack={() => {
-				// 	setSelectedPath(null);
-				// 	setCameFromBack(true);
-				// 	setStep(2);
-				// }}
+				onBack={() => {
+					setSelectedPath(null);
+					setStep(2);
+				}}
 			/>
 		) : selectedPath === "boring" ? (
 			<GivenStats
