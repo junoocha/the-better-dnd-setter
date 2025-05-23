@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import EyeAnimation from "./shop/animations/eye-animation";
 import IntroShopText from "./shop/intro-shop-stats";
+import MouthAnimation from "./shop/animations/mouth-animation";
 import ShopKeeper from "./shop/shopkeeper";
 import EndingShopText from "./shop/ending-shop-stats";
 
@@ -33,7 +34,18 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 				{/* {subSteps[subStep]} */}
 				<p>sup</p>
 
-				<EyeAnimation />
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: 10,
+						padding: 0,
+						margin: 0,
+					}}
+				>
+					<EyeAnimation />
+					<MouthAnimation />
+				</div>
 			</motion.div>
 		</AnimatePresence>
 	);
