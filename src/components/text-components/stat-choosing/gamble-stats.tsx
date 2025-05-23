@@ -7,9 +7,10 @@ import EndingGambleText from "./gamble/ending-gamble-text";
 
 type GambleStatsProps = {
 	onComplete: (finalSums: number[]) => void;
+	onBack: () => void;
 };
 
-export default function GambleStats({ onComplete }: GambleStatsProps) {
+export default function GambleStats({ onComplete, onBack }: GambleStatsProps) {
 	const [subStep, setSubStep] = useState(0);
 	const [diceInfo, setDiceInfo] = useState<{
 		used: number;
@@ -25,6 +26,9 @@ export default function GambleStats({ onComplete }: GambleStatsProps) {
 			onComplete={(info) => {
 				setDiceInfo(info);
 				setSubStep(2);
+			}}
+			onBack={() => {
+				onBack();
 			}}
 		/>,
 		diceInfo && (

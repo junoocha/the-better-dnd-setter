@@ -5,9 +5,10 @@ import Dice from "./dice-components/dice";
 
 type Props = {
 	onComplete: (dieInfo: { used: number; discarded: number }) => void; // return values
+	onBack: () => void;
 };
 
-export default function ChooseDice({ onComplete }: Props) {
+export default function ChooseDice({ onComplete, onBack }: Props) {
 	const [diceUsed, setDiceUsed] = useState("");
 	const [diceDiscarded, setDiceDiscarded] = useState("");
 
@@ -93,6 +94,14 @@ export default function ChooseDice({ onComplete }: Props) {
 				onClick={handleSubmit}
 			>
 				Submit
+			</button>
+
+			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+			<button
+				onClick={onBack}
+				className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white"
+			>
+				I Don't Want To Gamble
 			</button>
 			{/* <Dice onRollComplete={(num) => console.log("You rolled", num)} /> */}
 		</div>
