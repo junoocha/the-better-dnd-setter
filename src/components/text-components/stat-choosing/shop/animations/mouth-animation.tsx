@@ -28,7 +28,7 @@ const MouthAnimation = () => {
 		<img
 			src={`/mouth/${imageSrc}`} // Make sure images are in /public/mouth/
 			alt="Animated Mouth"
-			style={{ width: 350, height: 125 }}
+			style={{ width: 320, height: 125 }}
 		/>
 	);
 };
