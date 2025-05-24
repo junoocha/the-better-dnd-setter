@@ -7,9 +7,10 @@ import HandsAnimation from "./animations/hand-animation";
 
 type ShopStatsProps = {
 	onComplete: (finalSums: number[]) => void;
+	pointLimit: number;
 };
 
-export default function ShopStats({ onComplete }: ShopStatsProps) {
+export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 	const [finalSums, setFinalSums] = useState<number[] | null>(null);
 
 	const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);

@@ -18,19 +18,25 @@ type ShopStatsProps = {
 export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 	const [subStep, setSubStep] = useState(0);
 	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+	const [pointLimit, setPointLimit] = useState<number>(27);
 
-	const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
+	// const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
 
 	const subSteps = [
 		<IntroShopText key="s-intro" onComplete={() => setSubStep(1)} />,
 		<ChoosePointLimit
 			key="s-pointlimit"
-			onComplete={() => setSubStep(2)}
-			onBack={() => {
-				onBack();
+			onComplete={(limit) => {
+				setPointLimit(limit);
+				setSubStep(2);
 			}}
+			onBack={onBack}
 		/>,
-		<ShopKeeper key="s-shopkeeper" onComplete={() => setSubStep(3)} />,
+		<ShopKeeper
+			key="s-shopkeeper"
+			pointLimit={pointLimit}
+			onComplete={() => setSubStep(3)}
+		/>,
 		// <ShopKeeper key="s-shopkeeper" onComplete={() => setFinalSums(); setSubStep(2)}/>,
 		// <EndingShopText key="s-end" onComplete={() => onComplete(finalSums) }
 	];
