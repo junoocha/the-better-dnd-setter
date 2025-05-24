@@ -7,7 +7,7 @@ type IntroShopTextProps = {
 
 export default function IntroShopText({ onComplete }: IntroShopTextProps) {
 	return (
-		<div>
+		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
 				loopSentences={introShopText}
 				fadeTrue={true}

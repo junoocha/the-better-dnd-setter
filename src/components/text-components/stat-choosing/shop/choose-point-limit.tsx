@@ -1,5 +1,5 @@
 import TextAnimation from "@/components/text-animation/text-animation";
-import { explanationGambleText } from "../../sentence-arrays/gamble-text-data";
+import { explanationPointLimitText } from "../../sentence-arrays/shop-text-data";
 import { useState } from "react";
 
 type Props = {
@@ -25,7 +25,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
-				initialSentences={explanationGambleText}
+				initialSentences={explanationPointLimitText}
 				fadeTrue={false}
 				numSentences={1}
 			/>
@@ -36,7 +36,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 					className="bg-gray-800 text-white px-4 py-2 rounded w-32 text-center"
 					value={pointLimit}
 					onChange={(e) => setPointLimit(e.target.value)}
-					placeholder="Enter point limit"
+					placeholder="Enter Limit"
 					min={1}
 				/>
 			</div>
