@@ -65,7 +65,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 					{finalSums.map((val, i) => (
 						<motion.span
 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-							key={i}
+							key={`ending-g-${i}`}
 							className="relative inline-block"
 							initial={{ scale: 0.8, opacity: 0.7 }}
 							animate={{

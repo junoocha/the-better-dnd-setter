@@ -12,8 +12,36 @@ type ShopStatsProps = {
 
 export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+	const [remainingPoints, setRemainingPoints] = useState(pointLimit);
 
-	const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
+	const [stats, setStats] = useState([8, 8, 8, 8, 8, 8]);
+
+	const calculateCost = (from: number, to: number) => {
+		let cost = 0;
+		for (let i = from; i < to; i++) {
+			cost += i >= 13 ? 2 : 1;
+		}
+		for (let i = from; i > to; i--) {
+			cost -= i > 14 ? 2 : 1;
+		}
+		return cost;
+	};
+
+	const handleStatChange = (index: number, direction: "up" | "down") => {
+		const current = stats[index];
+		const next = direction === "up" ? current + 1 : current - 1;
+		if (next < 8 || next > 15) return;
+
+		const cost = calculateCost(current, next);
+		const newRemaining = remainingPoints - cost;
+
+		if (newRemaining < 0) return;
+
+		const updated = [...stats];
+		updated[index] = next;
+		setStats(updated);
+		setRemainingPoints(newRemaining);
+	};
 
 	return (
 		<AnimatePresence mode="wait">
@@ -24,25 +52,14 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 				transition={{ duration: 0.5 }}
 			>
 				{/* {subSteps[subStep]} */}
-				<p>Welcome Weirdo</p>
+				<p>Welcome Weirdo - Remaining Points: {remainingPoints}</p>
 
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						gap: 10,
-						padding: 100,
-						margin: 10,
-					}}
-				>
+				<div className="flex flex-col gap-2 p-24 m-2">
 					<EyeAnimation />
 					<MouthAnimation />
+					<HandsAnimation standardArray={stats} onChange={handleStatChange} />
 				</div>
 			</motion.div>
-			<HandsAnimation
-				standardArray={standardArray}
-				setStandardArray={setStandardArray}
-			/>
 		</AnimatePresence>
 	);
 }
