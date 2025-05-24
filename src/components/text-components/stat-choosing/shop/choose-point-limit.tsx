@@ -61,7 +61,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				onClick={onBack}
 				className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white"
 			>
-				I Don't Want To Gamble
+				I Forgot My Wallet
 			</button>
 		</div>
 	);
