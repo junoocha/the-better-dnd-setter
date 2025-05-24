@@ -17,7 +17,7 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 	const [subStep, setSubStep] = useState(0);
 	const [finalSums, setFinalSums] = useState<number[] | null>(null);
 
-	const standardArray = [8, 8, 8, 8, 8, 8];
+	const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
 
 	// const subSteps = [
 	// 	<IntroShopText key="s-intro" onComplete={() => setSubStep(1)} />,
@@ -50,7 +50,10 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 					<MouthAnimation />
 				</div>
 			</motion.div>
-			<HandsAnimation standardArray={standardArray} />
+			<HandsAnimation
+				standardArray={standardArray}
+				setStandardArray={setStandardArray}
+			/>
 			{/* <motion.div
 				key="showing-final-results"
 				initial={{ opacity: 0, y: 10 }}
