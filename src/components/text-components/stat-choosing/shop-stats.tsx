@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import EyeAnimation from "./shop/animations/eye-animation";
-import MouthAnimation from "./shop/animations/mouth-animation";
-import HandsAnimation from "./shop/animations/hand-animation";
 import ShopKeeper from "./shop/shopkeeper";
-
+import ShopKeeperWakeUp from "./shop/shopkeeper-wakeup";
 import IntroShopText from "./shop/intro-shop-stats";
 import ChoosePointLimit from "./shop/choose-point-limit";
 import EndingShopText from "./shop/ending-shop-stats";
@@ -32,10 +29,14 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 			}}
 			onBack={onBack}
 		/>,
+		<ShopKeeperWakeUp
+			key="s-shopkeeper-wakeup"
+			onComplete={() => setSubStep(3)}
+		/>,
 		<ShopKeeper
 			key="s-shopkeeper"
 			pointLimit={pointLimit}
-			onComplete={() => setSubStep(3)}
+			onComplete={() => setSubStep(4)}
 		/>,
 		// <ShopKeeper key="s-shopkeeper" onComplete={() => setFinalSums(); setSubStep(2)}/>,
 		// <EndingShopText key="s-end" onComplete={() => onComplete(finalSums) }
