@@ -44,22 +44,37 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 	};
 
 	return (
-		<AnimatePresence mode="wait">
-			<motion.div
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				exit={{ opacity: 0, y: -10 }}
-				transition={{ duration: 1 }}
-			>
-				{/* {subSteps[subStep]} */}
-				<p>Welcome Weirdo - Remaining Points: {remainingPoints}</p>
+		<div className="flex flex-col gap-6 items-center text-center">
+			<p>Welcome Weirdo - Remaining Points: {remainingPoints}</p>
 
-				<div className="flex flex-col gap-2 p-24 m-2">
+			{/* Outer container for animations */}
+			<div className="flex flex-col items-center justify-center gap-2 p-24 m-2">
+				{/* Eyes */}
+				<motion.div
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 1, delay: 1.5 }}
+				>
 					<EyeAnimation />
+				</motion.div>
+				{/* Mouth */}
+				<motion.div
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 1, delay: 4.5 }}
+				>
 					<MouthAnimation />
+				</motion.div>
+
+				{/* Hands */}
+				<motion.div
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 1, delay: 3.5 }}
+				>
 					<HandsAnimation standardArray={stats} onChange={handleStatChange} />
-				</div>
-			</motion.div>
-		</AnimatePresence>
+				</motion.div>
+			</div>
+		</div>
 	);
 }

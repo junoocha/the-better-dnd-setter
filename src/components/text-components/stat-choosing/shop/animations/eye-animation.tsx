@@ -49,7 +49,7 @@ const EyeAnimation = () => {
 		<img
 			src={`/eye/${imageSrc}`}
 			alt="Animated Eyes"
-			style={{ width: 300, height: 80 }}
+			style={{ width: 250, height: 80 }}
 		/>
 	);
 };
