@@ -12,10 +12,7 @@ export default function AlertShopKeeper({ onComplete }: Props) {
 				loopSentences={introShopText}
 				fadeTrue={false}
 				numSentences={1}
-				onLoopStart={() => {
-					// Delay so the first loop sentence has time to show before moving on
-					setTimeout(onComplete, 2500); // tweak this number to match timing
-				}}
+				onComplete={onComplete}
 			/>
 		</div>
 	);

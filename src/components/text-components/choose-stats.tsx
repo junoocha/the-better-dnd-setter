@@ -38,6 +38,7 @@ export default function ChooseStats({ onComplete }: Props) {
 							initialSentences={descriptions[selectedOption]}
 							fadeTrue={false}
 							numSentences={1}
+							showAndStay={true}
 						/>
 					)}
 				</div>

@@ -13,4 +13,6 @@ export const shopKeeperWakeUp = [
 	],
 ];
 
-export const alertShopKeeper = [""];
+export const alertShopKeeper = [
+	"Alright, let me go grab the intern. Don't be alarmed.",
+];
