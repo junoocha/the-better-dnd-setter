@@ -41,10 +41,16 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 		<ShopKeeper
 			key="s-shopkeeper"
 			pointLimit={pointLimit}
-			onComplete={() => setSubStep(5)}
+			onComplete={(finalStats) => {
+				setFinalSums(finalStats);
+				setSubStep(5);
+			}}
 		/>,
-		// <ShopKeeper key="s-shopkeeper" onComplete={() => setFinalSums(); setSubStep(2)}/>,
-		// <EndingShopText key="s-end" onComplete={() => onComplete(finalSums) }
+		<EndingShopText
+			key="s-end"
+			finalSums={finalSums ?? [0, 0, 0, 0, 0, 0]} // fallback to avoid crash
+			onComplete={() => onComplete(finalSums ?? [0, 0, 0, 0, 0, 0])}
+		/>,
 	];
 
 	return (

@@ -13,7 +13,7 @@ type ShopStatsProps = {
 export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 	const [finalSums, setFinalSums] = useState<number[] | null>(null);
 	const [remainingPoints, setRemainingPoints] = useState(pointLimit);
-
+	const [confirmed, setConfirmed] = useState(false);
 	const [stats, setStats] = useState([8, 8, 8, 8, 8, 8]);
 
 	const calculateCost = (from: number, to: number) => {
@@ -41,6 +41,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 		updated[index] = next;
 		setStats(updated);
 		setRemainingPoints(newRemaining);
+		setFinalSums(updated);
 	};
 
 	return (
@@ -103,6 +104,39 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 					transition={{ duration: 1, delay: 3.5 }}
 				>
 					<HandsAnimation standardArray={stats} onChange={handleStatChange} />
+				</motion.div>
+
+				<motion.div
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 1, delay: 5.5 }}
+				>
+					<motion.button
+						onClick={() => {
+							if (remainingPoints === 0 && finalSums) {
+								setConfirmed(true);
+								onComplete(finalSums);
+							}
+						}}
+						className="mt-6 px-6 py-2 font-bold rounded shadow transition duration-300"
+						disabled={remainingPoints > 0}
+						initial={{ opacity: 0 }}
+						animate={{
+							opacity: remainingPoints === 0 ? 1 : 0.3,
+							boxShadow:
+								remainingPoints === 0
+									? "0 0 15px 4px rgba(34,197,94,0.7)" // green glow
+									: "none",
+							scale: remainingPoints === 0 ? 1.05 : 1,
+						}}
+						style={{
+							cursor: remainingPoints === 0 ? "pointer" : "not-allowed",
+							backgroundColor: remainingPoints === 0 ? "#16a34a" : "#4b5563", // green or gray
+							color: "white",
+						}}
+					>
+						Confirm Stats
+					</motion.button>
 				</motion.div>
 			</div>
 		</div>
