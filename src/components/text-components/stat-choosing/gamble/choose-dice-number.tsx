@@ -42,6 +42,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				initialSentences={explanationGambleText}
 				fadeTrue={false}
 				numSentences={1}
+				showAndStay={true}
 				// onLoopStart={() => {
 				// 	// Delay so the first loop sentence has time to show before moving on
 				// 	setTimeout(onComplete, 2500); // tweak this number to match timing
