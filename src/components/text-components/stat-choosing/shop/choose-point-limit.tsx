@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function ChoosePointLimit({ onComplete, onBack }: Props) {
-	const [pointLimit, setPointLimit] = useState("");
+	const [pointLimit, setPointLimit] = useState("27");
 
 	const numericLimit = Number.parseInt(pointLimit);
 	const submitDisabled =
