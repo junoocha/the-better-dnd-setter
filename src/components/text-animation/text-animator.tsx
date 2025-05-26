@@ -12,6 +12,7 @@ type UseTextAnimationProps = {
 	delayBetweenSentences?: number;
 	fadeDuration?: number;
 	showAndStay?: boolean;
+	onComplete?: () => void;
 };
 
 export const useTextAnimation = (
@@ -20,10 +21,11 @@ export const useTextAnimation = (
 		loopSentences,
 		fadeTrue, // if true, should fade automatically, if not, will fade when step ends
 		numSentences, // the number of sentences to be shown.
-		speed = 3, //default is 30 but for testing sake, turn it to 3
+		speed = 30, //default is 30 but for testing sake, turn it to 3
 		delayBetweenSentences = 1500,
 		fadeDuration = 2000,
 		showAndStay = false,
+		onComplete,
 	}: UseTextAnimationProps,
 	onLoopStart?: () => void,
 ) => {
@@ -106,6 +108,8 @@ export const useTextAnimation = (
 			} else if (isInLoopPhase) {
 				setCurrentLoopSentences(shuffleArray(currentLoopSentences));
 				setCurrentSentenceIndex(0);
+			} else if (onComplete) {
+				onComplete();
 			}
 			return;
 		}
@@ -148,13 +152,9 @@ export const useTextAnimation = (
 
 						timeouts.push(
 							setTimeout(() => {
-								if (!fadeTrue) {
-									setFadingOut(false);
-									setCurrentSentenceIndex((prev) => prev + 1);
-								} else {
-									setFadingOut(false);
-									setDisplayedText("");
-								}
+								setFadingOut(false);
+								setDisplayedText(""); // clear text
+								setCurrentSentenceIndex((prev) => prev + 1); // always increment
 							}, fadeDuration),
 						);
 					}, delayBetweenSentences),

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useMemo } from "react";
 
 import { shopKeeperWakeUp } from "../../sentence-arrays/shop-text-data";
 
@@ -12,6 +13,10 @@ type ShopStatsProps = {
 };
 
 export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
+	const randomSentences = useMemo(() => {
+		const index = Math.floor(Math.random() * shopKeeperWakeUp.length);
+		return shopKeeperWakeUp[index];
+	}, []);
 	return (
 		// <AnimatePresence mode="wait">
 		// 	<motion.div
@@ -24,22 +29,19 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 1, delay: 1.5 }}
+				transition={{ duration: 1, delay: 3 }}
 			>
 				<TextAnimation
-					loopSentences={shopKeeperWakeUp}
+					initialSentences={randomSentences}
 					fadeTrue={true}
-					numSentences={1}
-					onLoopStart={() => {
-						setTimeout(onComplete, 5000);
-					}}
+					onComplete={onComplete}
 				/>
 			</motion.div>
 
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 1 }}
+				transition={{ duration: 1, delay: 1.5 }}
 			>
 				<div className="flex flex-col gap-2 p-24 m-2">
 					<EyeAnimation />
