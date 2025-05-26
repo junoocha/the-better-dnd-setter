@@ -29,7 +29,7 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 1, delay: 3 }}
+				transition={{ duration: 1, delay: 1.5 }}
 			>
 				<TextAnimation
 					initialSentences={randomSentences}
@@ -41,7 +41,7 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 1, delay: 1.5 }}
+				transition={{ duration: 1, delay: 0.5 }}
 			>
 				<div className="flex flex-col gap-2 p-24 m-2">
 					<EyeAnimation />
