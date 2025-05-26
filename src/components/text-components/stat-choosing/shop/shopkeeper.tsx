@@ -55,7 +55,16 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1, delay: 1.5 }}
 				>
-					<EyeAnimation />
+					<div className="relative flex justify-center items-center">
+						{/* Eyes centered */}
+						<EyeAnimation />
+
+						{/* Signpost to the right of the eyes */}
+						<div className="absolute right-[-230px] top-1/2 -translate-y-1/2 bg-black border-4 border-white-700 rounded-md px-4 py-2 shadow-md text-brown-900 font-bold text-lg select-none">
+							<div>Remaining</div>
+							<div className="text-2xl mt-1">{remainingPoints}</div>
+						</div>
+					</div>
 				</motion.div>
 				{/* Mouth */}
 				<motion.div

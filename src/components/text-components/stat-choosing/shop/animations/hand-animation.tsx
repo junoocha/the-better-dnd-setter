@@ -69,7 +69,7 @@ const HandsAnimation = ({
 								<ChevronUp size={24} />
 							</button>
 							<motion.span
-								className="relative inline-block"
+								className="relative inline-block w-[2ch] text-center"
 								initial={{ scale: 0.8, opacity: 0.7 }}
 								animate={{
 									scale: [1, 1.05, 1],
