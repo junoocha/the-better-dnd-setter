@@ -43,7 +43,7 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 1, delay: 0.5 }}
 			>
-				<div className="flex flex-col gap-2 p-24 m-2">
+				<div className="flex flex-col gap-2 p-10 m-2 ml-12">
 					<EyeAnimation />
 				</div>
 			</motion.div>

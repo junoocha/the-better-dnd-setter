@@ -46,11 +46,13 @@ const EyeAnimation = () => {
 		: IDLE_FRAMES[currentFrame];
 
 	return (
-		<img
-			src={`/eye/${imageSrc}`}
-			alt="Animated Eyes"
-			style={{ width: 250, height: 80 }}
-		/>
+		<div style={{ width: 260, height: 80, margin: "0 12rem 0 10rem" }}>
+			<img
+				src={`/eye/${imageSrc}`}
+				alt="Animated Eyes"
+				style={{ width: "100%", height: "100%" }}
+			/>
+		</div>
 	);
 };
 

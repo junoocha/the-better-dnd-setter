@@ -101,7 +101,7 @@ const HandsAnimation = ({
 			<motion.img
 				src={rightHand}
 				alt="Right Hand"
-				className="w-47 h-auto"
+				className="w-46 h-auto"
 				animate={{
 					y: [0, -5, 0],
 				}}

@@ -45,27 +45,48 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			<p>Welcome Weirdo - Remaining Points: {remainingPoints}</p>
+			<p>Welcome Weirdo</p>
 
 			{/* Outer container for animations */}
-			<div className="flex flex-col items-center justify-center gap-2 p-24 m-2">
+			<div className="flex flex-col items-center justify-center gap-2 p-15 m-2">
 				{/* Eyes */}
-				<motion.div
-					initial={{ opacity: 0, y: 10 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1, delay: 1.5 }}
-				>
-					<div className="relative flex justify-center items-center">
-						{/* Eyes centered */}
-						<EyeAnimation />
 
-						{/* Signpost to the right of the eyes */}
-						<div className="absolute right-[-230px] top-1/2 -translate-y-1/2 bg-black border-4 border-white-700 rounded-md px-4 py-2 shadow-md text-brown-900 font-bold text-lg select-none">
+				<div className="relative flex justify-center items-center">
+					<motion.div
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1, delay: 5.5 }}
+					>
+						<div className="bg-black border-4 border-white rounded-md px-4 py-2 shadow-md text-white font-bold text-sm max-w-[220px] text-left">
+							<p className="mb-1">Cost Rules:</p>
+							<ul className="list-disc list-inside text-xs font-normal leading-snug space-y-1">
+								<li className="whitespace-nowrap">1 point per increase</li>
+								<li className="whitespace-nowrap">13 → 14: 2 points</li>
+								<li className="whitespace-nowrap">14 → 15: 2 points</li>
+							</ul>
+						</div>
+					</motion.div>
+					{/* Eyes centered */}
+					<motion.div
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1, delay: 1.5 }}
+					>
+						<EyeAnimation />
+					</motion.div>
+					{/* Signpost to the right of the eyes */}
+					<motion.div
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1, delay: 5.5 }}
+					>
+						<div className="bg-black border-4 border-white-700  rounded-md px-4 py-2 shadow-md text-brown-900 font-bold text-lg select-none">
 							<div>Remaining</div>
 							<div className="text-2xl mt-1">{remainingPoints}</div>
 						</div>
-					</div>
-				</motion.div>
+					</motion.div>
+				</div>
+
 				{/* Mouth */}
 				<motion.div
 					initial={{ opacity: 0, y: 10 }}
