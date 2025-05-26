@@ -28,6 +28,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				initialSentences={explanationPointLimitText}
 				fadeTrue={false}
 				numSentences={1}
+				showAndStay={true}
 			/>
 
 			<div className="flex gap-4">

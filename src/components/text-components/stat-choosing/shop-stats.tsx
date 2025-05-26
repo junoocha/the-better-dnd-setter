@@ -5,6 +5,7 @@ import ShopKeeper from "./shop/shopkeeper";
 import ShopKeeperWakeUp from "./shop/shopkeeper-wakeup";
 import IntroShopText from "./shop/intro-shop-stats";
 import ChoosePointLimit from "./shop/choose-point-limit";
+import AlertShopKeeper from "./shop/alert-shopkeeper";
 import EndingShopText from "./shop/ending-shop-stats";
 
 type ShopStatsProps = {
@@ -29,14 +30,18 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 			}}
 			onBack={onBack}
 		/>,
+		<AlertShopKeeper
+			key="s-alertshopkeeper"
+			onComplete={() => setSubStep(3)}
+		/>,
 		<ShopKeeperWakeUp
 			key="s-shopkeeper-wakeup"
-			onComplete={() => setSubStep(3)}
+			onComplete={() => setSubStep(4)}
 		/>,
 		<ShopKeeper
 			key="s-shopkeeper"
 			pointLimit={pointLimit}
-			onComplete={() => setSubStep(4)}
+			onComplete={() => setSubStep(5)}
 		/>,
 		// <ShopKeeper key="s-shopkeeper" onComplete={() => setFinalSums(); setSubStep(2)}/>,
 		// <EndingShopText key="s-end" onComplete={() => onComplete(finalSums) }
