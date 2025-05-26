@@ -13,28 +13,40 @@ type ShopStatsProps = {
 
 export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 	return (
-		<AnimatePresence mode="wait">
+		// <AnimatePresence mode="wait">
+		// 	<motion.div
+		// 		initial={{ opacity: 0, y: 10 }}
+		// 		animate={{ opacity: 1, y: 0 }}
+		// 		exit={{ opacity: 0, y: -10 }}
+		// 		transition={{ duration: 0.5 }}
+		// 	>
+		<div className="flex flex-col gap-6 items-center text-center">
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
-				exit={{ opacity: 0, y: -10 }}
-				transition={{ duration: 0.5 }}
+				transition={{ duration: 1, delay: 1.5 }}
 			>
 				<TextAnimation
 					loopSentences={shopKeeperWakeUp}
 					fadeTrue={true}
 					numSentences={1}
 					onLoopStart={() => {
-						// Delay so the first loop sentence has time to show before moving on
-						setTimeout(onComplete, 2500); // tweak this number to match timing
+						setTimeout(onComplete, 5000);
 					}}
 				/>
+			</motion.div>
 
+			<motion.div
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 1 }}
+			>
 				<div className="flex flex-col gap-2 p-24 m-2">
 					<EyeAnimation />
-					{/* <MouthAnimation /> */}
 				</div>
 			</motion.div>
-		</AnimatePresence>
+		</div>
+		// 	</motion.div>
+		// </AnimatePresence>
 	);
 }
