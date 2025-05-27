@@ -56,7 +56,7 @@ export default function GambleStats({ onComplete, onBack }: GambleStatsProps) {
 	return (
 		<AnimatePresence mode="wait">
 			<motion.div
-				key={subStep}
+				key={`g-${subStep}`}
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
 				exit={{ opacity: 0, y: -10 }}

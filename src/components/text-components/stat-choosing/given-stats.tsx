@@ -30,7 +30,7 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 					{standardArray.map((val, i) => (
 						<motion.span
 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-							key={i}
+							key={`standard-${i}`}
 							className="relative inline-block"
 							initial={{ scale: 0.8, opacity: 0.7 }}
 							animate={{

@@ -1,54 +1,20 @@
 import TextAnimation from "@/components/text-animation/text-animation";
-import {
-	badGambleText,
-	goodGambleText,
-	midGambleText,
-	highSTDGambleText,
-	duplicateGambleText,
-} from "../../sentence-arrays/gamble-text-data";
 import { motion } from "framer-motion";
+import { shopKeeperResults } from "../../sentence-arrays/shop-text-data";
 
-type Props = {
+type EndingShopTextProps = {
 	finalSums: number[];
 	onComplete: () => void;
 };
 
-export default function EndingGambleText({ finalSums, onComplete }: Props) {
-	const average =
-		finalSums.reduce((sum, num) => sum + num, 0) / finalSums.length;
-
-	// if every number is the same
-	function duplicates(arr: number[]): boolean {
-		const first = arr[0];
-		return arr.every((v) => v === first);
-	}
-
-	// if the numbers are very far apart
-	function isChaotic(arr: number[]): boolean {
-		const variance =
-			arr.reduce((sum, v) => sum + (v - average) ** 2, 0) / arr.length;
-		const stdDev = Math.sqrt(variance);
-		return stdDev > 4.5; // tweak this threshold as needed
-	}
-
-	// biome-ignore lint/suspicious/noImplicitAnyLet:
-	let selectedSentences;
-	if (isChaotic(finalSums)) {
-		selectedSentences = highSTDGambleText;
-	} else if (duplicates(finalSums)) {
-		selectedSentences = duplicateGambleText;
-	} else if (average > 12) {
-		selectedSentences = goodGambleText;
-	} else if (average >= 9) {
-		selectedSentences = midGambleText;
-	} else {
-		selectedSentences = badGambleText;
-	}
-
+export default function EndingShopText({
+	onComplete,
+	finalSums,
+}: EndingShopTextProps) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
-				loopSentences={selectedSentences}
+				loopSentences={shopKeeperResults}
 				fadeTrue={false}
 				numSentences={1}
 				showAndStay={true}

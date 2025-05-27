@@ -91,7 +91,7 @@ export default function RollDice({
 							{Array.from({ length: used }).map((_, i) => (
 								<Dice
 									// biome-ignore lint/suspicious/noArrayIndexKey: static
-									key={i}
+									key={`dice-roll${i}`}
 									onRollComplete={(val) => onDiceRollComplete(val, i)}
 								/>
 							))}

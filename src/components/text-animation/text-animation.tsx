@@ -11,6 +11,7 @@ type TextAnimationProps = {
 	fadeDuration?: number;
 	showAndStay?: boolean;
 	onLoopStart?: () => void;
+	onComplete?: () => void;
 };
 
 const TextAnimation = (props: TextAnimationProps) => {

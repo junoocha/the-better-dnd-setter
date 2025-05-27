@@ -1,48 +1,69 @@
-import TextAnimation from "../../text-animation/text-animation";
-import { useTextAnimation } from "../../text-animation/text-animator";
-import {
-	intro,
-	introLoopSentences,
-} from ".././sentence-arrays/intro-text-data";
-import { useEffect } from "react";
-import { useLoopPhase } from "../../text-animation/loop-phase-context";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-type Props = {
-	onComplete: () => void;
+import ShopKeeper from "./shop/shopkeeper";
+import ShopKeeperWakeUp from "./shop/shopkeeper-wakeup";
+import IntroShopText from "./shop/intro-shop-stats";
+import ChoosePointLimit from "./shop/choose-point-limit";
+import AlertShopKeeper from "./shop/alert-shopkeeper";
+import EndingShopText from "./shop/ending-shop-stats";
+
+type ShopStatsProps = {
+	onComplete: (finalSums: number[]) => void;
 	onBack: () => void;
 };
 
-export default function ShopStats({ onComplete, onBack }: Props) {
-	const { setIsIntroLoopPhase } = useLoopPhase();
+export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
+	const [subStep, setSubStep] = useState(0);
+	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+	const [pointLimit, setPointLimit] = useState<number>(27);
 
-	const handleLoopStart = () => {
-		// console.log("Intro loop started, setting isIntroLoopPhase to true");
-		setIsIntroLoopPhase(true);
-	};
+	// const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
+
+	const subSteps = [
+		<IntroShopText key="s-intro" onComplete={() => setSubStep(1)} />,
+		<ChoosePointLimit
+			key="s-pointlimit"
+			onComplete={(limit) => {
+				setPointLimit(limit);
+				setSubStep(2);
+			}}
+			onBack={onBack}
+		/>,
+		<AlertShopKeeper
+			key="s-alertshopkeeper"
+			onComplete={() => setSubStep(3)}
+		/>,
+		<ShopKeeperWakeUp
+			key="s-shopkeeper-wakeup"
+			onComplete={() => setSubStep(4)}
+		/>,
+		<ShopKeeper
+			key="s-shopkeeper"
+			pointLimit={pointLimit}
+			onComplete={(finalStats) => {
+				setFinalSums(finalStats);
+				setSubStep(5);
+			}}
+		/>,
+		<EndingShopText
+			key="s-end"
+			finalSums={finalSums ?? [0, 0, 0, 0, 0, 0]} // fallback to avoid crash
+			onComplete={() => onComplete(finalSums ?? [0, 0, 0, 0, 0, 0])}
+		/>,
+	];
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
-			<TextAnimation
-				initialSentences={intro}
-				loopSentences={introLoopSentences}
-				fadeTrue={false}
-				onLoopStart={handleLoopStart}
-			/>
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				onClick={onComplete}
-				className="px-4 py-2 bg-blue-600 rounded hover:bg-green-700"
+		<AnimatePresence mode="wait">
+			<motion.div
+				key={`s-${subStep}`}
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: -10 }}
+				transition={{ duration: 0.5 }}
 			>
-				Wake up the bard?
-			</button>
-
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				onClick={onBack}
-				className="px-4 py-2 bg-gray-600 rounded hover:bg-gray-700"
-			>
-				← Go Back
-			</button>
-		</div>
+				{subSteps[subStep]}
+			</motion.div>
+		</AnimatePresence>
 	);
 }
