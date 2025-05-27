@@ -17,13 +17,14 @@ export default function IntroGambleText({ onComplete }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
-				loopSentences={introGambleText}
+				initialSentences={introGambleText}
 				fadeTrue={true}
 				numSentences={1}
-				onLoopStart={() => {
-					// Delay so the first loop sentence has time to show before moving on
-					setTimeout(onComplete, 2500); // tweak this number to match timing
-				}}
+				onComplete={onComplete}
+				// onLoopStart={() => {
+				// 	// Delay so the first loop sentence has time to show before moving on
+				// 	setTimeout(onComplete, 2500); // tweak this number to match timing
+				// }}
 			/>
 		</div>
 	);

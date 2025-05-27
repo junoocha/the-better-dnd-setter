@@ -19,13 +19,14 @@ export default function WakeUpText({ onComplete }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
-				loopSentences={selectedSentences}
+				initialSentences={selectedSentences}
 				fadeTrue={true}
 				numSentences={1}
-				onLoopStart={() => {
-					// Delay so the first loop sentence has time to show before moving on
-					setTimeout(onComplete, 2500); // 2500 for testing, seems like 4000 works for regular
-				}}
+				onComplete={onComplete}
+				// onLoopStart={() => {
+				// 	// Delay so the first loop sentence has time to show before moving on
+				// 	setTimeout(onComplete, 3000); // 2500 for testing, seems like 4000 works for regular
+				// }}
 			/>
 		</div>
 	);
