@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import EyeAnimation from "./animations/eye-animation";
 import MouthAnimation from "./animations/mouth-animation";
@@ -59,7 +59,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 						transition={{ duration: 1, delay: 5.5 }}
 					>
 						<div className="bg-black border-4 border-white rounded-md px-4 py-2 shadow-md text-white font-bold text-sm max-w-[220px] text-left">
-							<p className="mb-1">Cost Rules:</p>
+							<p className="mb-1">Max 15 Score</p>
 							<ul className="list-disc list-inside text-xs font-normal leading-snug space-y-1">
 								<li className="whitespace-nowrap">1 point per increase</li>
 								<li className="whitespace-nowrap">13 → 14: 2 points</li>
