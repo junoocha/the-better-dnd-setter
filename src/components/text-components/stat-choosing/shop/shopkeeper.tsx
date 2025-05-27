@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import EyeAnimation from "./animations/eye-animation";
 import MouthAnimation from "./animations/mouth-animation";
 import HandsAnimation from "./animations/hand-animation";
+import { shopKeeperRamble } from "../../sentence-arrays/shop-text-data";
+import TextAnimation from "@/components/text-animation/text-animation";
 
 type ShopStatsProps = {
 	onComplete: (finalSums: number[]) => void;
@@ -46,8 +48,13 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			<p>Welcome Weirdo</p>
-
+			<motion.div
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 1, delay: 1.5 }}
+			>
+				<TextAnimation loopSentences={shopKeeperRamble} fadeTrue={false} />{" "}
+			</motion.div>
 			{/* Outer container for animations */}
 			<div className="flex flex-col items-center justify-center gap-2 p-15 m-2">
 				{/* Eyes */}
