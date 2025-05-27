@@ -15,6 +15,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 		!pointLimit || Number.isNaN(numericLimit) || numericLimit <= 0;
 
 	const showWarning = numericLimit > 35;
+	const showTooLow = numericLimit < 1;
 
 	const handleSubmit = () => {
 		if (!Number.isNaN(numericLimit) && numericLimit > 0 && numericLimit <= 35) {
@@ -48,13 +49,17 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				</p>
 			)}
 
+			{showTooLow && (
+				<p className="text-red-400 text-sm italic">Shopping with no money?</p>
+			)}
+
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 			<button
 				className="bg-blue-600 hover:bg-blue-700 transition px-6 py-2 rounded text-white disabled:opacity-50"
 				disabled={submitDisabled || showWarning}
 				onClick={handleSubmit}
 			>
-				Submit
+				Summon Jerry
 			</button>
 
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
