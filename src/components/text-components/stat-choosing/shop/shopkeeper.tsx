@@ -24,7 +24,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 			cost += i >= 13 ? 2 : 1;
 		}
 		for (let i = from; i > to; i--) {
-			cost -= i > 14 ? 2 : 1;
+			cost -= i > 13 ? 2 : 1;
 		}
 		return cost;
 	};
