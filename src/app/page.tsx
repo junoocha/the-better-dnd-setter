@@ -93,7 +93,11 @@ export default function Home() {
 		) : selectedPath === "shop" ? (
 			<ShopStats
 				key="shop"
-				onComplete={() => setStep(4)}
+				onComplete={(finalSums) => {
+					console.log("Shop", finalSums);
+					setFinalSums(finalSums);
+					setStep(4);
+				}}
 				onBack={() => {
 					setSelectedPath(null);
 					setCameFromBack(true);
