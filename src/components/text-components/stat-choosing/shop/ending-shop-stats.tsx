@@ -1,5 +1,6 @@
 import TextAnimation from "@/components/text-animation/text-animation";
 import { motion } from "framer-motion";
+import { shopKeeperResults } from "../../sentence-arrays/shop-text-data";
 
 type EndingShopTextProps = {
 	finalSums: number[];
@@ -12,12 +13,12 @@ export default function EndingShopText({
 }: EndingShopTextProps) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
-			{/* <TextAnimation
-				loopSentences={selectedSentences}
+			<TextAnimation
+				loopSentences={shopKeeperResults}
 				fadeTrue={false}
 				numSentences={1}
 				showAndStay={true}
-			/> */}
+			/>
 
 			<motion.div
 				key="showing-final-results"
