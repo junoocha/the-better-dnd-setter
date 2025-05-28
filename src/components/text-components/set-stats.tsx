@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const statNames = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
@@ -70,7 +71,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 
 	return (
 		<div className="flex flex-col items-center gap-6">
-			{/* Stat Names */}
+			{/* Stat buttons */}
 			<div className="flex gap-6 text-2xl font-bold">
 				{statNames.map((stat) => {
 					const isAssigned = assignments[stat] !== null;
@@ -81,11 +82,11 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 						<button
 							key={`stat-${stat}`}
 							onClick={() => handleStatClick(stat)}
-							className={`px-4 py-2 rounded transition font-bold ${statColors[stat]} ${
+							className={`px-4 py-2 rounded transition font-bold ${isAssigned || isSelected ? statColors[stat] : "text-gray-400"} ${
 								isSelected
-									? "shadow-[0_0_10px] [text-shadow:_0_0_6px]"
+									? "animate-[pulse_2s_ease-in-out_infinite] [text-shadow:_0_0_6px]"
 									: isAssigned
-										? "[text-shadow:_0_0_6px]"
+										? "[text-shadow:_0_0_30px]"
 										: "opacity-80 hover:opacity-100"
 							}`}
 						>
@@ -103,32 +104,44 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 					)?.[0];
 					const isSelected = selectedIndex === idx;
 
+					// provide the pulse effect
+					// const ringAnimation =
+					// 	assignedStat || isSelected ? "animate-pulse" : "";
+
+					// to provide that specific color
 					const textColor = assignedStat
 						? statColors[assignedStat]
 						: isSelected
-							? "text-white"
+							? "text-white "
 							: "text-gray-300";
 
 					// for that ring aura glow
 					const ringColor = assignedStat
-						? statColors[assignedStat].replace("text-", "ring-")
+						? statColors[assignedStat].replace("text-", "ring-") // store color, remove the tailwind syntax
 						: isSelected
 							? "ring-white/30"
 							: "";
 
 					return (
-						// biome-ignore lint/a11y/useButtonType: <explanation>
-						<button
+						<motion.button
 							key={`value-${idx}`}
+							initial={{ opacity: 0, y: 20, scale: 0.9 }}
+							animate={{ opacity: 1, y: 0, scale: 1 }}
+							transition={{
+								duration: 0.25,
+								delay: idx * 0.05,
+								type: "spring",
+								stiffness: 200,
+							}}
 							onClick={() => handleNumberClick(idx)}
 							className={`px-4 py-2 rounded transition transform hover:scale-105 ${textColor} ${
 								assignedStat || isSelected
-									? `ring-4 ${ringColor} shadow-[0_0_12px] [text-shadow:_0_0_6px]`
+									? ` border-none ${ringColor} [text-shadow:_0_0_6px]`
 									: "opacity-60 hover:opacity-100"
 							}`}
 						>
 							{num}
-						</button>
+						</motion.button>
 					);
 				})}
 			</div>
@@ -163,6 +176,20 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				className="mt-4 px-6 py-2 rounded bg-green-600 text-white disabled:opacity-50 hover:bg-green-700"
 			>
 				Lock In Stats
+			</button>
+
+			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+			<button
+				onClick={() => {
+					setAssignments(
+						Object.fromEntries(statNames.map((stat) => [stat, null])),
+					);
+					setSelectedStat(null);
+					setSelectedIndex(null);
+				}}
+				className="mt-2 px-4 py-2 rounded bg-gray-700 text-white hover:bg-gray-600"
+			>
+				Clear Choices
 			</button>
 		</div>
 	);

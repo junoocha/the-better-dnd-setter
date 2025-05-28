@@ -29,7 +29,6 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 				<h1 className="flex gap-20 text-5xl font-bold text-green-400 relative">
 					{standardArray.map((val, i) => (
 						<motion.span
-							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 							key={`standard-${i}`}
 							className="relative inline-block"
 							initial={{ scale: 0.8, opacity: 0.7 }}
