@@ -10,6 +10,7 @@ import WakeUpText from "@/components/text-components/wake-up-text";
 import GambleStats from "@/components/text-components/stat-choosing/gamble-stats";
 import GivenStats from "@/components/text-components/stat-choosing/given-stats";
 import ShopStats from "@/components/text-components/stat-choosing/shop-stats";
+import StatAssignment from "@/components/text-components/set-stats";
 import { AnimatePresence, motion } from "framer-motion";
 
 // export default function Home() {
@@ -107,6 +108,11 @@ export default function Home() {
 		) : (
 			<div key="none">Error: No path selected</div>
 		),
+		<StatAssignment
+			key="stat-assignment"
+			statValues={finalSums}
+			onComplete={() => setStep(5)}
+		/>,
 	];
 
 	return (
