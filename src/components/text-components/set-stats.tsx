@@ -147,7 +147,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 			</div>
 
 			{/* Assigned Debug Output */}
-			<div className="text-sm mt-4 text-gray-300">
+			{/* <div className="text-sm mt-4 text-gray-300">
 				Assigned:{" "}
 				{JSON.stringify(
 					Object.fromEntries(
@@ -158,7 +158,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 						]),
 					),
 				)}
-			</div>
+			</div> */}
 
 			{/* Submit */}
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
@@ -166,6 +166,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				disabled={!canSubmit}
 				onClick={() => {
 					const resolved: Record<string, number> = {};
+					// check for null again because biome is a crybaby
 					for (const stat of statNames) {
 						const idx = assignments[stat];
 						if (idx === null) return; // extra safety for null plus avoid stupid biome. But I guess it ain't wrong about null
