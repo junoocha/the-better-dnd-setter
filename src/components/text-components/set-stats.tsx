@@ -2,6 +2,8 @@
 import { useState } from "react";
 
 const statNames = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+
+// object since its just static stuff
 const statColors: Record<string, string> = {
 	STR: "text-red-500",
 	DEX: "text-green-500",
@@ -17,14 +19,20 @@ type Props = {
 };
 
 export default function StatAssignment({ statValues, onComplete }: Props) {
+	// current selected stat
 	const [selectedStat, setSelectedStat] = useState<string | null>(null);
+	// current index of the number
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+	// tracking which number is assigned to which stat
 	const [assignments, setAssignments] = useState<Record<string, number | null>>(
 		Object.fromEntries(statNames.map((stat) => [stat, null])),
 	);
 
 	const handleStatClick = (stat: string) => {
 		setSelectedStat(stat);
+
+		// when number not selected, then assign it
 		if (selectedIndex !== null) {
 			assign(stat, selectedIndex);
 			setSelectedIndex(null);
@@ -32,26 +40,32 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 	};
 
 	const handleNumberClick = (idx: number) => {
+		// if stat is selected, assign number to the stat
 		if (selectedStat) {
 			assign(selectedStat, idx);
 			setSelectedIndex(null);
 		} else {
+			// if not, just mark number as it is
 			setSelectedIndex(idx);
 		}
 	};
 
 	const assign = (stat: string, idx: number) => {
-		const updated: Record<string, number | null> = { ...assignments };
-		// Remove this index from any stat that currently has it
+		const updated: Record<string, number | null> = { ...assignments }; // assign number of the index to a stat
+
+		// remove this index from any stat that currently has it. just match by the idx name
 		for (const key of statNames) {
 			if (updated[key] === idx) {
 				updated[key] = null;
 			}
 		}
+
+		// then just update.
 		updated[stat] = idx;
 		setAssignments(updated);
 	};
 
+	// the conditional for the confirm button, want all stats at least allocated
 	const canSubmit = Object.values(assignments).every((val) => val !== null);
 
 	return (
@@ -61,6 +75,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				{statNames.map((stat) => {
 					const isAssigned = assignments[stat] !== null;
 					const isSelected = selectedStat === stat;
+
 					return (
 						// biome-ignore lint/a11y/useButtonType: <explanation>
 						<button
@@ -80,7 +95,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				})}
 			</div>
 
-			{/* Numbers */}
+			{/* numbers buttons */}
 			<div className="flex gap-6 text-4xl mt-4">
 				{statValues.map((num, idx) => {
 					const assignedStat = Object.entries(assignments).find(
@@ -94,6 +109,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 							? "text-white"
 							: "text-gray-300";
 
+					// for that ring aura glow
 					const ringColor = assignedStat
 						? statColors[assignedStat].replace("text-", "ring-")
 						: isSelected
@@ -124,6 +140,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 					Object.fromEntries(
 						statNames.map((stat) => [
 							stat,
+							// biome-ignore lint/style/noNonNullAssertion: <explanation>
 							assignments[stat] !== null ? statValues[assignments[stat]!] : "-",
 						]),
 					),
@@ -135,9 +152,12 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 			<button
 				disabled={!canSubmit}
 				onClick={() => {
-					const resolved = Object.fromEntries(
-						statNames.map((stat) => [stat, statValues[assignments[stat]!]]),
-					);
+					const resolved: Record<string, number> = {};
+					for (const stat of statNames) {
+						const idx = assignments[stat];
+						if (idx === null) return; // extra safety for null plus avoid stupid biome. But I guess it ain't wrong about null
+						resolved[stat] = statValues[idx];
+					}
 					onComplete(resolved);
 				}}
 				className="mt-4 px-6 py-2 rounded bg-green-600 text-white disabled:opacity-50 hover:bg-green-700"
