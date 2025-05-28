@@ -7,3 +7,7 @@ export const shopInfo = [
 export const standardArrayInfo = [
 	"A fair method endorsed in official play. Players are given a preset set of ability scores.",
 ];
+
+export const defaultInfo = [
+	"Choose one of three common methods to determine your stats in D&D.",
+];
