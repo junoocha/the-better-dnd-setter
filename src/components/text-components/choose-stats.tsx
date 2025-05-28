@@ -4,6 +4,7 @@ import {
 	standardArrayInfo,
 	gambleInfo,
 	shopInfo,
+	defaultInfo,
 } from "./sentence-arrays/choose-stats-data";
 
 type Props = {
@@ -53,7 +54,9 @@ export default function ChooseStats({ onComplete }: Props) {
 							? gambleInfo
 							: selectedOption === "boring"
 								? standardArrayInfo
-								: shopInfo}
+								: selectedOption === "shop"
+									? shopInfo
+									: defaultInfo}
 					</div>
 				</div>
 			</div>

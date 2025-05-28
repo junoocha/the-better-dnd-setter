@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import TextAnimation from "../text-animation/text-animation";
+import { explanation, setArrayRamble } from "./sentence-arrays/set-array-data";
 
 const statNames = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
@@ -71,6 +73,19 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 
 	return (
 		<div className="flex flex-col items-center gap-6">
+			{/* info button */}
+			<div className="group relative ml-auto mt-1">
+				<div className="w-5 h-5 bg-gray-300 text-black text-xs rounded-full flex items-center justify-center cursor-default">
+					?
+				</div>
+				<div className="absolute top-1/2 left-full -translate-y-1/2 ml-3 w-48 bg-black text-white text-xs p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+					{explanation}
+				</div>
+			</div>
+
+			{/* Text animation */}
+			<TextAnimation initialSentences={setArrayRamble} fadeTrue={false} />
+
 			{/* Stat buttons */}
 			<div className="flex gap-6 text-2xl font-bold">
 				{statNames.map((stat) => {
@@ -123,7 +138,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 							: "";
 
 					return (
-						<motion.button
+						<motion.button // intro animation haha
 							key={`value-${idx}`}
 							initial={{ opacity: 0, y: 20, scale: 0.9 }}
 							animate={{ opacity: 1, y: 0, scale: 1 }}
