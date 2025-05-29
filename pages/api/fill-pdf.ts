@@ -20,13 +20,17 @@ export default async function handler(
 	}
 
 	// grab numbers from post
-	const { numbers } = req.body; // e.g., [{ x: 100, y: 500, value: "42" }]
-	if (!Array.isArray(numbers)) {
-		return res.status(400).json({ message: "Invalid payload" });
+	const { assignments } = req.body; // e.g., [{ x: 100, y: 500, value: "42" }]
+	if (
+		typeof assignments !== "object" ||
+		assignments === null ||
+		Array.isArray(assignments)
+	) {
+		return res.status(400).json({ message: "Invalid payload format" });
 	}
 
 	try {
-		const pdfBytes = await generatePDFBytes(numbers);
+		const pdfBytes = await generatePDFBytes(assignments);
 		const fileName = `filled-${Date.now()}.pdf`;
 
 		// upload to supabase
