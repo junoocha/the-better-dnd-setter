@@ -29,7 +29,7 @@ export default async function handler(
 		const pdfBytes = await generatePDFBytes(numbers);
 		const fileName = `filled-${Date.now()}.pdf`;
 
-		// 1. Upload to Supabase Storage
+		// upload to supabase
 		const { error: uploadError } = await supabase.storage
 			.from("pdf-holder")
 			.upload(fileName, pdfBytes, {
@@ -38,7 +38,7 @@ export default async function handler(
 
 		if (uploadError) throw uploadError;
 
-		// 2. Get the public URL
+		// grab public url
 		const { data: urlData } = supabase.storage
 			.from("pdf-holder")
 			.getPublicUrl(fileName);
@@ -48,8 +48,8 @@ export default async function handler(
 			throw new Error("Failed to generate public URL.");
 		}
 
-		// 3. Insert metadata into Supabase table
-		const { error: dbError } = await supabase.from("pdfs").insert([
+		// insert data into table
+		const { error: dbError } = await supabase.from("pdf storage").insert([
 			{
 				file_name: fileName,
 				file_url: publicUrl,
@@ -58,7 +58,7 @@ export default async function handler(
 
 		if (dbError) throw dbError;
 
-		// 4. Return the public URL to client
+		// return the public URL to client
 		return res.status(200).json({ url: urlData.publicUrl });
 	} catch (err) {
 		console.error(err);

@@ -12,6 +12,7 @@ import GivenStats from "@/components/text-components/stat-choosing/given-stats";
 import ShopStats from "@/components/text-components/stat-choosing/shop-stats";
 import StatAssignment from "@/components/text-components/set-stats";
 import { AnimatePresence, motion } from "framer-motion";
+import FillPDFButton from "@/components/test-pdf";
 
 // export default function Home() {
 // 	const router = useRouter();
@@ -118,6 +119,7 @@ export default function Home() {
 	return (
 		<LoopPhaseProvider>
 			<div className="min-h-screen grid place-items-center p-8 sm:p-20 font-sans bg-gray-950 text-white">
+				<FillPDFButton />
 				<main className="w-full max-w-3xl">
 					<AnimatePresence mode="wait">
 						<motion.div
