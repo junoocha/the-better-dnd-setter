@@ -1,7 +1,5 @@
 // utils/pdfWriter.ts
 import { PDFDocument, rgb } from "pdf-lib";
-import fs from "node:fs";
-import path from "node:path";
 
 // define the number and location
 type NumberToWrite = {
@@ -11,7 +9,10 @@ type NumberToWrite = {
 };
 
 // idea is take list of coordinates and text, then splatter them on the pdf
-export async function writeToPDF(numbers: NumberToWrite[]) {
+export async function generatePDFBytes(numbers: NumberToWrite[]) {
+	const fs = await import("node:fs");
+	const path = await import("node:path");
+
 	// grab oriignal pdf and load it as byte array
 	const pdfPath = path.join(
 		process.cwd(),
@@ -37,10 +38,5 @@ export async function writeToPDF(numbers: NumberToWrite[]) {
 
 	// save modified pdf to byte array
 	const pdfBytes = await pdfDoc.save();
-
-	// define path to save new filled pdf
-	const outputPath = path.join(process.cwd(), "public", "filled.pdf");
-	fs.writeFileSync(outputPath, pdfBytes);
-
-	return "/filled.pdf";
+	return pdfBytes;
 }
