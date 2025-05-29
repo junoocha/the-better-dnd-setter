@@ -84,7 +84,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 			</div>
 
 			{/* Text animation */}
-			<TextAnimation initialSentences={setArrayRamble} fadeTrue={false} />
+			<TextAnimation loopSentences={setArrayRamble} fadeTrue={false} />
 
 			{/* Stat buttons */}
 			<div className="flex gap-6 text-2xl font-bold">
