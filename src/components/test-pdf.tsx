@@ -2,12 +2,13 @@
 import { useState } from "react";
 
 export default function FillPDFButton() {
-	const [loading, setLoading] = useState(false);
-	const [pdfUrl, setPdfUrl] = useState("");
+	const [loading, setLoading] = useState(false); //track if request in progres s
+	const [pdfUrl, setPdfUrl] = useState(""); // store url
 
 	const handleClick = async () => {
 		setLoading(true);
 
+		// post request to the pdf api
 		const response = await fetch("/api/fill-pdf", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -19,6 +20,7 @@ export default function FillPDFButton() {
 			}),
 		});
 
+		// parse response
 		const data = await response.json();
 		setPdfUrl(data.url);
 		setLoading(false);
