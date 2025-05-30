@@ -19,8 +19,8 @@ export default async function handler(
 		return res.status(405).json({ message: "Method Not Allowed" });
 	}
 
-	// grab numbers from post
-	const { assignments } = req.body; // e.g., [{ x: 100, y: 500, value: "42" }]
+	// grab the stats
+	const { assignments } = req.body; //e.g., { STR: 16, DEX: 14, CON: 13, ... }
 	if (
 		typeof assignments !== "object" ||
 		assignments === null ||
