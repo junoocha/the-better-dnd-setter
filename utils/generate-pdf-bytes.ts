@@ -1,5 +1,5 @@
 // utils/pdfWriter.ts
-import { PDFDocument, rgb } from "pdf-lib";
+import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -11,12 +11,66 @@ function getModifier(score: number): string {
 
 // Coordinates for primary stats
 const statCoordinates = {
-	STR: { value: { x: 75, y: 665 }, mod: { x: 75, y: 640 } },
-	DEX: { value: { x: 75, y: 575 }, mod: { x: 75, y: 550 } },
-	CON: { value: { x: 75, y: 485 }, mod: { x: 75, y: 460 } },
-	INT: { value: { x: 75, y: 395 }, mod: { x: 75, y: 370 } },
-	WIS: { value: { x: 75, y: 305 }, mod: { x: 75, y: 280 } },
-	CHA: { value: { x: 75, y: 215 }, mod: { x: 75, y: 190 } },
+	STR: {
+		value: {
+			singleDigit: { x: 52, y: 617 },
+			doubleDigit: { x: 47, y: 617 },
+		},
+		mod: {
+			positive: { x: 50, y: 595 },
+			negative: { x: 52, y: 595 },
+		},
+	},
+	DEX: {
+		value: {
+			singleDigit: { x: 52, y: 545 },
+			doubleDigit: { x: 47, y: 545 },
+		},
+		mod: {
+			positive: { x: 50, y: 523 },
+			negative: { x: 52, y: 523 },
+		},
+	},
+	CON: {
+		value: {
+			singleDigit: { x: 52, y: 473 },
+			doubleDigit: { x: 47, y: 473 },
+		},
+		mod: {
+			positive: { x: 50, y: 451 },
+			negative: { x: 52, y: 451 },
+		},
+	},
+	INT: {
+		value: {
+			singleDigit: { x: 52, y: 401 },
+			doubleDigit: { x: 47, y: 401 },
+		},
+		mod: {
+			positive: { x: 50, y: 379 },
+			negative: { x: 52, y: 379 },
+		},
+	},
+	WIS: {
+		value: {
+			singleDigit: { x: 52, y: 329 },
+			doubleDigit: { x: 47, y: 329 },
+		},
+		mod: {
+			positive: { x: 50, y: 308 },
+			negative: { x: 52, y: 308 },
+		},
+	},
+	CHA: {
+		value: {
+			singleDigit: { x: 52, y: 259 },
+			doubleDigit: { x: 47, y: 259 },
+		},
+		mod: {
+			positive: { x: 50, y: 237 },
+			negative: { x: 52, y: 237 },
+		},
+	},
 };
 
 // Coordinates for each skill and its associated stat
@@ -24,24 +78,24 @@ const skillCoordinates: Record<
 	string,
 	{ x: number; y: number; stat: keyof typeof statCoordinates }
 > = {
-	Acrobatics: { x: 150, y: 665, stat: "DEX" },
-	"Animal Handling": { x: 150, y: 650, stat: "WIS" },
-	Arcana: { x: 150, y: 635, stat: "INT" },
-	Athletics: { x: 150, y: 620, stat: "STR" },
-	Deception: { x: 150, y: 605, stat: "CHA" },
-	History: { x: 150, y: 590, stat: "INT" },
-	Insight: { x: 150, y: 575, stat: "WIS" },
-	Intimidation: { x: 150, y: 560, stat: "CHA" },
-	Investigation: { x: 150, y: 545, stat: "INT" },
-	Medicine: { x: 150, y: 530, stat: "WIS" },
-	Nature: { x: 150, y: 515, stat: "INT" },
-	Perception: { x: 150, y: 500, stat: "WIS" },
-	Performance: { x: 150, y: 485, stat: "CHA" },
-	Persuasion: { x: 150, y: 470, stat: "CHA" },
-	Religion: { x: 150, y: 455, stat: "INT" },
-	"Sleight of Hand": { x: 150, y: 440, stat: "DEX" },
-	Stealth: { x: 150, y: 425, stat: "DEX" },
-	Survival: { x: 150, y: 410, stat: "WIS" },
+	Acrobatics: { x: 113, y: 463, stat: "DEX" },
+	"Animal Handling": { x: 113, y: 449, stat: "WIS" },
+	Arcana: { x: 113, y: 436, stat: "INT" },
+	Athletics: { x: 113, y: 422, stat: "STR" },
+	Deception: { x: 113, y: 409, stat: "CHA" },
+	History: { x: 113, y: 396, stat: "INT" },
+	Insight: { x: 113, y: 382, stat: "WIS" },
+	Intimidation: { x: 113, y: 368, stat: "CHA" },
+	Investigation: { x: 113, y: 355, stat: "INT" },
+	Medicine: { x: 113, y: 341, stat: "WIS" },
+	Nature: { x: 113, y: 328, stat: "INT" },
+	Perception: { x: 113, y: 315, stat: "WIS" },
+	Performance: { x: 113, y: 302, stat: "CHA" },
+	Persuasion: { x: 113, y: 288, stat: "CHA" },
+	Religion: { x: 113, y: 274, stat: "INT" },
+	"Sleight of Hand": { x: 113, y: 260.5, stat: "DEX" },
+	Stealth: { x: 113, y: 247, stat: "DEX" },
+	Survival: { x: 113, y: 233, stat: "WIS" },
 };
 
 // idea is take list of coordinates and text, then splatter them on the pdf
@@ -57,31 +111,44 @@ export async function generatePDFBytes(assignments: Record<string, number>) {
 
 	// parse pdf into something modifiable. Grab first page of pdf
 	const pdfDoc = await PDFDocument.load(existingPdfBytes);
+	const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
 	const page = pdfDoc.getPages()[0];
 
+	// Fill in main stat values and modifiers
 	// Fill in main stat values and modifiers
 	for (const [stat, coords] of Object.entries(statCoordinates)) {
 		const score = assignments[stat];
 		const mod = getModifier(score);
 
 		// Stat value
+		const isSingleDigit = score < 10;
+		const valuePos = isSingleDigit
+			? coords.value.singleDigit
+			: coords.value.doubleDigit;
+
 		page.drawText(String(score), {
-			x: coords.value.x,
-			y: coords.value.y,
-			size: 12,
+			x: valuePos.x,
+			y: valuePos.y,
+			size: 18,
+			font,
 			color: rgb(0, 0, 0),
 		});
 
 		// Modifier
+		const isNegativeMod = Number.parseInt(mod) < 0;
+		const modPos = isNegativeMod ? coords.mod.negative : coords.mod.positive;
+
 		page.drawText(mod, {
-			x: coords.mod.x,
-			y: coords.mod.y,
+			x: modPos.x,
+			y: modPos.y,
 			size: 12,
+			font,
 			color: rgb(0, 0, 0),
 		});
 	}
 
-	// Fill in skills with correct modifier
+	// skills
 	for (const [skill, { x, y, stat }] of Object.entries(skillCoordinates)) {
 		const relatedScore = assignments[stat];
 		const mod = getModifier(relatedScore);
@@ -89,7 +156,8 @@ export async function generatePDFBytes(assignments: Record<string, number>) {
 		page.drawText(mod, {
 			x,
 			y,
-			size: 10,
+			size: 10.5,
+			font,
 			color: rgb(0, 0, 0),
 		});
 	}

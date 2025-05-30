@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@ljharb/tsconfig": "^0.3.2",
     "@supabase/supabase-js": "^2.49.8",
     "framer-motion": "^12.9.4",
