@@ -64,15 +64,36 @@ export default function Results({ assignment, onComplete }: Props) {
 
 	return (
 		<div>
-			<div className="text-white text-xl space-y-4">
-				<h2 className="text-2xl font-bold">Your Final Stats</h2>
-				<ul className="space-y-1">
-					{Object.entries(assignment).map(([stat, value]) => (
-						<li key={stat}>
-							<span className="font-semibold">{stat}:</span> {value}
-						</li>
-					))}
-				</ul>
+			<div className="relative w-64 h-64 mx-auto rounded-full">
+				{/* Center content */}
+				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+					<span className="text-white font-bold">Your Stats</span>
+				</div>
+
+				{/* Radial stat items */}
+				{Object.entries(assignment).map(([stat, value], index) => {
+					const angle = (360 / Object.keys(assignment).length) * index;
+					const radius = 100; // px distance from center
+					const rad = (angle * Math.PI) / 180;
+					const x = radius * Math.cos(rad);
+					const y = radius * Math.sin(rad);
+
+					return (
+						<div
+							key={stat}
+							className="absolute"
+							style={{
+								left: `calc(50% + ${x}px)`,
+								top: `calc(50% + ${y}px)`,
+								transform: "translate(-50%, -50%)",
+							}}
+						>
+							<span className="text-white text-sm text-center block whitespace-nowrap">
+								{stat}: {value}
+							</span>
+						</div>
+					);
+				})}
 			</div>
 
 			<div className="mt-4 space-y-3">
