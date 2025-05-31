@@ -12,7 +12,6 @@ import GivenStats from "@/components/text-components/stat-choosing/given-stats";
 import ShopStats from "@/components/text-components/stat-choosing/shop-stats";
 import StatAssignment from "@/components/text-components/set-stats";
 import { AnimatePresence, motion } from "framer-motion";
-import FillPDFButton from "@/components/test-pdf";
 import Results from "@/components/text-components/results";
 
 // export default function Home() {
