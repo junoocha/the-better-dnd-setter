@@ -53,8 +53,9 @@ export default async function handler(
 		}
 
 		// insert data into table
-		const { error: dbError } = await supabase.from("pdf storage").insert([
+		const { error: dbError } = await supabase.from("character_stats").insert([
 			{
+				stats: assignments,
 				file_name: fileName,
 				file_url: publicUrl,
 			},

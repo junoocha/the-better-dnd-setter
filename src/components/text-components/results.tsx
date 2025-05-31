@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import TextAnimation from "../text-animation/text-animation";
 
@@ -12,6 +12,29 @@ export default function Results({ assignment, onComplete }: Props) {
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const generatePdf = async () => {
+			setLoading(true);
+			setError(null);
+			try {
+				const response = await fetch("/api/fill-pdf", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ assignments: assignment }),
+				});
+				if (!response.ok) throw new Error("Failed to generate PDF");
+				const data = await response.json();
+				setPdfUrl(data.url);
+			} catch (err) {
+				setError(err instanceof Error ? err.message : String(err));
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		generatePdf();
+	}, [assignment]); // only runs when new assignment is passed in
 
 	const generatePdf = async () => {
 		setLoading(true);
@@ -36,6 +59,25 @@ export default function Results({ assignment, onComplete }: Props) {
 		}
 	};
 
+	const storeInfo = async () => {
+		setLoading(true);
+		setError(null);
+		try {
+			const response = await fetch("/api/fill-pdf", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ assignments: assignment }),
+			});
+			if (!response.ok) throw new Error("Failed to store info");
+			const data = await response.json();
+			setPdfUrl(data.url);
+		} catch (err) {
+			setError(err instanceof Error ? err.message : String(err));
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
 		<div>
 			<div className="text-white text-xl space-y-4">
@@ -48,25 +90,26 @@ export default function Results({ assignment, onComplete }: Props) {
 					))}
 				</ul>
 			</div>
-			<div>
-				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button onClick={generatePdf} disabled={loading}>
-					{loading ? "Generating PDF..." : "Generate PDF"}
-				</button>
 
-				{error && <p style={{ color: "red" }}>{error}</p>}
+			{loading && <p>Generating PDF...</p>}
+			{error && <p style={{ color: "red" }}>{error}</p>}
 
-				{pdfUrl && (
-					<>
-						<a href={pdfUrl} target="_blank" rel="noopener noreferrer">
-							View PDF
-						</a>
-						<a href={pdfUrl} download>
-							Download PDF
-						</a>
-					</>
-				)}
-			</div>
+			{pdfUrl && (
+				<>
+					<a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+						View PDF
+					</a>
+					<br />
+					<a href={pdfUrl} download>
+						Download PDF
+					</a>
+					<br />
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button onClick={storeInfo} disabled={loading}>
+						Store Information
+					</button>
+				</>
+			)}
 		</div>
 	);
 }
