@@ -145,12 +145,7 @@ export default function Results({ assignment, onComplete }: Props) {
 						Generating PDF, please wait...
 					</p>
 				) : (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.8 }}
-						className="flex gap-3 flex-wrap justify-center"
-					>
+					<div className="flex gap-3 flex-wrap justify-center">
 						<a
 							href={pdfUrl ?? "#"}
 							target="_blank"
@@ -182,7 +177,7 @@ export default function Results({ assignment, onComplete }: Props) {
 						>
 							{stored ? "Stored!" : storing ? "Storing..." : "Store Info"}
 						</button>
-					</motion.div>
+					</div>
 				)}
 
 				{error && <p className="text-red-500 text-sm">{error}</p>}
