@@ -62,11 +62,14 @@ export default function CopyStatsButton({ stats }: Props) {
 		// biome-ignore lint/a11y/useButtonType: <explanation>
 		<button
 			onClick={handleCopy}
-			className={`bg-yellow-500 text-white hover:bg-yellow-600 transition-all duration-200 ${
+			className={`bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-all duration-200 ${
 				copied ? "bg-green-600 hover:bg-green-700" : ""
 			}`}
 		>
-			{copied ? "Copied!" : "Copy Stats"}
+			{/* // keep this same size */}
+			<span className="inline-block w-[100px] text-center">
+				{copied ? "Copied!" : "Copy Stats"}
+			</span>
 		</button>
 	);
 }
