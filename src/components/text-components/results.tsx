@@ -130,7 +130,7 @@ export default function Results({ assignment, onComplete }: Props) {
 								}}
 							>
 								<span
-									className={`text-2xl font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
+									className={`text-2xl select-none font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
 								>
 									{stat}: {value}
 								</span>
@@ -148,13 +148,13 @@ export default function Results({ assignment, onComplete }: Props) {
 				) : (
 					<div>
 						<div className="relative flex justify-center">
-							<div className="flex gap-3 flex-wrap justify-center">
+							<div className="grid grid-cols-3 gap-4 w-full max-w-md mx-auto">
 								{/* Your three buttons go here (View PDF, Download PDF, Store Info) */}
 								<a
 									href={pdfUrl ?? "#"}
 									target="_blank"
 									rel="noopener noreferrer"
-									className={`px-4 py-2 rounded bg-blue-600 text-white font-medium transition hover:bg-blue-700 ${
+									className={`w-full inline-flex justify-center items-center text-center px-4 py-2 rounded bg-blue-600 text-white font-medium transition hover:bg-blue-700 ${
 										!pdfUrl ? "pointer-events-none opacity-50" : "opacity-100"
 									}`}
 								>
