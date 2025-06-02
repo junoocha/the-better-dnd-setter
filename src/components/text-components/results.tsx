@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import CopyStatsButton from "./final-results-stuff/copy-stats-button";
 
 type Props = {
 	assignment: Record<string, number>;
@@ -179,6 +180,8 @@ export default function Results({ assignment, onComplete }: Props) {
 							>
 								{stored ? "Stored!" : storing ? "Storing..." : "Store Info"}
 							</button>
+
+							<CopyStatsButton stats={assignment} />
 						</div>
 
 						{/* Tooltip floated right, not part of flex */}
