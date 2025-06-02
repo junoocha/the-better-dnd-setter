@@ -142,7 +142,7 @@ export default function Results({ assignment, onComplete }: Props) {
 			<div className="mt-6 flex flex-col items-center gap-4">
 				{loading ? (
 					<p className="text-white font-medium">
-						Generating PDF, please wait...
+						Jerry's generating the PDF, please wait...
 					</p>
 				) : (
 					<div className="relative flex justify-center">
