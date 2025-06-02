@@ -197,14 +197,15 @@ export default function Results({ assignment, onComplete }: Props) {
 								</div>
 							</div>
 						</div>
-
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							onClick={onComplete}
-							className="px-4 py-2 rounded bg-gray-800 text-white font-medium hover:bg-gray-700 transition"
-						>
-							Create More Stats
-						</button>
+						<div className="relative mt-5 flex justify-center">
+							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+							<button
+								onClick={onComplete}
+								className="px-4 py-2 rounded bg-gray-800 text-white font-medium hover:bg-gray-700 transition"
+							>
+								Create More Stats
+							</button>
+						</div>
 					</div>
 				)}
 
