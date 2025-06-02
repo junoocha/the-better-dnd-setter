@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
 	assignment: Record<string, number>;
@@ -66,20 +67,31 @@ export default function Results({ assignment, onComplete }: Props) {
 		<div>
 			<div className="relative w-64 h-64 mx-auto rounded-full">
 				{/* Center content */}
-				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+				{/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 					<span className="text-white font-bold">Your Stats</span>
-				</div>
+				</div> */}
 
 				{/* Radial stat items */}
 				{Object.entries(assignment).map(([stat, value], index) => {
-					const angle = (360 / Object.keys(assignment).length) * index;
-					const radius = 100; // px distance from center
+					const angle = (360 / Object.keys(assignment).length) * index - 120;
+					const radius = 140; // px distance from center
 					const rad = (angle * Math.PI) / 180;
 					const x = radius * Math.cos(rad);
 					const y = radius * Math.sin(rad);
 
+					const statColors: Record<string, string> = {
+						STR: "text-red-500",
+						DEX: "text-green-500",
+						CON: "text-yellow-500",
+						INT: "text-blue-500",
+						WIS: "text-purple-500",
+						CHA: "text-pink-500",
+					};
+
+					const textColor = statColors[stat] || "text-white";
+
 					return (
-						<div
+						<motion.div
 							key={stat}
 							className="absolute"
 							style={{
@@ -87,11 +99,24 @@ export default function Results({ assignment, onComplete }: Props) {
 								top: `calc(50% + ${y}px)`,
 								transform: "translate(-50%, -50%)",
 							}}
+							initial={{ scale: 0.95, opacity: 0.9 }}
+							animate={{
+								scale: [1, 1.05, 1],
+								rotate: [0, 3, -3, 0],
+							}}
+							transition={{
+								repeat: Number.POSITIVE_INFINITY,
+								repeatType: "loop",
+								duration: 2 + Math.random() * 2,
+								delay: index * 0.15,
+							}}
 						>
-							<span className="text-white text-sm text-center block whitespace-nowrap">
+							<span
+								className={`text-2xl font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
+							>
 								{stat}: {value}
 							</span>
-						</div>
+						</motion.div>
 					);
 				})}
 			</div>
