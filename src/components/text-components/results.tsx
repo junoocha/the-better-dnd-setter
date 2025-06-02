@@ -140,36 +140,49 @@ export default function Results({ assignment, onComplete }: Props) {
 			</div>
 
 			<div className="mt-6 flex flex-col items-center gap-4">
-				{pdfUrl && (
-					<div className="flex gap-3 flex-wrap justify-center">
+				{loading ? (
+					<p className="text-white font-medium">
+						Generating PDF, please wait...
+					</p>
+				) : (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{ duration: 0.8 }}
+						className="flex gap-3 flex-wrap justify-center"
+					>
 						<a
-							href={pdfUrl}
+							href={pdfUrl ?? "#"}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="px-4 py-2 rounded bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+							className={`px-4 py-2 rounded bg-blue-600 text-white font-medium transition hover:bg-blue-700 ${
+								!pdfUrl ? "pointer-events-none opacity-50" : "opacity-100"
+							}`}
 						>
 							View PDF
 						</a>
 						<a
-							href={pdfUrl}
+							href={pdfUrl ?? "#"}
 							download
-							className="px-4 py-2 rounded bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
+							className={`px-4 py-2 rounded bg-indigo-600 text-white font-medium transition hover:bg-indigo-700 ${
+								!pdfUrl ? "pointer-events-none opacity-50" : "opacity-100"
+							}`}
 						>
 							Download PDF
 						</a>
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
 							onClick={storeInfo}
-							disabled={storing || stored}
+							disabled={storing || stored || !pdfUrl}
 							className={`px-4 py-2 rounded font-medium transition ${
 								stored
-									? "bg-gray-400 text-white cursor-not-allowed"
-									: "bg-green-600 text-white hover:bg-green-700"
-							}`}
+									? "bg-gray-400 text-white cursor-not-allowed opacity-100"
+									: "bg-green-600 text-white hover:bg-green-700 opacity-100"
+							} ${!pdfUrl ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
 						>
 							{stored ? "Stored!" : storing ? "Storing..." : "Store Info"}
 						</button>
-					</div>
+					</motion.div>
 				)}
 
 				{error && <p className="text-red-500 text-sm">{error}</p>}
