@@ -168,6 +168,8 @@ export default function Results({ assignment, onComplete }: Props) {
 							>
 								Download PDF
 							</a>
+
+							<CopyStatsButton stats={assignment} />
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								onClick={storeInfo}
@@ -180,8 +182,6 @@ export default function Results({ assignment, onComplete }: Props) {
 							>
 								{stored ? "Stored!" : storing ? "Storing..." : "Store Info"}
 							</button>
-
-							<CopyStatsButton stats={assignment} />
 						</div>
 
 						{/* Tooltip floated right, not part of flex */}

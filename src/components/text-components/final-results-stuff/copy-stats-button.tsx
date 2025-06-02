@@ -1,16 +1,19 @@
 "use client";
+import { useState } from "react";
 
 type Props = {
 	stats: Record<string, number>;
 };
 
 export default function CopyStatsButton({ stats }: Props) {
+	const [copied, setCopied] = useState(false);
+
 	const getMod = (score: number) => {
 		const mod = Math.floor((score - 10) / 2);
 		return mod >= 0 ? `+${mod}` : `${mod}`;
 	};
 
-	const handleCopy = () => {
+	const handleCopy = async () => {
 		const lines: string[] = [];
 
 		lines.push("BASIC STATS");
@@ -46,20 +49,24 @@ export default function CopyStatsButton({ stats }: Props) {
 			lines.push(`${skill} (${base}): ${getMod(val)}`);
 		}
 
-		const text = lines.join("\n");
-
-		navigator.clipboard.writeText(text).catch((err) => {
+		try {
+			await navigator.clipboard.writeText(lines.join("\n"));
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		} catch (err) {
 			console.error("Failed to copy stats: ", err);
-		});
+		}
 	};
 
 	return (
 		// biome-ignore lint/a11y/useButtonType: <explanation>
 		<button
 			onClick={handleCopy}
-			className="bg-yellow-500 text-white hover:bg-yellow-600"
+			className={`bg-yellow-500 text-white hover:bg-yellow-600 transition-all duration-200 ${
+				copied ? "bg-green-600 hover:bg-green-700" : ""
+			}`}
 		>
-			Copy Stats
+			{copied ? "Copied!" : "Copy Stats"}
 		</button>
 	);
 }
