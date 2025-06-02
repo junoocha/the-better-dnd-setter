@@ -26,7 +26,7 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 				transition={{ duration: 0.3 }}
 				className="flex justify-center pt-3"
 			>
-				<h1 className="flex gap-20 text-5xl font-bold text-green-400 relative">
+				<h1 className="flex gap-20 text-5xl font-bold select-none text-green-400 relative">
 					{standardArray.map((val, i) => (
 						<motion.span
 							key={`standard-${i}`}

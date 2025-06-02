@@ -27,7 +27,7 @@ export default function EndingShopText({
 				transition={{ duration: 0.3 }}
 				className="flex justify-center pt-3"
 			>
-				<h1 className="flex gap-20 text-5xl font-bold text-green-400 relative">
+				<h1 className="flex gap-20 text-5xl font-bold select-none text-green-400 relative">
 					{finalSums.map((val, i) => (
 						<motion.span
 							key={`ending-g-${i}`}

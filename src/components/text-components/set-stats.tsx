@@ -97,7 +97,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 						<button
 							key={`stat-${stat}`}
 							onClick={() => handleStatClick(stat)}
-							className={`px-4 py-2 rounded transition font-bold ${isAssigned || isSelected ? statColors[stat] : "text-gray-400"} ${
+							className={`px-4 py-2 rounded transition font-bold select-none ${isAssigned || isSelected ? statColors[stat] : "text-gray-400"} ${
 								isSelected
 									? "animate-[pulse_2s_ease-in-out_infinite] [text-shadow:_0_0_6px]"
 									: isAssigned
@@ -112,7 +112,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 			</div>
 
 			{/* numbers buttons */}
-			<div className="flex gap-6 text-4xl mt-4">
+			<div className="flex gap-6 select-none text-4xl mt-4">
 				{statValues.map((num, idx) => {
 					const assignedStat = Object.entries(assignments).find(
 						([, assignedIdx]) => assignedIdx === idx,
