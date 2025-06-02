@@ -1,8 +1,8 @@
-// pages/api/generate-pdf.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import { generatePDFBytes } from "../../utils/generate-pdf-bytes";
 import { createClient } from "@supabase/supabase-js";
 
+// client stuff startup
 const supabase = createClient(
 	// biome-ignore lint/style/noNonNullAssertion: <explanation>
 	process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,6 +18,7 @@ export default async function handler(
 		return res.status(405).json({ message: "Method Not Allowed" });
 	}
 
+	// grab assignments, which should be the stats and their values
 	const { assignments } = req.body;
 
 	if (typeof assignments !== "object" || assignments === null) {
@@ -25,15 +26,20 @@ export default async function handler(
 	}
 
 	try {
+		// generate bytes, use the util function
 		const pdfBytes = await generatePDFBytes(assignments);
+
+		// generate unique name
 		const fileName = `filled-${Date.now()}.pdf`;
 
+		// upload pdf to bucket
 		const { error: uploadError } = await supabase.storage
 			.from("pdf-holder")
 			.upload(fileName, pdfBytes, { contentType: "application/pdf" });
 
 		if (uploadError) throw uploadError;
 
+		// grab url of the uploaded pdf
 		const { data: urlData } = supabase.storage
 			.from("pdf-holder")
 			.getPublicUrl(fileName);

@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
 
+// iniitlaize supabase client
 const supabase = createClient(
 	// biome-ignore lint/style/noNonNullAssertion: <explanation>
 	process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -17,6 +18,7 @@ export default async function handler(
 		return res.status(405).json({ message: "Method Not Allowed" });
 	}
 
+	// get stats and file url from request
 	const { stats, file_url } = req.body;
 
 	if (!stats || !file_url) {
@@ -24,6 +26,7 @@ export default async function handler(
 	}
 
 	try {
+		// insert data into table character_stats
 		const { error } = await supabase.from("character_stats").insert([
 			{
 				stats,
