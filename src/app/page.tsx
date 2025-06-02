@@ -12,6 +12,7 @@ import GivenStats from "@/components/text-components/stat-choosing/given-stats";
 import ShopStats from "@/components/text-components/stat-choosing/shop-stats";
 import StatAssignment from "@/components/text-components/set-stats";
 import { AnimatePresence, motion } from "framer-motion";
+import Results from "@/components/text-components/results";
 
 // export default function Home() {
 // 	const router = useRouter();
@@ -50,6 +51,10 @@ export default function Home() {
 		"gamble" | "boring" | "shop" | "default" | null
 	>(null);
 	const [finalSums, setFinalSums] = useState<number[]>([]);
+	const [finalAssignment, setFinalAssignment] = useState<Record<
+		string,
+		number
+	> | null>(null);
 
 	const [step, setStep] = useState(0);
 
@@ -111,7 +116,16 @@ export default function Home() {
 		<StatAssignment
 			key="stat-assignment"
 			statValues={finalSums}
-			onComplete={() => setStep(5)}
+			onComplete={(assigned) => {
+				setFinalAssignment(assigned);
+				setStep(5);
+			}}
+		/>,
+		<Results
+			key="final-results"
+			// biome-ignore lint/style/noNonNullAssertion: <explanation>
+			assignment={finalAssignment!}
+			onComplete={() => setStep(6)}
 		/>,
 	];
 

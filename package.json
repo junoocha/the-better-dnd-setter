@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@ljharb/tsconfig": "^0.3.2",
+    "@supabase/supabase-js": "^2.49.8",
     "framer-motion": "^12.9.4",
     "lucide-react": "^0.511.0",
     "next": "15.3.1",
+    "pdf-lib": "^1.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
