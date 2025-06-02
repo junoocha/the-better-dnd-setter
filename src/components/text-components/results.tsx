@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import CopyStatsButton from "./final-results-stuff/copy-stats-button";
 
 type Props = {
 	assignment: Record<string, number>;
@@ -140,35 +141,62 @@ export default function Results({ assignment, onComplete }: Props) {
 			</div>
 
 			<div className="mt-6 flex flex-col items-center gap-4">
-				{pdfUrl && (
-					<div className="flex gap-3 flex-wrap justify-center">
-						<a
-							href={pdfUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="px-4 py-2 rounded bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
-						>
-							View PDF
-						</a>
-						<a
-							href={pdfUrl}
-							download
-							className="px-4 py-2 rounded bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
-						>
-							Download PDF
-						</a>
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							onClick={storeInfo}
-							disabled={storing || stored}
-							className={`px-4 py-2 rounded font-medium transition ${
-								stored
-									? "bg-gray-400 text-white cursor-not-allowed"
-									: "bg-green-600 text-white hover:bg-green-700"
-							}`}
-						>
-							{stored ? "Stored!" : storing ? "Storing..." : "Store Info"}
-						</button>
+				{loading ? (
+					<p className="text-white font-medium">
+						Jerry's generating the PDF, please wait...
+					</p>
+				) : (
+					<div>
+						<div className="relative flex justify-center">
+							<div className="flex gap-3 flex-wrap justify-center">
+								{/* Your three buttons go here (View PDF, Download PDF, Store Info) */}
+								<a
+									href={pdfUrl ?? "#"}
+									target="_blank"
+									rel="noopener noreferrer"
+									className={`px-4 py-2 rounded bg-blue-600 text-white font-medium transition hover:bg-blue-700 ${
+										!pdfUrl ? "pointer-events-none opacity-50" : "opacity-100"
+									}`}
+								>
+									View PDF
+								</a>
+
+								<CopyStatsButton stats={assignment} />
+								{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+								<button
+									onClick={storeInfo}
+									disabled={storing || stored || !pdfUrl}
+									className={`px-4 py-2 rounded font-medium transition ${
+										stored
+											? "bg-gray-400 text-white cursor-not-allowed opacity-100"
+											: "bg-green-600 text-white hover:bg-green-700 opacity-100"
+									} ${!pdfUrl ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
+								>
+									{stored ? "Stored!" : storing ? "Storing..." : "Store Info"}
+								</button>
+							</div>
+
+							{/* tooltip floated right, not part of flex to keep it there*/}
+							<div className="absolute -top-1 right-[-2rem] group">
+								<div className="w-5 h-5 bg-gray-300 text-black text-xs rounded-full flex items-center justify-center cursor-default">
+									?
+								</div>
+								<div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-48 bg-black text-white text-xs p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+									Your stats will be added to our magical archive for mysterious
+									analytical purposes. But beware! This won’t save them for you
+									to return to later!
+								</div>
+							</div>
+						</div>
+						<div className="relative mt-5 flex justify-center">
+							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+							<button
+								onClick={onComplete}
+								className="px-4 py-2 rounded bg-gray-800 text-white font-medium hover:bg-gray-700 transition"
+							>
+								Create More Stats
+							</button>
+						</div>
 					</div>
 				)}
 

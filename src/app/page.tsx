@@ -125,7 +125,7 @@ export default function Home() {
 			key="final-results"
 			// biome-ignore lint/style/noNonNullAssertion: <explanation>
 			assignment={finalAssignment!}
-			onComplete={() => setStep(6)}
+			onComplete={() => setStep(2)}
 		/>,
 	];
 
