@@ -90,7 +90,6 @@ export default function RollDice({
 						>
 							{Array.from({ length: used }).map((_, i) => (
 								<Dice
-									// biome-ignore lint/suspicious/noArrayIndexKey: static
 									key={`dice-roll${i}`}
 									onRollComplete={(val) => onDiceRollComplete(val, i)}
 								/>
@@ -121,7 +120,6 @@ export default function RollDice({
 
 									return (
 										<motion.img
-											// biome-ignore lint/suspicious/noArrayIndexKey: static
 											key={idx}
 											src={imageSrc}
 											alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
@@ -136,11 +134,13 @@ export default function RollDice({
 							})()}
 						</motion.div>
 					) : (
-						<motion.button // green button to roll and also animation for the button
+						<motion.button // roll and also animation for the button
 							key="roll-button"
 							onClick={handleRoll}
 							disabled={isRolling || currentRoll >= 6}
-							className="mt-4 px-6 py-2 bg-green-600 rounded hover:bg-green-700 disabled:opacity-50"
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							className="px-5 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 							initial={{ opacity: 0, y: 10 }}
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -10 }}
@@ -163,7 +163,6 @@ export default function RollDice({
 
 							return (
 								<motion.li
-									// biome-ignore lint/suspicious/noArrayIndexKey: using static list
 									key={i}
 									initial={{ opacity: 0, y: 10 }}
 									animate={{ opacity: 1, y: 0 }}
@@ -201,10 +200,8 @@ export default function RollDice({
 
 													if (isDiscarded) {
 														return (
-															// biome-ignore lint/suspicious/noArrayIndexKey: using static list
 															<AnimatePresence key={idx}>
 																<motion.img
-																	// biome-ignore lint/suspicious/noArrayIndexKey: using static list
 																	key={idx}
 																	src={imageSrc}
 																	alt={`Dice showing ${val} (discarded)`}
@@ -219,7 +216,6 @@ export default function RollDice({
 
 													return (
 														<img
-															// biome-ignore lint/suspicious/noArrayIndexKey: using static list
 															key={idx}
 															src={imageSrc}
 															alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}

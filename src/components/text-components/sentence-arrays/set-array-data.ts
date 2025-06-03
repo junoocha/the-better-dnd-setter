@@ -1,6 +1,4 @@
-export const explanation = [
-	"Choose a stat, then give it a number it deserves.",
-];
+export const explanation = ["Choose a stat, then give it a value it deserves."];
 
 export const setArrayRamble = [
 	"Assigning numbers to personality traits. Classic adventurer behavior.",

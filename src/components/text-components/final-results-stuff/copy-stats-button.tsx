@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
 	stats: Record<string, number>;
@@ -59,17 +60,18 @@ export default function CopyStatsButton({ stats }: Props) {
 	};
 
 	return (
-		// biome-ignore lint/a11y/useButtonType: <explanation>
-		<button
+		<motion.button
 			onClick={handleCopy}
-			className={`bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-all duration-200 ${
-				copied ? "bg-green-600 hover:bg-green-700" : ""
+			whileHover={{ scale: 1.05 }}
+			whileTap={{ scale: 0.95 }}
+			className={`b px-4 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] transition-all duration-200 ${
+				copied ? "hover:green-700" : ""
 			}`}
 		>
 			{/* // keep this same size */}
 			<span className="inline-block w-[100px] text-center">
 				{copied ? "Copied!" : "Copy Stats"}
 			</span>
-		</button>
+		</motion.button>
 	);
 }

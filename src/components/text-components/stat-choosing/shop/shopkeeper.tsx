@@ -125,7 +125,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 								onComplete(finalSums);
 							}
 						}}
-						className="mt-6 px-6 py-2 font-bold rounded shadow transition duration-300"
+						className="mt-6 px-6 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] transition duration-300"
 						disabled={remainingPoints > 0}
 						initial={{ opacity: 0 }}
 						animate={{
@@ -138,7 +138,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 						}}
 						style={{
 							cursor: remainingPoints === 0 ? "pointer" : "not-allowed",
-							backgroundColor: remainingPoints === 0 ? "#16a34a" : "#4b5563", // green or gray
+							backgroundColor: "#000000", // green or gray
 							color: "white",
 						}}
 					>

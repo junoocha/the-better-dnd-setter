@@ -6,6 +6,7 @@ import {
 	shopInfo,
 	defaultInfo,
 } from "./sentence-arrays/choose-stats-data";
+import { motion } from "framer-motion";
 
 type Props = {
 	onComplete: (selection: keyof typeof descriptions) => void;
@@ -62,37 +63,51 @@ export default function ChooseStats({ onComplete }: Props) {
 			</div>
 
 			<div className="flex flex-row gap-2">
-				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button
+				<motion.button
 					onClick={() => handleSelect("gamble")}
-					className={`px-4 py-2 w-30 bg-blue-600 rounded hover:bg-blue-700 ${selectedOption === "gamble" ? "animate-bounce" : "border-transparent"}`}
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					className={`px-4 py-2 w-30 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] ${selectedOption === "gamble" ? "animate-bounce" : "border-transparent"}`}
 				>
-					GAMBLE
-				</button>
-				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button
+					Roll
+				</motion.button>
+
+				<motion.button
 					onClick={() => handleSelect("boring")}
-					className={`px-4 py-2 w-30 bg-blue-600 rounded hover:bg-blue-700 ${selectedOption === "boring" ? "animate-bounce" : "border-transparent"}`}
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					className={`px-4 py-2 w-30 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] ${selectedOption === "boring" ? "animate-bounce" : "border-transparent"}`}
 				>
 					Standard
-				</button>
-				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button
+				</motion.button>
+
+				<motion.button
 					onClick={() => handleSelect("shop")}
-					className={`px-4 py-2 w-30 bg-blue-600 rounded hover:bg-blue-700 ${selectedOption === "shop" ? "animate-bounce" : "border-bg-blue-600"}`}
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					className={`px-4 py-2 w-30 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]  ${selectedOption === "shop" ? "animate-bounce" : "border-transparent"}`}
 				>
 					Shop
-				</button>
+				</motion.button>
 			</div>
 
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+			<motion.button
 				disabled={selectedOption === "default"}
 				onClick={() => onComplete(selectedOption)}
-				className="px-4 py-2 bg-green-600 rounded hover:bg-green-700 mt-4"
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				animate={{
+					opacity: selectedOption !== "default" ? 1 : 0.3,
+					boxShadow:
+						selectedOption !== "default"
+							? "0 0 15px 4px rgba(34,197,94,0.7)"
+							: "",
+					scale: selectedOption !== "default" ? 1.05 : 1,
+				}}
+				className="px-4 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] mt-4"
 			>
 				Confirm
-			</button>
+			</motion.button>
 		</div>
 	);
 }

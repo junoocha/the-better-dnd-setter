@@ -1,6 +1,7 @@
 import TextAnimation from "@/components/text-animation/text-animation";
 import { explanationPointLimitText } from "../../sentence-arrays/shop-text-data";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
 	onComplete: (pointLimit: number) => void;
@@ -53,22 +54,24 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				<p className="text-red-400 text-sm italic">Shopping with no money?</p>
 			)}
 
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				className="bg-blue-600 hover:bg-blue-700 transition px-6 py-2 rounded text-white disabled:opacity-50"
+			<motion.button
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				className=" transition px-9 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] disabled:opacity-50"
 				disabled={submitDisabled || showWarning}
 				onClick={handleSubmit}
 			>
 				Summon Jerry
-			</button>
+			</motion.button>
 
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+			<motion.button
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
 				onClick={onBack}
-				className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white"
+				className=" px-6 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 			>
 				I Forgot My Wallet
-			</button>
+			</motion.button>
 		</div>
 	);
 }
