@@ -72,10 +72,10 @@ export default function Results({ assignment, onComplete }: Props) {
 					initial={{ scale: 1, opacity: 1 }}
 					animate={{
 						scale: [1, 1.02, 1],
-						opacity: [1, 0.8, 1],
+						opacity: [1, 0.9, 1],
 						boxShadow: [
 							"0 0 20px rgba(100,100,100,0.2)",
-							"0 0 40px rgba(100,100,100,0.35)",
+							"0 0 30px rgba(100,100,100,0.35)",
 							"0 0 20px rgba(100,100,100,0.2)",
 						],
 					}}
@@ -117,10 +117,10 @@ export default function Results({ assignment, onComplete }: Props) {
 									left: `calc(36% + ${x}px)`,
 									top: `calc(50% + ${y}px)`,
 								}}
-								initial={{ scale: 0.95, opacity: 0.9 }}
+								initial={{ scale: 0.95, opacity: 0.95 }}
 								animate={{
 									scale: [1, 1.05, 1],
-									rotate: [0, 3, -3, 0],
+									rotate: [0, 2, -2, 0],
 								}}
 								transition={{
 									repeat: Number.POSITIVE_INFINITY,
