@@ -61,3 +61,28 @@ button {
 .font-spectral {
 	font-family: "Spectral", serif;
 }
+
+@keyframes rainbow-glow {
+	0% {
+		box-shadow: 0 0 10px 2px red;
+	}
+	20% {
+		box-shadow: 0 0 10px 2px orange;
+	}
+	40% {
+		box-shadow: 0 0 10px 2px yellow;
+	}
+	60% {
+		box-shadow: 0 0 10px 2px green;
+	}
+	80% {
+		box-shadow: 0 0 10px 2px blue;
+	}
+	100% {
+		box-shadow: 0 0 10px 2px violet;
+	}
+}
+
+.rainbow-glow {
+	animation: rainbow-glow 2s infinite;
+}

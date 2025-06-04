@@ -30,6 +30,7 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 1, delay: 1.5 }}
+				className="min-h-[4.5rem] overflow-hidden"
 			>
 				<TextAnimation
 					initialSentences={randomSentences}

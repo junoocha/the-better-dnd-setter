@@ -36,7 +36,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 			<div className="flex gap-4">
 				<input
 					type="number"
-					className="bg-gray-800 text-white px-4 py-2 rounded w-32 text-center"
+					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded w-32 text-center"
 					value={pointLimit}
 					onChange={(e) => setPointLimit(e.target.value)}
 					placeholder="Enter Limit"
@@ -57,9 +57,13 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 			<motion.button
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
-				className=" transition px-9 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] disabled:opacity-50"
+				className=" transition px-12 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] disabled:opacity-50"
 				disabled={submitDisabled || showWarning}
 				onClick={handleSubmit}
+				animate={{
+					opacity: submitDisabled ? 0.3 : 1,
+					boxShadow: submitDisabled ? "none" : " 0 0 5px red, 0 0 15px violet", // red purple glow
+				}}
 			>
 				Summon Jerry
 			</motion.button>

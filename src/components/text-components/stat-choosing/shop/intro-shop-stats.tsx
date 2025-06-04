@@ -9,13 +9,10 @@ export default function IntroShopText({ onComplete }: IntroShopTextProps) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
-				loopSentences={introShopText}
+				initialSentences={introShopText}
 				fadeTrue={true}
 				numSentences={1}
-				onLoopStart={() => {
-					// Delay so the first loop sentence has time to show before moving on
-					setTimeout(onComplete, 2500); // tweak this number to match timing
-				}}
+				onComplete={onComplete}
 			/>
 		</div>
 	);

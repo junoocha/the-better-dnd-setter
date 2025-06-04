@@ -82,9 +82,9 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 					{explanation}
 				</div>
 			</div>
-
-			<TextAnimation loopSentences={setArrayRamble} fadeTrue={false} />
-
+			<div className="min-h-[4.5rem] overflow-hidden">
+				<TextAnimation loopSentences={setArrayRamble} fadeTrue={false} />
+			</div>
 			{/* stat buttons */}
 			<div className="flex gap-6 text-2xl font-bold">
 				{statNames.map((stat) => {
@@ -103,6 +103,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 										? "[text-shadow:_0_0_30px]"
 										: "opacity-80 hover:opacity-100"
 							}`}
+							style={{ fontSize: 30 }}
 						>
 							{stat}
 						</button>
@@ -153,6 +154,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 									? ` border-none ${ringColor} [text-shadow:_0_0_6px]`
 									: "opacity-60 hover:opacity-100"
 							}`}
+							style={{ fontSize: 40 }}
 						>
 							{num}
 						</motion.button>

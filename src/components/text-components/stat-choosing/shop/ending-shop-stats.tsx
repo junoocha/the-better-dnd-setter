@@ -25,7 +25,7 @@ export default function EndingShopText({
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.3 }}
-				className="flex justify-center pt-3"
+				className="flex justify-center pt-3 min-h-[4.5rem] overflow-hidden"
 			>
 				<h1 className="flex gap-20 text-5xl font-bold select-none text-green-400 relative">
 					{finalSums.map((val, i) => (
