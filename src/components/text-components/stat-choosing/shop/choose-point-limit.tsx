@@ -69,7 +69,10 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 			</motion.button>
 
 			<motion.button
-				whileHover={{ scale: 1.05 }}
+				whileHover={{
+					scale: 1.05,
+					boxShadow: "0 0 10px red",
+				}}
 				whileTap={{ scale: 0.95 }}
 				onClick={onBack}
 				className=" px-6 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
