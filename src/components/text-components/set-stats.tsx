@@ -148,7 +148,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 								stiffness: 200,
 							}}
 							onClick={() => handleNumberClick(idx)}
-							className={`px-4 py-2 rounded transition transform hover:scale-105 ${textColor} ${
+							className={`px-4 py-2 text-5xl rounded transition transform hover:scale-105 ${textColor} ${
 								assignedStat || isSelected
 									? ` border-none ${ringColor} [text-shadow:_0_0_6px]`
 									: "opacity-60 hover:opacity-100"

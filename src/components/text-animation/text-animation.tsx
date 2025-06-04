@@ -22,11 +22,11 @@ const TextAnimation = (props: TextAnimationProps) => {
 		<div>
 			<p
 				style={{ transitionDuration: `${fadeDuration}ms` }}
-				className={
-					fadeTrue // conditional. If fade exists, then fade it out. Otherwise, don't fade it out til the step completes
+				className={`text-center break-words whitespace-pre-wrap ${
+					fadeTrue
 						? `transition-opacity ${fadingOut ? "opacity-0" : "opacity-100"}`
 						: ""
-				}
+				}`}
 			>
 				{displayedText}
 			</p>

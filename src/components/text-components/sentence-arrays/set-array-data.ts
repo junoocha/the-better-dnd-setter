@@ -14,7 +14,7 @@ export const setArrayRamble = [
 	"Hope you're better at math than the last one... they cried.",
 	"I see you're going for 'charming and doomed'. Respect.",
 	"Assign your fate, while I dust off the 'regret' forms.",
-	"Pick fast, the stats might start picking *you* soon.",
+	"Pick fast, the stats might start picking you soon.",
 	"Every number you place takes you one step closer to destiny... or taxes.",
 	"Put an 8 there. I dare you. No? Coward.",
 	"I once put all my points into Luck. Woke up married to a troll.",

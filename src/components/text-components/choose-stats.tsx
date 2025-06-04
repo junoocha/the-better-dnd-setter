@@ -16,7 +16,7 @@ const descriptions = {
 	default: ["Paths diverge... decide your fate now."],
 	gamble: ["Luck is a wild card... roll your destiny."],
 	boring: ["Steady and plain... comfort in the known."],
-	shop: ["Invest wisely... every point counts."],
+	shop: ["Invest your fortune wisely... every point counts."],
 };
 
 export default function ChooseStats({ onComplete }: Props) {
@@ -33,7 +33,7 @@ export default function ChooseStats({ onComplete }: Props) {
 		<div className="flex flex-col gap-6 items-center text-center">
 			{/* Text + Tooltip aligned side-by-side */}
 			<div className="relative w-full max-w-md flex justify-center">
-				<div className="">
+				<div className="flex-1">
 					{selectedOption && (
 						<TextAnimation
 							key={selectedOption} // forces remount

@@ -153,7 +153,7 @@ export default function RollDice({
 			</div>
 
 			{/* show Results So Far */}
-			<div className="text-whitew-full max-w-md">
+			<div className="text-white w-full max-w-md">
 				<h3 className="text-2xl mt-4 pb-4">Results So Far:</h3>
 				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">
 					<ul className="space-y-4">
@@ -174,7 +174,7 @@ export default function RollDice({
 								>
 									<div className="flex justify-center items-center gap-4">
 										{/* text to label each roll */}
-										<span className="font-spectral text-lg w-24 text-right">
+										<span className="font-spectral text-xl w-24 text-right">
 											{`Roll #${i + 1}`}:
 										</span>
 
@@ -208,7 +208,7 @@ export default function RollDice({
 																	initial={{ opacity: 1 }}
 																	animate={{ opacity: 0.5 }} // just dim it
 																	transition={{ duration: 0.5, delay: 0.5 }}
-																	className="w-6 h-6"
+																	className="w-8 h-8"
 																/>
 															</AnimatePresence>
 														);
@@ -219,7 +219,7 @@ export default function RollDice({
 															key={idx}
 															src={imageSrc}
 															alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
-															className="w-6 h-6"
+															className="w-8 h-8"
 														/>
 													);
 												});
