@@ -71,7 +71,7 @@ export default function RollDice({
 
 	return (
 		<div className="flex flex-col gap-4 items-center text-center">
-			<h2 className="text-xl text-white">
+			<h2 className="text-4xl text-white">
 				{currentRoll === 6 ? "" : `Roll #${currentRoll + 1} of 6`}
 			</h2>
 
@@ -140,7 +140,7 @@ export default function RollDice({
 							disabled={isRolling || currentRoll >= 6}
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
-							className="px-5 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
+							className="px-5 py-2 rounded-sm text-white text-xl bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 							initial={{ opacity: 0, y: 10 }}
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -10 }}
@@ -154,7 +154,7 @@ export default function RollDice({
 
 			{/* show Results So Far */}
 			<div className="text-whitew-full max-w-md">
-				<h3 className="text-lg mt-4 pb-4">Results So Far:</h3>
+				<h3 className="text-2xl mt-4 pb-4">Results So Far:</h3>
 				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">
 					<ul className="space-y-4">
 						{rollResults.map((diceValues, i) => {
@@ -174,7 +174,7 @@ export default function RollDice({
 								>
 									<div className="flex justify-center items-center gap-4">
 										{/* text to label each roll */}
-										<span className="font-mono text-sm w-24 text-right">
+										<span className="font-spectral text-lg w-24 text-right">
 											{`Roll #${i + 1}`}:
 										</span>
 

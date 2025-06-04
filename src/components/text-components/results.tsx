@@ -114,7 +114,7 @@ export default function Results({ assignment, onComplete }: Props) {
 								key={stat}
 								className="absolute"
 								style={{
-									left: `calc(36% + ${x}px)`,
+									left: `calc(31% + ${x}px)`,
 									top: `calc(50% + ${y}px)`,
 								}}
 								initial={{ scale: 0.95, opacity: 0.95 }}
@@ -126,7 +126,7 @@ export default function Results({ assignment, onComplete }: Props) {
 								}}
 							>
 								<span
-									className={`text-2xl select-none font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
+									className={`text-3xl font-spectral select-none font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
 								>
 									{stat}: {value}
 								</span>
@@ -151,8 +151,8 @@ export default function Results({ assignment, onComplete }: Props) {
 									rel="noopener noreferrer"
 									whileHover={{ scale: pdfUrl ? 1.05 : 1 }}
 									whileTap={{ scale: pdfUrl ? 0.95 : 1 }}
-									className={`w-full inline-flex justify-center items-center text-center px-4 py-2 rounded-sm text-white
-										 bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] transition ${
+									className={`w-full font-alegreya inline-flex justify-center items-center text-center px-4 py-2 rounded-sm text-white
+										 bg-black border-[3px]  border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] transition ${
 												!pdfUrl
 													? "pointer-events-none opacity-50"
 													: "opacity-100"

@@ -16,7 +16,7 @@ const descriptions = {
 	default: ["Paths diverge... decide your fate now."],
 	gamble: ["Luck is a wild card... roll your destiny."],
 	boring: ["Steady and plain... comfort in the known."],
-	shop: ["Invest your fortune wisely... every point counts."],
+	shop: ["Invest wisely... every point counts."],
 };
 
 export default function ChooseStats({ onComplete }: Props) {
@@ -32,8 +32,8 @@ export default function ChooseStats({ onComplete }: Props) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			{/* Text + Tooltip aligned side-by-side */}
-			<div className="flex justify-between items-start w-full max-w-md">
-				<div className="flex-1 ml-9 text-center margin">
+			<div className="relative w-full max-w-md flex justify-center">
+				<div className="">
 					{selectedOption && (
 						<TextAnimation
 							key={selectedOption} // forces remount
@@ -45,12 +45,15 @@ export default function ChooseStats({ onComplete }: Props) {
 					)}
 				</div>
 
-				{/* Tooltip bubble */}
-				<div className="group relative ml-2 mt-1">
+				{/* tooltip  positioned outside flex layout */}
+				<div className="group absolute top-1/2 left-full -translate-y-1/2 ml-2 flex items-center">
+					{/* tooltip trigger */}
 					<div className="w-5 h-5 bg-gray-300 text-black text-xs rounded-full flex items-center justify-center cursor-default">
 						?
 					</div>
-					<div className="absolute top-1/2 left-full -translate-y-1/2 ml-3 w-48 bg-black text-white text-xs p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+
+					{/* tooltip bubble */}
+					<div className="ml-3 w-48 bg-black text-white text-xs p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none group-hover:pointer-events-auto whitespace-normal">
 						{selectedOption === "gamble"
 							? gambleInfo
 							: selectedOption === "boring"
