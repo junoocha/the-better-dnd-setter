@@ -102,7 +102,6 @@ export default function ChooseStats({ onComplete }: Props) {
 						selectedOption !== "default"
 							? "0 0 15px 4px rgba(34,197,94,0.7)"
 							: "",
-					scale: selectedOption !== "default" ? 1.05 : 1,
 				}}
 				className="px-4 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] mt-4"
 			>

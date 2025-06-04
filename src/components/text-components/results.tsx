@@ -118,10 +118,6 @@ export default function Results({ assignment, onComplete }: Props) {
 									top: `calc(50% + ${y}px)`,
 								}}
 								initial={{ scale: 0.95, opacity: 0.95 }}
-								animate={{
-									scale: [1, 1.05, 1],
-									rotate: [0, 2, -2, 0],
-								}}
 								transition={{
 									repeat: Number.POSITIVE_INFINITY,
 									repeatType: "loop",

@@ -134,7 +134,6 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 								remainingPoints === 0
 									? "0 0 15px 4px rgba(34,197,94,0.7)" // green glow
 									: "none",
-							scale: remainingPoints === 0 ? 1.05 : 1,
 						}}
 						style={{
 							cursor: remainingPoints === 0 ? "pointer" : "not-allowed",
