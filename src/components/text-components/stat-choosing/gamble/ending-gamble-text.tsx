@@ -59,7 +59,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.3 }}
-				className="flex justify-center pt-3"
+				className="flex justify-center pt-3 min-h-[4.5rem] overflow-hidden"
 			>
 				<h1 className="flex gap-20 select-none text-5xl font-bold text-green-400 relative">
 					{finalSums.map((val, i) => (
@@ -88,7 +88,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				onClick={onComplete}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
-				className="px-6 py-3 mt-4 bg-black text-white rounded hover:bg-blue-700"
+				className="px-6 py-3 mt-4 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 			>
 				Continue
 			</motion.button>

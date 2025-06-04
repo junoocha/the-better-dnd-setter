@@ -2,6 +2,7 @@ import TextAnimation from "@/components/text-animation/text-animation";
 import { explanationGambleText } from "../../sentence-arrays/gamble-text-data";
 import { useState } from "react";
 import Dice from "./dice-components/dice";
+import { motion } from "framer-motion";
 
 type Props = {
 	onComplete: (dieInfo: { used: number; discarded: number }) => void; // return values
@@ -51,7 +52,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 			<div className="flex gap-4">
 				{/* dropdown menu for dice number */}
 				<select
-					className="bg-gray-800 text-white px-4 py-2 rounded"
+					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
 					value={diceUsed}
 					onChange={(e) => setDiceUsed(e.target.value)}
 				>
@@ -68,7 +69,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 
 				{/* dropdown menu for dice to discard */}
 				<select
-					className="bg-gray-800 text-white px-4 py-2 rounded"
+					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
 					value={diceDiscarded}
 					onChange={(e) => setDiceDiscarded(e.target.value)}
 				>
@@ -88,23 +89,33 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				<p className="text-red-400 text-sm italic">{validationMessage}</p>
 			)}
 
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				className="bg-blue-600 hover:bg-blue-700 transition px-6 py-2 rounded text-white disabled:opacity-50"
+			<motion.button
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				className="px-25 py-2 mt-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] disabled:opacity-50"
 				disabled={submitDisabled}
 				onClick={handleSubmit}
+				animate={{
+					opacity: submitDisabled ? 0.3 : 1,
+					boxShadow: submitDisabled
+						? "none"
+						: "0 0 15px 4px rgba(34,197,94,0.7)", // green glow
+				}}
 			>
 				Submit
-			</button>
+			</motion.button>
 
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+			<motion.button
+				whileHover={{
+					scale: 1.05,
+					boxShadow: "0 0 10px red",
+				}}
+				whileTap={{ scale: 0.95 }}
 				onClick={onBack}
-				className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white"
+				className="rounded-sm text-white bg-black border-[3px] border-white  px-6 py-2 "
 			>
 				I Don't Want To Gamble
-			</button>
-			{/* <Dice onRollComplete={(num) => console.log("You rolled", num)} /> */}
+			</motion.button>
 		</div>
 	);
 }

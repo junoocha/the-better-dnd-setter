@@ -73,7 +73,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 
 	return (
 		<div className="flex flex-col items-center gap-6">
-			{/* info button */}
+			{/* info tool tip*/}
 			<div className="group relative ml-auto mt-1">
 				<div className="w-5 h-5 bg-gray-300 text-black text-xs rounded-full flex items-center justify-center cursor-default">
 					?
@@ -82,11 +82,10 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 					{explanation}
 				</div>
 			</div>
-
-			{/* Text animation */}
-			<TextAnimation loopSentences={setArrayRamble} fadeTrue={false} />
-
-			{/* Stat buttons */}
+			<div className="min-h-[4.5rem] overflow-hidden">
+				<TextAnimation loopSentences={setArrayRamble} fadeTrue={false} />
+			</div>
+			{/* stat buttons */}
 			<div className="flex gap-6 text-2xl font-bold">
 				{statNames.map((stat) => {
 					const isAssigned = assignments[stat] !== null;
@@ -104,6 +103,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 										? "[text-shadow:_0_0_30px]"
 										: "opacity-80 hover:opacity-100"
 							}`}
+							style={{ fontSize: 30 }}
 						>
 							{stat}
 						</button>
@@ -132,7 +132,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 
 					// for that ring aura glow
 					const ringColor = assignedStat
-						? statColors[assignedStat].replace("text-", "ring-") // store color, remove the tailwind syntax
+						? statColors[assignedStat].replace("text-", "ring-") // store color, swap the tailwind syntax to get ring
 						: isSelected
 							? "ring-white/30"
 							: "";
@@ -149,11 +149,12 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 								stiffness: 200,
 							}}
 							onClick={() => handleNumberClick(idx)}
-							className={`px-4 py-2 rounded transition transform hover:scale-105 ${textColor} ${
+							className={`px-4 py-2 text-5xl rounded transition transform hover:scale-105 ${textColor} ${
 								assignedStat || isSelected
 									? ` border-none ${ringColor} [text-shadow:_0_0_6px]`
 									: "opacity-60 hover:opacity-100"
 							}`}
+							style={{ fontSize: 40 }}
 						>
 							{num}
 						</motion.button>
@@ -161,7 +162,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				})}
 			</div>
 
-			{/* Assigned Debug Output */}
+			{/* debug Output */}
 			{/* <div className="text-sm mt-4 text-gray-300">
 				Assigned:{" "}
 				{JSON.stringify(
@@ -175,9 +176,10 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				)}
 			</div> */}
 
-			{/* Submit */}
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+			{/* submit */}
+			<motion.button
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
 				disabled={!canSubmit}
 				onClick={() => {
 					const resolved: Record<string, number> = {};
@@ -189,13 +191,18 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 					}
 					onComplete(resolved);
 				}}
-				className="mt-4 px-6 py-2 rounded bg-green-600 text-white disabled:opacity-50 hover:bg-green-700"
+				animate={{
+					opacity: !canSubmit ? 0.3 : 1,
+					boxShadow: !canSubmit ? "none" : "0 0 15px 4px rgba(34,197,94,0.7)", // green glow
+				}}
+				className="mt-4 px-6 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] disabled:opacity-50"
 			>
 				Lock In Stats
-			</button>
+			</motion.button>
 
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+			<motion.button
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
 				onClick={() => {
 					setAssignments(
 						Object.fromEntries(statNames.map((stat) => [stat, null])),
@@ -203,10 +210,10 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 					setSelectedStat(null);
 					setSelectedIndex(null);
 				}}
-				className="mt-2 px-4 py-2 rounded bg-gray-700 text-white hover:bg-gray-600"
+				className="mt-2 px-5 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 			>
 				Clear Choices
-			</button>
+			</motion.button>
 		</div>
 	);
 }

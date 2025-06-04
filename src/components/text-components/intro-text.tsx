@@ -1,8 +1,7 @@
 import TextAnimation from "../text-animation/text-animation";
-import { useTextAnimation } from "../text-animation/text-animator";
 import { intro, introLoopSentences } from "./sentence-arrays/intro-text-data";
-import { useEffect } from "react";
 import { useLoopPhase } from "../text-animation/loop-phase-context";
+import { motion } from "framer-motion";
 
 type Props = {
 	onComplete: () => void;
@@ -24,13 +23,15 @@ export default function IntroText({ onComplete }: Props) {
 				fadeTrue={false}
 				onLoopStart={handleLoopStart}
 			/>
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+
+			<motion.button
 				onClick={onComplete}
-				className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				className="relative px-4 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 			>
 				Wake up the bard?
-			</button>
+			</motion.button>
 		</div>
 	);
 }

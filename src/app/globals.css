@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:wght@400;600&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -37,7 +38,51 @@ input[type="number"] {
 
 img {
 	pointer-events: none;
-	/* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
+
 	user-select: none;
 	-webkit-user-drag: none;
+}
+
+p,
+button,
+h2,
+h3 {
+	font-family: "Spectral", serif;
+}
+
+p {
+	font-size: 1.5rem;
+}
+
+button {
+	font-size: 20px;
+}
+
+.font-spectral {
+	font-family: "Spectral", serif;
+}
+
+@keyframes rainbow-glow {
+	0% {
+		box-shadow: 0 0 10px 2px red;
+	}
+	20% {
+		box-shadow: 0 0 10px 2px orange;
+	}
+	40% {
+		box-shadow: 0 0 10px 2px yellow;
+	}
+	60% {
+		box-shadow: 0 0 10px 2px green;
+	}
+	80% {
+		box-shadow: 0 0 10px 2px blue;
+	}
+	100% {
+		box-shadow: 0 0 10px 2px violet;
+	}
+}
+
+.rainbow-glow {
+	animation: rainbow-glow 2s infinite;
 }

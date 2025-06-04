@@ -52,6 +52,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 1, delay: 1.5 }}
+				className="min-h-[4.5rem] overflow-hidden"
 			>
 				<TextAnimation loopSentences={shopKeeperRamble} fadeTrue={false} />{" "}
 			</motion.div>
@@ -66,8 +67,10 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 						transition={{ duration: 1, delay: 5.5 }}
 					>
 						<div className="bg-black border-4 border-white rounded-md px-4 py-2 shadow-md text-white font-bold text-sm max-w-[220px] text-left">
-							<p className="mb-1">Max 15 Score</p>
-							<ul className="list-disc list-inside text-xs font-normal leading-snug space-y-1">
+							<p className="mb-1" style={{ fontSize: 16 }}>
+								Max 15 Score
+							</p>
+							<ul className="list-disc font-spectral list-inside text-xs font-normal leading-snug space-y-1">
 								<li className="whitespace-nowrap">1 point per increase</li>
 								<li className="whitespace-nowrap">13 → 14: 2 points</li>
 								<li className="whitespace-nowrap">14 → 15: 2 points</li>
@@ -88,7 +91,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 1, delay: 5.5 }}
 					>
-						<div className="bg-black border-4 border-white-700  rounded-md px-4 py-2 shadow-md text-brown-900 font-bold text-lg select-none">
+						<div className="bg-black border-4 border-white-700 font-spectral rounded-md px-4 py-2 shadow-md text-brown-900 font-bold text-lg select-none">
 							<div>Remaining</div>
 							<div className="text-2xl mt-1">{remainingPoints}</div>
 						</div>
@@ -125,7 +128,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 								onComplete(finalSums);
 							}
 						}}
-						className="mt-6 px-6 py-2 font-bold rounded shadow transition duration-300"
+						className="mt-6 px-6 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] transition duration-300"
 						disabled={remainingPoints > 0}
 						initial={{ opacity: 0 }}
 						animate={{
@@ -134,11 +137,10 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 								remainingPoints === 0
 									? "0 0 15px 4px rgba(34,197,94,0.7)" // green glow
 									: "none",
-							scale: remainingPoints === 0 ? 1.05 : 1,
 						}}
 						style={{
 							cursor: remainingPoints === 0 ? "pointer" : "not-allowed",
-							backgroundColor: remainingPoints === 0 ? "#16a34a" : "#4b5563", // green or gray
+							backgroundColor: "#000000", // green or gray
 							color: "white",
 						}}
 					>
