@@ -60,7 +60,7 @@ export const goodGambleText = [
 	"You either cheated, or you're chosen by the dice gods.",
 	"Be honest: you made a deal with something, didn't you?",
 	"Congratulations, you're now legally a main character.",
-	"Woah, main character alert",
+	"Woah, main character alert.",
 	"With stats like that, even your backstory writes itself.",
 	"That roll slaps harder than a bard with max Charisma.",
 	"Legend says these numbers echo through the planes.",

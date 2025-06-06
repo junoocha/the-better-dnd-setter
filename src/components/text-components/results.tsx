@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CopyStatsButton from "./final-results-stuff/copy-stats-button";
+import TextAnimation from "../text-animation/text-animation";
+import { getStatSentences } from "../../../utils/getFinalSentences";
+import { useMemo } from "react";
 
 type Props = {
 	assignment: Record<string, number>;
@@ -64,8 +67,21 @@ export default function Results({ assignment, onComplete }: Props) {
 		generatePdf();
 	}, []);
 
+	const selectedSentences = useMemo(
+		() => getStatSentences(assignment, true),
+		[assignment],
+	);
+
 	return (
 		<div>
+			<div className="center min-h-[6rem] overflow-hidden">
+				<TextAnimation
+					loopSentences={selectedSentences}
+					fadeTrue={false}
+					numSentences={1}
+					showAndStay={true}
+				/>
+			</div>
 			<div className="flex justify-center items-center mb-20">
 				<motion.div
 					className="relative w-72 h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
