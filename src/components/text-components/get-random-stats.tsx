@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "../../../utils/supabase_public";
 import CopyStatsButton from "./final-results-stuff/copy-stats-button";
+import TextAnimation from "../text-animation/text-animation";
+import { getStatSentences } from "../../../utils/getFinalSentences";
 
 type Props = {
 	onComplete: () => void;
@@ -40,7 +42,7 @@ export default function RandomStats({ onComplete }: Props) {
 			}
 		};
 
-		// Run once immediately so user doesn’t always wait 1s minimum
+		// Run once immediately so user doesn't always wait 1s minimum
 		fetchRandomStats();
 
 		return () => clearInterval(delayTimer); // Cleanup on unmount
@@ -53,9 +55,18 @@ export default function RandomStats({ onComplete }: Props) {
 			</div>
 		);
 	}
+
+	const selectedSentences = getStatSentences(assignment, true);
 	return (
 		<div>
 			<div className="flex justify-center items-center mb-20">
+				<TextAnimation
+					loopSentences={selectedSentences}
+					fadeTrue={false}
+					numSentences={1}
+					showAndStay={true}
+				/>
+
 				<motion.div
 					className="relative w-72 h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
 					initial={{ scale: 1, opacity: 1 }}

@@ -240,7 +240,7 @@ export const highSTDGambleText = [
 	"Half of you could lead an army. The other half... shouldn’t.",
 	"One stat slaps, the other apologizes for it.",
 	"Your dice were clearly arguing mid-roll.",
-	"Oh yes, now *that’s* a character with flavor!",
+	"Oh yes, now that’s a character with flavor!",
 	"Legends aren’t balanced, they’re memorable!",
 	"I shall sing of your greatness... and your very silly flaws.",
 	"You’ve got the heart of a lion and the reflexes of a falling rock!",
