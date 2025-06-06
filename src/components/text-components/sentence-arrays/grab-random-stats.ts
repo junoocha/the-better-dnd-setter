@@ -1,4 +1,4 @@
-export const RLowStr = [
+export const lowStr = [
 	`Whoever's stats you uploaded skipped arm day forever.`,
 	`This looks less like a strength score and more like a cry for help.`,
 	`You hit "upload" and the server laughed.`,
@@ -35,7 +35,7 @@ export const RLowStr = [
 	`These stats were returned to sender, but you're still holding them.`,
 	`The only thing you wrestle is shame.`,
 ];
-export const RLowInt = [
+export const lowInt = [
 	`You uploaded someone's stats and got their dial-up brain.`,
 	`This intellect was borrowed from someone banned from riddles.`,
 	`You got the stats of a wizard's assistant who kept mixing potions with soup.`,
@@ -72,7 +72,7 @@ export const RLowInt = [
 	`This mental capacity was left behind at a tavern.`,
 	`Party note: Stop trying to decipher maps. Please.`,
 ];
-export const RLowDex = [
+export const lowDex = [
 	`This character moves like their bones are made of apologetic pudding.`,
 	`Uploaded someone's stats and now doors are your nemesis.`,
 	`You inherited the grace of someone who was banned from hopscotch.`,
@@ -109,7 +109,7 @@ export const RLowDex = [
 	`The only thing agile is your regret.`,
 	`You move like the dice rolled out of the box and under the couch.`,
 ];
-export const RLowCon = [
+export const lowCon = [
 	`Uploaded someone else's stats and caught the flu in the process.`,
 	`These hit points arrive pre-dented.`,
 	`You now sneeze in initiative order.`,
@@ -146,7 +146,7 @@ export const RLowCon = [
 	`Your blood type is "glass."`,
 	`The wizard uses Mage Hand to hold you upright.`,
 ];
-export const RLowWis = [
+export const lowWis = [
 	`You uploaded the judgment of a squirrel chasing fireworks.`,
 	`This stat sheet has "trusted the wrong wizard" energy.`,
 	`The instincts of a fantasy NPC with no backstory.`,
@@ -183,7 +183,7 @@ export const RLowWis = [
 	`Your instincts are still buffering.`,
 	`Every red flag looks like a welcome banner.`,
 ];
-export const RLowCha = [
+export const lowCha = [
 	`The person you copied was voted "most likely to ruin a first impression."`,
 	`This charisma stat smells like it's been left in the sun.`,
 	`Uploaded someone else's charm and got whatever this is.`,
@@ -220,7 +220,7 @@ export const RLowCha = [
 	`The local tavern has a seat labeled "please no."`,
 	`You cast Suggestion and they left the continent.`,
 ];
-export const RHighStr = [
+export const highStr = [
 	`Who did you upload, Hercules?`,
 	`You picked stats and the gym exploded.`,
 	`Even the barbarian said "yo chill."`,
@@ -252,7 +252,7 @@ export const RHighStr = [
 	`Every Strength check is just a flex confirmation.`,
 	`The barbarian avoids eye contact now.`,
 ];
-export const RHighInt = [
+export const highInt = [
 	`Uploaded someone's stats and accidentally became a spell theory professor.`,
 	`You now calculate spell trajectories mid-fight while solving sudoku.`,
 	`This intelligence comes with citations.`,
@@ -284,7 +284,7 @@ export const RHighInt = [
 	`The wizard asked if you're from the future.`,
 	`Reality sometimes consults you for consistency.`,
 ];
-export const RHighDex = [
+export const highDex = [
 	`Uploaded someone's stats and now you're sponsored by gravity.`,
 	`You dodge so smoothly it's considered art.`,
 	`This agility is a flex and a threat.`,
@@ -316,7 +316,7 @@ export const RHighDex = [
 	`You sneak so well even gods lose track of you.`,
 	`Gravity said "nevermind."`,
 ];
-export const RHighCon = [
+export const highCon = [
 	`Uploaded someone else's stats and became unkillable.`,
 	`Your hit points have hit points.`,
 	`You sleep in full plate. Voluntarily.`,
@@ -348,7 +348,7 @@ export const RHighCon = [
 	`The dragon used breath weapon. You sneezed.`,
 	`Your immune system holds grudges.`,
 ];
-export const RHighWis = [
+export const highWis = [
 	`You uploaded someone else's stats and now see into people's backstories.`,
 	`Even the gods text you for updates.`,
 	`You sense traps in emotional conversations.`,
@@ -380,7 +380,7 @@ export const RHighWis = [
 	`Wisdom so sharp it counts as a weapon.`,
 	`Your dreams have patch notes from reality.`,
 ];
-export const RHighCha = [
+export const highCha = [
 	`You uploaded someone's stats and became the plot hook.`,
 	`Even villains hesitate before monologuing around you.`,
 	`You roll Persuasion and the mayor retires.`,
@@ -413,7 +413,7 @@ export const RHighCha = [
 	`The king asked if you're busy next campaign.`,
 ];
 
-export const RLowAvg = [
+export const lowAvg = [
 	`Almost like they tried, but then got distracted.`,
 	`The party calls this "the respectable underachiever."`,
 	`Not terrible, but definitely needs a pep talk.`,
@@ -445,13 +445,13 @@ export const RLowAvg = [
 	`You're the “nice try” of the adventuring world.`,
 	`The rogue is confused whether to pity or encourage you.`,
 	`Even the NPCs say, "At least they're trying."`,
-	`Uploaded stats are like decaf coffee — passable but lacking kick.`,
+	`Uploaded stats are like decaf coffee, passable but lacking kick.`,
 	`Your best move might be looking busy.`,
 	`The DM wonders if this was a quiet protest.`,
 	`You bring balance to the party by being, well, balanced.`,
 	`Fantasy HR classifies you under "reliable mediocrity."`,
 ];
-export const RHighAvg = [
+export const highAvg = [
 	`Somewhere between "almost legendary" and "pretty good."`,
 	`The party wonders if you're secretly cheating.`,
 	`Stats that say, "I could totally take on a dragon. Maybe."`,
@@ -489,7 +489,7 @@ export const RHighAvg = [
 	`Your competence raises party morale by 20%.`,
 	`These stats say, “Legend in progress.”`,
 ];
-export const RMidAvg = [
+export const midAvg = [
 	`Clearly, the upload was done by someone with mild standards.`,
 	`The party says you're "surprisingly competent" sometimes.`,
 	`Stats so balanced they make the DM yawn.`,

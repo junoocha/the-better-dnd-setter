@@ -59,14 +59,15 @@ export default function RandomStats({ onComplete }: Props) {
 	const selectedSentences = getStatSentences(assignment, true);
 	return (
 		<div>
-			<div className="flex justify-center items-center mb-20">
+			<div className="center min-h-[6rem] overflow-hidden">
 				<TextAnimation
 					loopSentences={selectedSentences}
 					fadeTrue={false}
 					numSentences={1}
 					showAndStay={true}
 				/>
-
+			</div>
+			<div className="flex justify-center items-center mb-20">
 				<motion.div
 					className="relative w-72 h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
 					initial={{ scale: 1, opacity: 1 }}
