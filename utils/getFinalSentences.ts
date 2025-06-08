@@ -15,8 +15,8 @@ export function getStatSentences(
 	const highStats: string[] = [];
 
 	// averages come first
-	const hasLowAvg = Object.values(stats).some((v) => v <= 8);
-	const hasHighAvg = Object.values(stats).some((v) => v >= 15);
+	const hasLowAvg = Object.values(stats).some((v) => v <= 6);
+	const hasHighAvg = Object.values(stats).some((v) => v >= 17);
 
 	if (hasLowAvg && source.lowAvg) {
 		result.push(...source.lowAvg);
@@ -27,8 +27,8 @@ export function getStatSentences(
 
 	// collect low/high stats
 	for (const [stat, value] of Object.entries(stats)) {
-		if (value < 8) lowStats.push(stat);
-		else if (value > 15) highStats.push(stat);
+		if (value < 6) lowStats.push(stat);
+		else if (value > 17) highStats.push(stat);
 	}
 
 	// add low stats if any
