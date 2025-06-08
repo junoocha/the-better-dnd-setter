@@ -14,6 +14,7 @@ import StatAssignment from "@/components/text-components/set-stats";
 import { AnimatePresence, motion } from "framer-motion";
 import Results from "@/components/text-components/results";
 import RandomStats from "@/components/text-components/get-random-stats";
+import AudioToggle from "@/components/audio-toggle";
 
 // export default function Home() {
 // 	const router = useRouter();
@@ -150,6 +151,8 @@ export default function Home() {
 						</motion.div>
 					</AnimatePresence>
 				</main>
+
+				<AudioToggle src="/personalityquiz.mp3" />
 			</div>
 		</LoopPhaseProvider>
 	);
