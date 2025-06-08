@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Volume2, VolumeX } from "lucide-react"; // optional icon support
+import { Volume2, VolumeX } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function AudioToggle({ src }: { src: string }) {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -33,23 +34,27 @@ export default function AudioToggle({ src }: { src: string }) {
 
 	return (
 		<div className="fixed top-4 left-4 z-50 flex items-center gap-3">
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
+			<motion.button
+				animate={{
+					boxShadow: isPlaying
+						? "0 0 10px 3px rgba(168,85,247,0.7)" // green glow
+						: "none",
+				}}
 				onClick={toggleAudio}
-				className={`w-13 h-13 flex items-center justify-center rounded-full border transition 
+				className={`w-11 h-11 flex items-center justify-center rounded-full border transition 
 					${
 						isPlaying
-							? "bg-green-500 border-green-500 text-white animate-pulse"
-							: "border-white text-white hover:bg-white hover:text-black"
+							? "bg-black border-purple-500 text-white animate-pulse"
+							: "border-white text-white hover:border-purple-500"
 					}`}
 				aria-label="Toggle audio"
 			>
 				{isPlaying ? (
-					<Volume2 className="w-7 h-7" />
+					<Volume2 className="w-6 h-6" />
 				) : (
-					<VolumeX className="w-7 h-7" />
+					<VolumeX className="w-6 h-6" />
 				)}
-			</button>
+			</motion.button>
 
 			{isPlaying && (
 				<input
@@ -59,7 +64,7 @@ export default function AudioToggle({ src }: { src: string }) {
 					step="0.01"
 					value={volume}
 					onChange={handleVolumeChange}
-					className="w-24"
+					className="w-24 accent-purple-500"
 				/>
 			)}
 		</div>
