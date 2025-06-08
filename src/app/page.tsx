@@ -13,6 +13,7 @@ import ShopStats from "@/components/text-components/stat-choosing/shop-stats";
 import StatAssignment from "@/components/text-components/set-stats";
 import { AnimatePresence, motion } from "framer-motion";
 import Results from "@/components/text-components/results";
+import RandomStats from "@/components/text-components/get-random-stats";
 
 // export default function Home() {
 // 	const router = useRouter();
@@ -59,7 +60,10 @@ export default function Home() {
 	const [step, setStep] = useState(0);
 
 	const steps = [
-		<IntroText key="intro" onComplete={() => setStep(1)} />,
+		<IntroText
+			key="intro"
+			onComplete={(nextStep: number) => setStep(nextStep)}
+		/>,
 		<WakeUpText key="wakeuptext" onComplete={() => setStep(2)} />,
 		<ChooseStats
 			key="choosestats"
@@ -127,6 +131,7 @@ export default function Home() {
 			assignment={finalAssignment!}
 			onComplete={() => setStep(2)}
 		/>,
+		<RandomStats key="random-stats" onComplete={() => setStep(0)} />,
 	];
 
 	return (

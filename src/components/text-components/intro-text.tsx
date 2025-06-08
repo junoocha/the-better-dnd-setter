@@ -4,7 +4,7 @@ import { useLoopPhase } from "../text-animation/loop-phase-context";
 import { motion } from "framer-motion";
 
 type Props = {
-	onComplete: () => void;
+	onComplete: (nextStep: number) => void;
 };
 
 export default function IntroText({ onComplete }: Props) {
@@ -25,12 +25,21 @@ export default function IntroText({ onComplete }: Props) {
 			/>
 
 			<motion.button
-				onClick={onComplete}
+				onClick={() => onComplete(1)}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
 				className="relative px-4 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
 			>
 				Wake up the bard?
+			</motion.button>
+
+			<motion.button
+				onClick={() => onComplete(6)}
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
+				className="relative px-4 py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white]"
+			>
+				Grab a Pre-existing Hero's Stats
 			</motion.button>
 		</div>
 	);
