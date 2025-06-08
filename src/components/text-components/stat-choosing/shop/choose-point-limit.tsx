@@ -62,7 +62,9 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				onClick={handleSubmit}
 				animate={{
 					opacity: submitDisabled ? 0.3 : 1,
-					boxShadow: submitDisabled ? "none" : " 0 0 5px red, 0 0 15px violet", // red purple glow
+					boxShadow: submitDisabled
+						? "0 0 0px 0px rgba(0,0,0,0)"
+						: " 0 0 5px red, 0 0 15px violet", // red purple glow
 				}}
 			>
 				Summon Jerry

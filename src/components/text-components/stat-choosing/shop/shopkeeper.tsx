@@ -136,7 +136,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 							boxShadow:
 								remainingPoints === 0
 									? "0 0 15px 4px rgba(34,197,94,0.7)" // green glow
-									: "none",
+									: "0 0 0px 0px rgba(0,0,0,0)",
 						}}
 						style={{
 							cursor: remainingPoints === 0 ? "pointer" : "not-allowed",
