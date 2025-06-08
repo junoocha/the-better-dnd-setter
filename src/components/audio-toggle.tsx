@@ -6,7 +6,7 @@ import { Volume2, VolumeX } from "lucide-react"; // optional icon support
 export default function AudioToggle({ src }: { src: string }) {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [volume, setVolume] = useState(1);
+	const [volume, setVolume] = useState(0.5);
 
 	const toggleAudio = () => {
 		if (!audioRef.current) {
@@ -36,7 +36,7 @@ export default function AudioToggle({ src }: { src: string }) {
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 			<button
 				onClick={toggleAudio}
-				className={`w-10 h-10 flex items-center justify-center rounded-full border transition 
+				className={`w-13 h-13 flex items-center justify-center rounded-full border transition 
 					${
 						isPlaying
 							? "bg-green-500 border-green-500 text-white animate-pulse"
@@ -45,9 +45,9 @@ export default function AudioToggle({ src }: { src: string }) {
 				aria-label="Toggle audio"
 			>
 				{isPlaying ? (
-					<Volume2 className="w-5 h-5" />
+					<Volume2 className="w-7 h-7" />
 				) : (
-					<VolumeX className="w-5 h-5" />
+					<VolumeX className="w-7 h-7" />
 				)}
 			</button>
 
