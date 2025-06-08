@@ -28,7 +28,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 		const variance =
 			arr.reduce((sum, v) => sum + (v - average) ** 2, 0) / arr.length;
 		const stdDev = Math.sqrt(variance);
-		return stdDev > 4.5; // tweak this threshold as needed
+		return stdDev > 5; // tweak this threshold as needed
 	}
 
 	// biome-ignore lint/suspicious/noImplicitAnyLet:
@@ -37,9 +37,9 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 		selectedSentences = highSTDGambleText;
 	} else if (duplicates(finalSums)) {
 		selectedSentences = duplicateGambleText;
-	} else if (average > 12) {
+	} else if (average > 17) {
 		selectedSentences = goodGambleText;
-	} else if (average >= 9) {
+	} else if (average >= 6) {
 		selectedSentences = midGambleText;
 	} else {
 		selectedSentences = badGambleText;
