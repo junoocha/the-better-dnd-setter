@@ -38,7 +38,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 	}
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center px-4 sm:px-0 max-w-md sm:max-w-none mx-auto">
 			<TextAnimation
 				initialSentences={explanationGambleText}
 				fadeTrue={false}
@@ -55,6 +55,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
 					value={diceUsed}
 					onChange={(e) => setDiceUsed(e.target.value)}
+					aria-label="Dice to Roll"
 				>
 					<option value="" disabled>
 						Dice to Roll
@@ -72,6 +73,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
 					value={diceDiscarded}
 					onChange={(e) => setDiceDiscarded(e.target.value)}
+					aria-label="Dice to Discard"
 				>
 					<option value="" disabled>
 						Dice to Discard

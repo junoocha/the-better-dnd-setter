@@ -137,22 +137,23 @@ export default function Home() {
 
 	return (
 		<LoopPhaseProvider>
-			<div className="min-h-screen grid place-items-center px-4 py-8 sm:px-12 sm:py-20 font-sans bg-gray-950 text-white ">
-				<main className="w-full -mt-5 max-w-3xl">
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={step}
-							initial={{ opacity: 0, y: 10 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -10 }}
-							transition={{ duration: 1 }}
-						>
-							{steps[step]}
-						</motion.div>
-					</AnimatePresence>
-				</main>
-
-				<AudioToggle src="/personalityquiz.mp3" />
+			<div className="min-h-screen w-screen bg-gray-950 text-white font-sans">
+				<div className="grid place-items-center px-4 py-8 sm:px-12 sm:py-20 min-h-screen">
+					<main className="w-full max-w-3xl -mt-5">
+						<AnimatePresence mode="wait">
+							<motion.div
+								key={step}
+								initial={{ opacity: 0, y: 10 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -10 }}
+								transition={{ duration: 1 }}
+							>
+								{steps[step]}
+							</motion.div>
+						</AnimatePresence>
+					</main>
+					<AudioToggle src="/personalityquiz.mp3" />
+				</div>
 			</div>
 		</LoopPhaseProvider>
 	);
