@@ -7,7 +7,7 @@ type Props = {
 
 export default function IntroGambleText({ onComplete }: Props) {
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center px-4 sm:px-0">
 			<TextAnimation
 				initialSentences={introGambleText}
 				fadeTrue={true}
