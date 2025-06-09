@@ -20,13 +20,13 @@ This interactive website guides you through setting your DnD stats with personal
   - Employ the **Point Buy System**
 
 - **Hero Stat Upload & Sharing:**
-  - Upload your own hero’s stats to the shared storage system
+  - Upload your own hero's stats to the shared storage system
   - Randomly grab stats uploaded by other users for inspiration or quick play
 
 - **Result Options:**
   - Download a PDF of your finalized stats
   - Copy all stats with a single click
-  - Add your hero’s stats to the shared storage for others to discover
+  - Add your hero's stats to the shared storage for others to discover
 
 ---
 

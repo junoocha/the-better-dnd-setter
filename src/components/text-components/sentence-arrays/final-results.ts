@@ -598,7 +598,7 @@ export const lowAvg = [
 	`Built for enthusiasm, not results.`,
 	`Not the hero we want, but certainly the one that... exists.`,
 	`The stat is technically above zero, which is all the celebration it gets.`,
-	`DM: "You passed? …You passed? What's your bonus again?"`,
+	`DM: "You passed?... You passed? What's your bonus again?"`,
 	`The dice don't hate you. They're just deeply unimpressed.`,
 	`Stat looks like it was calculated during a power outage.`,
 	`Low enough to be funny. High enough to be cursed.`,

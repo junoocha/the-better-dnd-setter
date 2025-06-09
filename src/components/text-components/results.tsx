@@ -201,7 +201,7 @@ export default function Results({ assignment, onComplete }: Props) {
 								</div>
 								<div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-48 bg-black text-white text-xs p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
 									Your stats will be added to our magical archive for mysterious
-									analytical purposes. But beware! This won’t save them for you
+									analytical purposes. But beware! This won't save them for you
 									to return to later!
 								</div>
 							</div>
