@@ -8,12 +8,6 @@ type Props = {
 };
 
 export default function IntroGambleText({ onComplete }: Props) {
-	// const { isIntroLoopPhase } = useLoopPhase();
-
-	// const selectedSentences = isIntroLoopPhase
-	// 	? annoyedWakeupSentences
-	// 	: wakeupSentences;
-
 	return (
 		<div className="flex flex-col gap-6 items-center text-center">
 			<TextAnimation
@@ -21,10 +15,6 @@ export default function IntroGambleText({ onComplete }: Props) {
 				fadeTrue={true}
 				numSentences={1}
 				onComplete={onComplete}
-				// onLoopStart={() => {
-				// 	// Delay so the first loop sentence has time to show before moving on
-				// 	setTimeout(onComplete, 2500); // tweak this number to match timing
-				// }}
 			/>
 		</div>
 	);
