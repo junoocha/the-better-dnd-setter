@@ -17,7 +17,7 @@ export default function WakeUpText({ onComplete }: Props) {
 		: wakeupSentences;
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 sm:gap-8 items-center text-center px-4">
 			<TextAnimation
 				initialSentences={selectedSentences}
 				fadeTrue={true}
