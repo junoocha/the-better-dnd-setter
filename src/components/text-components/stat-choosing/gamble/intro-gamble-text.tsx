@@ -1,8 +1,6 @@
 import TextAnimation from "@/components/text-animation/text-animation";
 import { introGambleText } from "../../sentence-arrays/gamble-text-data";
 
-// import { useLoopPhase } from "../text-animation/loop-phase-context";
-
 type Props = {
 	onComplete: () => void;
 };
