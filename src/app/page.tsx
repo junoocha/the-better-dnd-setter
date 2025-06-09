@@ -137,9 +137,9 @@ export default function Home() {
 
 	return (
 		<LoopPhaseProvider>
-			<div className="min-h-screen w-screen bg-gray-950 text-white font-sans">
+			<div className="min-h-screen w-full bg-gray-950 text-white font-sans">
 				<div className="grid place-items-center px-4 py-8 sm:px-12 sm:py-20 min-h-screen">
-					<main className="w-full max-w-3xl -mt-5">
+					<main className="w-full max-w-3xl -mt-5  mx-auto px-4">
 						<AnimatePresence mode="wait">
 							<motion.div
 								key={step}
