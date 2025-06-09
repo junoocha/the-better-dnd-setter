@@ -28,8 +28,8 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 			>
 				<h1
 					className="
-					grid grid-cols-3 grid-rows-2 gap-x-8 gap-y-4
-					sm:flex sm:gap-10 sm:px-6
+					grid grid-cols-3 grid-rows-2 gap-x-10 gap-y-4
+					sm:flex sm:gap-14 sm:px-6
 					text-5xl font-bold select-none text-green-400
 					relative min-h-[4.5rem] overflow-hidden"
 				>
