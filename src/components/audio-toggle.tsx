@@ -38,7 +38,7 @@ export default function AudioToggle({ src }: { src: string }) {
 				animate={{
 					boxShadow: isPlaying
 						? "0 0 10px 3px rgba(168,85,247,0.7)" // green glow
-						: "none",
+						: "0 0 0px 0px rgba(0,0,0,0)",
 				}}
 				onClick={toggleAudio}
 				className={`w-11 h-11 flex items-center justify-center rounded-full border transition 

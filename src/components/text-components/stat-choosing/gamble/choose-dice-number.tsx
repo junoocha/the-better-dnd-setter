@@ -98,7 +98,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				animate={{
 					opacity: submitDisabled ? 0.3 : 1,
 					boxShadow: submitDisabled
-						? "none"
+						? "0 0 0px 0px rgba(0,0,0,0)"
 						: "0 0 15px 4px rgba(34,197,94,0.7)", // green glow
 				}}
 			>
