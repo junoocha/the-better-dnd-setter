@@ -48,9 +48,17 @@ export function getStatSentences(
 	}
 
 	// if there's literally nothing
-	if (result.length === 0 && source.neutralAvg) {
-		result.push(...source.neutralAvg);
+	if (result.length === 0 && source.midAvg) {
+		result.push(...source.midAvg);
 	}
+
+	// console.log("Using source keys:", Object.keys(source));
+	// console.log("Low stats:", lowStats);
+	// console.log("High stats:", highStats);
+	// for (const stat of lowStats) {
+	// 	const key = `low${stat}`;
+	// 	console.log(`Adding sentences for key: ${key}`, source[key]);
+	// }
 
 	return result;
 }
