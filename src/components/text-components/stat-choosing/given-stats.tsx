@@ -11,7 +11,7 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 	const standardArray = [8, 10, 12, 13, 14, 15];
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center px-4 max-w-lg mx-auto">
 			<TextAnimation
 				loopSentences={standardArraySentences}
 				fadeTrue={false}
@@ -24,9 +24,16 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.3 }}
-				className="flex justify-center pt-3"
+				className="flex justify-center pt-3 "
 			>
-				<h1 className="flex gap-20 text-5xl font-bold select-none text-green-400 relative min-h-[4.5rem] overflow-hidden">
+				<h1
+					className="
+						grid grid-cols-3 grid-rows-2 gap-x-15 gap-y-4
+						sm:flex sm:gap-20
+						text-5xl font-bold select-none text-green-400
+						relative min-h-[4.5rem] overflow-hidden
+					"
+				>
 					{standardArray.map((val, i) => (
 						<motion.span
 							key={`standard-${i}`}
