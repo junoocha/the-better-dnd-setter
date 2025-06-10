@@ -12,7 +12,7 @@ export default function EndingShopText({
 	finalSums,
 }: EndingShopTextProps) {
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center px-4 max-w-lg sm:max-w-2xl md:max-w-3xl mx-auto">
 			<TextAnimation
 				loopSentences={shopKeeperResults}
 				fadeTrue={false}
@@ -27,7 +27,13 @@ export default function EndingShopText({
 				transition={{ duration: 0.3 }}
 				className="flex justify-center pt-3 min-h-[4.5rem] overflow-hidden"
 			>
-				<h1 className="flex gap-20 text-5xl font-bold select-none text-green-400 relative">
+				<h1
+					className="						
+						grid grid-cols-3 grid-rows-2 gap-x-10 gap-y-4
+						sm:flex sm:gap-14 sm:px-6
+						text-5xl font-bold select-none text-green-400
+						relative min-h-[4.5rem] overflow-hidden"
+				>
 					{finalSums.map((val, i) => (
 						<motion.span
 							key={`ending-g-${i}`}
