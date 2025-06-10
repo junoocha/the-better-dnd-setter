@@ -1,6 +1,5 @@
 "use client";
 
-import TextAnimation from "../components/text-animation/text-animation";
 import { useRouter } from "next/navigation";
 import { LoopPhaseProvider } from "@/components/text-animation/loop-phase-context";
 import { useState } from "react";
@@ -17,9 +16,6 @@ import RandomStats from "@/components/text-components/get-random-stats";
 import AudioToggle from "@/components/audio-toggle";
 
 export default function Home() {
-	const router = useRouter();
-
-	const [cameFromBack, setCameFromBack] = useState(false);
 	const [selectedPath, setSelectedPath] = useState<
 		"gamble" | "boring" | "shop" | "default" | null
 	>(null);
@@ -67,7 +63,7 @@ export default function Home() {
 				}}
 				onBack={() => {
 					setSelectedPath(null);
-					setCameFromBack(true);
+
 					setStep(2);
 				}}
 			/>
@@ -80,7 +76,7 @@ export default function Home() {
 				}}
 				onBack={() => {
 					setSelectedPath(null);
-					setCameFromBack(true);
+
 					setStep(2);
 				}}
 			/>
