@@ -25,11 +25,13 @@ const MouthAnimation = () => {
 	const imageSrc = MOUTH_FRAMES[currentFrame];
 
 	return (
-		<img
-			src={`/mouth/${imageSrc}`} // Make sure images are in /public/mouth/
-			alt="Animated Mouth"
-			style={{ width: 270, height: 80 }}
-		/>
+		<div className="mx-auto">
+			<img
+				src={`/mouth/${imageSrc}`}
+				alt="Animated Mouth"
+				className="w-[150px] h-[40px] sm:w-[270px] sm:h-[80px]"
+			/>
+		</div>
 	);
 };
 

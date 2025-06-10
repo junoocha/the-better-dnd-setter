@@ -37,7 +37,7 @@ const HandsAnimation = ({
 			<motion.img
 				src={leftHand}
 				alt="Left Hand"
-				className="w-50 h-auto"
+				className="w-15 sm:w-24 md:w-50 h-auto max-w-[25%]"
 				animate={{
 					y: [0, -5, 0],
 				}}
@@ -56,18 +56,20 @@ const HandsAnimation = ({
 				transition={{ duration: 0.3 }}
 				className="flex justify-center pt-3"
 			>
-				<h1 className="flex gap-6 text-5xl font-bold text-green-400 relative">
+				<h1 className="flex gap-3 sm:gap-4 md:gap-6 text-2xl sm:text-4xl md:text-5xl font-bold text-green-400 relative">
 					{standardArray.map((val, i) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<div key={`stat-${i}`} className="flex flex-col items-center">
+							{/* Up Button */}
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
-								className="text-sm text-white px-2 py-1 rounded mb-1"
+								className="text-xs sm:text-sm text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded mb-1"
 								onClick={() => onChange(i, "up")}
 								disabled={val >= 15}
 							>
-								<ChevronUp size={24} />
+								<ChevronUp size={20} className="sm:w-5 sm:h-5 w-4 h-4" />
 							</button>
+
+							{/* Animated Stat Number */}
 							<motion.span
 								className="relative inline-block w-[2ch] text-center"
 								initial={{ scale: 0.8, opacity: 0.7 }}
@@ -84,13 +86,15 @@ const HandsAnimation = ({
 							>
 								{val}
 							</motion.span>
+
+							{/* Down Button */}
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
-								className="text-sm text-white px-2 py-1 rounded mt-1"
+								className="text-xs sm:text-sm text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded mt-1"
 								onClick={() => onChange(i, "down")}
 								disabled={val <= 8}
 							>
-								<ChevronDown size={24} />
+								<ChevronDown size={20} className="sm:w-5 sm:h-5 w-4 h-4" />
 							</button>
 						</div>
 					))}
@@ -101,7 +105,7 @@ const HandsAnimation = ({
 			<motion.img
 				src={rightHand}
 				alt="Right Hand"
-				className="w-46 h-auto"
+				className="w-13 sm:w-24 md:w-47 h-auto max-w-[25%]"
 				animate={{
 					y: [0, -5, 0],
 				}}
