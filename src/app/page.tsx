@@ -16,37 +16,8 @@ import Results from "@/components/text-components/results";
 import RandomStats from "@/components/text-components/get-random-stats";
 import AudioToggle from "@/components/audio-toggle";
 
-// export default function Home() {
-// 	const router = useRouter();
-// 	const onSubmit = async () => {
-// 		router.push("/default");
-// 	};
-
-// 	const sentences = ["you stink", "nah you do"];
-
-// 	return (
-// 		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-// 			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-// 				<div className="flex gap-4 items-center flex-col sm:flex-row">
-// 					<TextAnimation sentences={sentences} />
-// 				</div>
-// 			</main>
-// 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-// 			<button
-// 				onClick={onSubmit}
-// 				className="flex items-center gap-2 text-blue-600 hover:underline focus:outline-none"
-// 			>
-// 				Deploy now
-// 			</button>
-// 		</div>
-// 	);
-// }
-
 export default function Home() {
 	const router = useRouter();
-	const onSubmit = async () => {
-		router.push("/default");
-	};
 
 	const [cameFromBack, setCameFromBack] = useState(false);
 	const [selectedPath, setSelectedPath] = useState<
@@ -60,6 +31,7 @@ export default function Home() {
 
 	const [step, setStep] = useState(0);
 
+	// simple website, keep things flowing, don't use nextjs page routing, just cycle through steps.
 	const steps = [
 		<IntroText
 			key="intro"
@@ -137,22 +109,25 @@ export default function Home() {
 
 	return (
 		<LoopPhaseProvider>
-			<div className="min-h-screen grid place-items-center p-8 sm:p-20 font-sans bg-gray-950 text-white">
-				<main className="w-full max-w-3xl">
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={step}
-							initial={{ opacity: 0, y: 10 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -10 }}
-							transition={{ duration: 1 }}
-						>
-							{steps[step]}
-						</motion.div>
-					</AnimatePresence>
-				</main>
-
+			<div className="relative sm:static sm:top-auto sm:left-auto">
 				<AudioToggle src="/personalityquiz.mp3" />
+			</div>
+			<div className="min-h-screen w-full bg-gray-950 text-white font-sans">
+				<div className="grid place-items-center px-4 py-8 sm:px-12 sm:py-20 min-h-screen">
+					<main className="w-full max-w-3xl -mt-5  mx-auto px-4">
+						<AnimatePresence mode="wait">
+							<motion.div
+								key={step}
+								initial={{ opacity: 0, y: 10 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -10 }}
+								transition={{ duration: 1 }}
+							>
+								{steps[step]}
+							</motion.div>
+						</AnimatePresence>
+					</main>
+				</div>
 			</div>
 		</LoopPhaseProvider>
 	);

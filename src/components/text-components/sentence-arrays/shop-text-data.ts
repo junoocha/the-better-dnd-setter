@@ -62,67 +62,67 @@ export const explanationPointLimitText = [
 
 export const shopKeeperWakeUp = [
 	[
-		`...A traveller? You lot have been popping up like cursed mushrooms lately`,
-		`...Dust off the shelves and try to sound interested, I suppose`,
+		`...A traveller? You lot have been popping up like cursed mushrooms lately.`,
+		`...Dust off the shelves and try to sound interested, I suppose...`,
 	],
 	[
-		`...Who disturbs my eternal rest? Oh, just you`,
-		`...I'll drag myself from the shadows and see what you want`,
+		`...Who disturbs my eternal rest? Oh, just you...`,
+		`...I'll drag myself from the shadows and see what you want.`,
 	],
 	[
-		`...Another customer? The sign says "eternal torment" not "open for business"`,
-		`...It refers to me, I suffer from people like you`,
+		`...Another customer? The sign says "eternal torment" not "open for business".`,
+		`...It refers to me, I suffer from people like you.`,
 	],
 	[
-		`...You smell like coin... and desperation`,
-		`Guess I'll open the bargain bin and pretend it's fun`,
+		`...You smell like coin... and desperation...`,
+		`Guess I'll open the bargain bin and pretend it's fun...`,
 	],
 	[
 		`...Back already? Did you get lost in the labyrinth again?`,
 		`The register's rattling... you got lost didn't you...`,
 	],
 	[
-		`...You're either incredibly brave or wonderfully lost`,
-		`Either way, I'll see if we have anything worth your trouble`,
+		`...You're either incredibly brave or wonderfully lost.`,
+		`Either way, I'll see if we have anything worth your trouble...`,
 	],
 	[
-		`...Oh. A customer. How rare these days`,
-		`Better straighten up the shelves before you change your mind`,
+		`...Oh. A customer. How rare these days.`,
+		`Better straighten up the shelves before you change your mind...`,
 	],
 	[
-		`...I was just having a pleasant chat with the void. You had to interrupt`,
-		`Now I'll have to juggle ledgers and pretend I like it`,
+		`...I was just having a pleasant chat with the void. You had to interrupt.`,
+		`Now I'll have to juggle ledgers and pretend I like it.`,
 	],
 	[
-		`...You broke the silence. That'll cost extra`,
+		`...You broke the silence. That'll cost extra.`,
 		`...I'll have to ask Roberto to do something...`,
 	],
 	[
-		`...I was dreaming of a world without haggling... how naive`,
+		`...I was dreaming of a world without haggling... how naive.`,
 		`...Why can't everyone just be a gullible consumer?`,
 	],
 	[
-		`...Welcome. Your aura screams "indecisive spender"`,
-		`...Perfect for our clearance rack specials, I guess`,
+		`...Welcome. Your aura screams "indecisive spender".`,
+		`...Perfect for our clearance rack specials, I guess.`,
 	],
 	[
 		`...Do you even know what time it is in spectral hours?`,
-		`...Messing with you... time's just a suggestion around here`,
+		`...Messing with you... time's just a suggestion around here.`,
 	],
 	[
-		`...If you're here for cursed items, take a number... oh wait, you're the only one`,
-		`I'll fetch the goods that come with free existential dread`,
+		`...If you're here for cursed items, take a number... oh wait, you're the only one.`,
+		`I'll fetch the goods that come with free existential dread.`,
 	],
 	[
 		`...Let me guess: looking for "just one thing" that will ruin your life?`,
-		`Hold tight while I dig through the special cursed collection`,
+		`Hold tight while I dig through the special cursed collection.`,
 	],
 	[
 		`...Customer? Wait... are you real or just a particularly persistent apparition?`,
-		`I'll fire up the pricing incantation just in case`,
+		`I'll fire up the pricing incantation just in case.`,
 	],
 	[
-		`...You're early. The whispers hadn't even finished warning me yet`,
+		`...You're early. The whispers hadn't even finished warning me yet.`,
 		`...Hm? Doesn't everyone hear voices?`,
 	],
 	[
@@ -134,43 +134,43 @@ export const shopKeeperWakeUp = [
 		`...One step to the left and you would have been blown up... a pity...`,
 	],
 	[
-		`...I smelled fresh intentions. Had to investigate`,
+		`...I smelled fresh intentions. Had to investigate.`,
 		`...But its just you... a hopeless wanderer...`,
 	],
 	[
 		`...You're glowing slightly. Did you bring magic in here?`,
-		`...Did you just say thats your aura? ...Please don't come back...`,
+		`...Did you just say that's your aura? ...Please don't come back.`,
 	],
 	[
-		`...The winds told me you'd arrive today`,
-		`...And the winds also insisted I upsell, so here we go`,
+		`...The winds told me you'd arrive today.`,
+		`...And the winds also insisted I upsell, so here we go.`,
 	],
 	[
-		`...You again? The door creaked your name as you came in`,
-		`Before anything... gotta check if the mimic hasn't eaten any customers recently`,
+		`...You again? The door creaked your name as you came in.`,
+		`Before anything... gotta check if the mimic hasn't eaten any customers recently.`,
 	],
 	[
-		`...You didn't say the magic words right, but I'll let it slide`,
-		`Not everyone earns entry. Consider yourself lucky this time`,
+		`...You didn't say the magic words right, but I'll let it slide.`,
+		`Not everyone earns entry. Consider yourself lucky this time...`,
 	],
 	[
-		`...A lively one, huh? Most customers come in dreaming, leave screaming`,
-		`...Just for you, I'll grab the less bitey trinkets for your peace of mind`,
+		`...A lively one, huh? Most customers come in dreaming, leave screaming.`,
+		`...Just for you, I'll grab the less bitey trinkets for your peace of mind.`,
 	],
 	[
-		`...Oh good, something with eyes has entered`,
-		`...Time to silence the jars before they get too excited`,
+		`...Oh good, something with eyes has entered.`,
+		`...Time to silence the jars before they get too excited.`,
 	],
 	[
-		`...You brought sunlight in here. Rude`,
-		`Better drape the gloom back over the shelves quickly`,
+		`...You brought sunlight in here. Rude.`,
+		`Better drape the gloom back over the shelves quickly...`,
 	],
 	[
-		`...That's not how you knock, but I suppose it'll do`,
+		`...That's not how you knock, but I suppose it'll do.`,
 		`...But do know I prefer you smashing your head on the table...`,
 	],
 	[
-		`...The bell tolled, so I rise`,
+		`...The bell tolled, so I rise.`,
 		`...No one cleaned up the dreams spilled from last night... man...`,
 	],
 	[
@@ -179,150 +179,150 @@ export const shopKeeperWakeUp = [
 	],
 	[
 		`...Huh. You again. Or not quite yet?`,
-		`Realigning the clocks; time's folding funny this week`,
+		`Realigning the clocks; time's folding funny this week.`,
 	],
 	[
 		`...That ripple in the curtain wasn't wind. Was it you?`,
 		`...Or is it a fart drifting into the wrong dimension again...`,
 	],
 	[
-		`...I just saw you leave through the back. Curious`,
-		`Checking which timeline the discount bin is hiding in this time`,
+		`...I just saw you leave through the back. Curious.`,
+		`Checking which timeline the discount bin is hiding in this time.`,
 	],
 	[
-		`...The portal burped. Must mean company is here`,
-		`...Caging the gremlins before they sniff your wallet`,
+		`...The portal burped. Must mean company is here.`,
+		`...Caging the gremlins before they sniff your wallet.`,
 	],
 	[
-		`...You've stepped between ticks of the hourglass. Impressive`,
-		`...Stabilizing the shop's reality anchor, hold tight`,
+		`...You've stepped between ticks of the hourglass. Impressive.`,
+		`...Stabilizing the shop's reality anchor, hold tight.`,
 	],
 	[
-		`...Oh, the cat noticed you first. That's rare`,
+		`...Oh, the cat noticed you first. That's rare.`,
 		`Ain't she a beauty? Just lounges around all day... I wish I got that job...`,
 	],
 	[
-		`...You're not made of smoke and teeth. That's refreshing`,
-		`But just in case... I'm grabbing the translator stone to keep nightmares out of our deal`,
+		`...You're not made of smoke and teeth. That's refreshing.`,
+		`But just in case... I'm grabbing the translator stone to keep nightmares out of our deal.`,
 	],
 	[
-		`...You tracked static from the other side`,
+		`...You tracked static from the other side.`,
 		`...The prices are now whispering weird stuff again...`,
 	],
 	[
-		`...My familiar perked up. Either you're a customer or cursed`,
-		`Any who, lighting the polite candle should keep the rude items quiet`,
+		`...My familiar perked up. Either you're a customer or cursed.`,
+		`Any who, lighting the polite candle should keep the rude items quiet.`,
 	],
 	[
-		`...You're late. Or early. Or both. Time's confusing here`,
-		`Gotta stabilize the doorway before it loops again`,
+		`...You're late. Or early. Or both. Time's confusing here.`,
+		`Gotta stabilize the doorway before it loops again.`,
 	],
 	[
 		`...Don't move. Something came through with you...`,
-		`Sweeping it back into the dimension bin... happens all the time`,
+		`Sweeping it back into the dimension bin... happens all the time.`,
 	],
 	[
-		`...Welcome. The shop likes you. That's rare`,
-		`Loosening the chains a bit... things get grabby when excited`,
+		`...Welcome. The shop likes you. That's rare.`,
+		`Loosening the chains a bit... things get grabby when excited.`,
 	],
 	[
-		`...Oh great. Another customer. Just what I needed`,
-		`Shuffling overpriced goods and pretending to care`,
+		`...Oh great. Another customer. Just what I needed.`,
+		`Shuffling overpriced goods and pretending to care.`,
 	],
 	[
-		`...Ugh. I was having a perfectly good nap-slash-trance`,
-		`Turning on the lights. Metaphorically, of course`,
+		`...Ugh. I was having a perfectly good nap-slash-trance.`,
+		`Turning on the lights. Metaphorically, of course.`,
 	],
 	[
-		`...You again? I swear I quit centuries ago`,
+		`...You again? I swear I quit centuries ago.`,
 		`...Why does time run so slowly here...`,
 	],
 	[
-		`...Fantastic. Another wide-eyed adventurer with zero patience`,
+		`...Fantastic. Another wide-eyed adventurer with zero patience.`,
 		`...Just don't touch anything and we'll get along just fine...`,
 	],
 	[
-		`...I should've taken that apprenticeship in necro-accounting`,
+		`...I should've taken that apprenticeship in necro-accounting.`,
 		`My soul leaks out again because I'm stuck here instead...`,
 	],
 	[
-		`...I used to have dreams, you know`,
-		`...Now I'm dusting off the ‘bargains' and faking a smile`,
+		`...I used to have dreams, you know.`,
+		`...Now I'm dusting off the 'bargains' and faking a smile.`,
 	],
 	[
 		`...Is it still called "customer service" if I actively dislike it?`,
 		`...I guess just customer sounds weird...`,
 	],
 	[
-		`...Oh, a hero. How original`,
-		`...I shall unlock the cabinet of disappointment just for you`,
+		`...Oh, a hero. How original.`,
+		`...I shall unlock the cabinet of disappointment just for you.`,
 	],
 	[
 		`...Don't mind me, just questioning all my life choices~`,
 		`Whoop-de-doo~ I should've studied more~`,
 	],
 	[
-		`...You break it, you buy it. No refunds, no joy`,
+		`...You break it, you buy it. No refunds, no joy.`,
 		`Now where's my ledger of shattered expectations...`,
 	],
 	[
-		`...Ugh, customer detected. Fine, initiating consciousness`,
-		`...Unlocking the display case of suspiciously identical items`,
+		`...Ugh, customer detected. Fine, initiating consciousness.`,
+		`...Unlocking the display case of suspiciously identical items.`,
 	],
 	[
-		`...Oh good, someone to interrupt my existential crisis`,
-		`...Give me a second ...gotta pretend I enjoy this job for a moment`,
+		`...Oh good, someone to interrupt my existential crisis.`,
+		`...Give me a second... gotta pretend I enjoy this job for a moment.`,
 	],
 	[
-		`...Back so soon? I was mid-nap, mid-dream, and mid-regret`,
-		`Recalibrating my fake enthusiasm`,
+		`...Back so soon? I was mid-nap, mid-dream, and mid-regret.`,
+		`Recalibrating my fake enthusiasm.`,
 	],
 	[
-		`...I see we're doing this now. Great`,
-		`...Straightening my robes and attitude`,
+		`...I see we're doing this now. Great.`,
+		`...Straightening my robes and attitude.`,
 	],
 	[
-		`...Another customer. Joy unbounded`,
-		`...Dusting off the inventory and my will to live`,
+		`...Another customer. Joy unbounded.`,
+		`...Dusting off the inventory and my will to live.`,
 	],
 	[
 		`...They told me this would be a quiet post... man...`,
-		`...Re-enabling the definitely-not-cursed till`,
+		`...Re-enabling the definitely-not-cursed till.`,
 	],
 	[
-		`...Yes yes, awaken the great Jerry. Again`,
-		`Finding my ledger. It bites, so hold on`,
+		`...Yes yes, awaken the great Jerry. Again.`,
+		`Finding my ledger. It bites, so hold on...`,
 	],
 	[
 		`...You know there's a self-service kiosk, right?`,
-		`...I guess I will be helpful... or at least visible, now`,
+		`...I guess I will be helpful... or at least visible, now.`,
 	],
 	[
-		`...Oh, you're not a hallucination. Yet`,
-		`Disabling the ward that turns visitors into shadows`,
+		`...Oh, you're not a hallucination... yet.`,
+		`Disabling the ward that turns visitors into shadows.`,
 	],
 	[
-		`...I'd say "welcome," but that would be a lie`,
-		`Preparing the shop for your inevitable disappointment`,
+		`...I'd say "welcome," but that would be a lie.`,
+		`Preparing the shop for your inevitable disappointment.`,
 	],
 	[
-		`...Someone with pulse and purpose. Unusual combination`,
+		`...Someone with pulse and purpose. Unusual combination.`,
 		`...Last guy I met had only a neck... don't ask how long it took...`,
 	],
 	[
-		`...You dragged sunlight in... That'll wake the spores`,
+		`...You dragged sunlight in... That'll wake the spores...`,
 		`There there... it's only a clueless mortal...`,
 	],
 	[
-		`...Another biped looking for meaning in material things`,
+		`...Another biped looking for meaning in material things.`,
 		`...Have you considered adding an arm?`,
 	],
 	[
-		`...I felt a disturbance in the stockroom`,
+		`...I felt a disturbance in the stockroom.`,
 		`...I wished it was a dimensional leak...but it's you...`,
 	],
 	[
-		`...You smell like quest. That usually ends poorly`,
+		`...You smell like quest. That usually ends poorly.`,
 		`...If you finish this quest of leaving early, I'll remove 15%...`,
 	],
 	[
@@ -339,7 +339,7 @@ export const shopKeeperWakeUp = [
 	],
 	[
 		`...Hmm. You blink in this realm. Most don't...`,
-		`I'll consider that a sign and reopen the gates. Begrudgingly`,
+		`I'll consider that a sign and reopen the gates. Begrudgingly...`,
 	],
 	[
 		`...You see, I once took a course in business and sales...`,

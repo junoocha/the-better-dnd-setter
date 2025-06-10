@@ -10,6 +10,7 @@ type Props = {
 };
 
 export default function ChooseDice({ onComplete, onBack }: Props) {
+	// set the values
 	const [diceUsed, setDiceUsed] = useState("");
 	const [diceDiscarded, setDiceDiscarded] = useState("");
 
@@ -38,23 +39,23 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 	}
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center px-2 sm:px-0 max-w-xs sm:max-w-none mx-auto">
+			{/* another text animation */}
 			<TextAnimation
 				initialSentences={explanationGambleText}
 				fadeTrue={false}
 				numSentences={1}
 				showAndStay={true}
-				// onLoopStart={() => {
-				// 	// Delay so the first loop sentence has time to show before moving on
-				// 	setTimeout(onComplete, 2500); // tweak this number to match timing
-				// }}
 			/>
-			<div className="flex gap-4">
+
+			{/* container for the dropdown menus */}
+			<div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none items-center justify-center">
 				{/* dropdown menu for dice number */}
 				<select
 					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
 					value={diceUsed}
 					onChange={(e) => setDiceUsed(e.target.value)}
+					aria-label="Dice to Roll"
 				>
 					<option value="" disabled>
 						Dice to Roll
@@ -72,6 +73,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
 					value={diceDiscarded}
 					onChange={(e) => setDiceDiscarded(e.target.value)}
+					aria-label="Dice to Discard"
 				>
 					<option value="" disabled>
 						Dice to Discard
@@ -85,10 +87,12 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				</select>
 			</div>
 
+			{/* // error message when something illogical happens (e.g. rolling 0 dice or if user is rolling too many dice) */}
 			{submitDisabled && validationMessage && (
 				<p className="text-red-400 text-sm italic">{validationMessage}</p>
 			)}
 
+			{/* submit button */}
 			<motion.button
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
@@ -105,6 +109,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				Submit
 			</motion.button>
 
+			{/* go back option */}
 			<motion.button
 				whileHover={{
 					scale: 1.05,

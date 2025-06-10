@@ -70,7 +70,8 @@ export default function RollDice({
 	};
 
 	return (
-		<div className="flex flex-col gap-4 items-center text-center">
+		<div className="flex flex-col gap-4 items-center text-center w-full max-w-full px-4">
+			{/* show current roll (like what roll they're on) */}
 			<h2 className="text-4xl text-white">
 				{currentRoll === 6 ? "" : `Roll #${currentRoll + 1} of 6`}
 			</h2>
@@ -127,7 +128,7 @@ export default function RollDice({
 											animate={{ opacity: 1 }}
 											exit={{ opacity: 0 }}
 											transition={{ duration: 0.4 }}
-											className={`w-10 h-10 ${isDiscarded ? "opacity-50" : ""}`}
+											className={`"w-8 h-8 sm:w-10 sm:h-10 ${isDiscarded ? "opacity-50" : ""}`}
 										/>
 									);
 								});
@@ -152,7 +153,7 @@ export default function RollDice({
 				</AnimatePresence>
 			</div>
 
-			{/* show Results So Far */}
+			{/* show results So Far */}
 			<div className="text-white w-full max-w-md">
 				<h3 className="text-2xl mt-4 pb-4">Results So Far:</h3>
 				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">
@@ -208,7 +209,7 @@ export default function RollDice({
 																	initial={{ opacity: 1 }}
 																	animate={{ opacity: 0.5 }} // just dim it
 																	transition={{ duration: 0.5, delay: 0.5 }}
-																	className="w-8 h-8"
+																	className="w-6 h-6 sm:w-8 sm:h-8"
 																/>
 															</AnimatePresence>
 														);
@@ -219,14 +220,14 @@ export default function RollDice({
 															key={idx}
 															src={imageSrc}
 															alt={`Dice showing ${val}${isDiscarded ? " (discarded)" : ""}`}
-															className="w-8 h-8"
+															className="w-6 h-6 sm:w-8 sm:h-8"
 														/>
 													);
 												});
 											})()}
 										</div>
 
-										<span className="ml-2 font-bold text-xl text-green-400 w-10 text-left">
+										<span className="ml-5 font-bold text-xl text-green-400 w-10 text-left">
 											{finalSums[i]}
 										</span>
 									</div>

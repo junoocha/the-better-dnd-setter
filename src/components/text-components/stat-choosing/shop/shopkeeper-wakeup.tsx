@@ -6,7 +6,6 @@ import { shopKeeperWakeUp } from "../../sentence-arrays/shop-text-data";
 
 import EyeAnimation from "./animations/eye-animation";
 import TextAnimation from "@/components/text-animation/text-animation";
-import MouthAnimation from "./animations/mouth-animation";
 
 type ShopStatsProps = {
 	onComplete: () => void;
@@ -18,18 +17,12 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 		return shopKeeperWakeUp[index];
 	}, []);
 	return (
-		// <AnimatePresence mode="wait">
-		// 	<motion.div
-		// 		initial={{ opacity: 0, y: 10 }}
-		// 		animate={{ opacity: 1, y: 0 }}
-		// 		exit={{ opacity: 0, y: -10 }}
-		// 		transition={{ duration: 0.5 }}
-		// 	>
 		<div className="flex flex-col gap-6 items-center text-center">
+			{/* text animation but its shown after the eyes */}
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 1, delay: 1.5 }}
+				transition={{ duration: 1, delay: 1.2 }}
 				className="min-h-[4.5rem] overflow-hidden"
 			>
 				<TextAnimation
@@ -39,6 +32,7 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 				/>
 			</motion.div>
 
+			{/* eye animation is shown first */}
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
@@ -49,7 +43,5 @@ export default function ShopKeeperWakeUp({ onComplete }: ShopStatsProps) {
 				</div>
 			</motion.div>
 		</div>
-		// 	</motion.div>
-		// </AnimatePresence>
 	);
 }

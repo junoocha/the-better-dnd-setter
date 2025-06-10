@@ -12,12 +12,14 @@ type GambleStatsProps = {
 
 export default function GambleStats({ onComplete, onBack }: GambleStatsProps) {
 	const [subStep, setSubStep] = useState(0);
+
+	// to grab the overall dice count
 	const [diceInfo, setDiceInfo] = useState<{
 		used: number;
 		discarded: number;
 	} | null>(null);
 
-	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+	const [finalSums, setFinalSums] = useState<number[] | null>(null); // keep this final sums from dice roll so we can display it in stats and move on
 
 	const subSteps = [
 		<IntroGambleText key="g-intro" onComplete={() => setSubStep(1)} />,
@@ -54,16 +56,19 @@ export default function GambleStats({ onComplete, onBack }: GambleStatsProps) {
 	];
 
 	return (
-		<AnimatePresence mode="wait">
-			<motion.div
-				key={`g-${subStep}`}
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				exit={{ opacity: 0, y: -10 }}
-				transition={{ duration: 0.5 }}
-			>
-				{subSteps[subStep]}
-			</motion.div>
-		</AnimatePresence>
+		<div className="flex flex-col gap-6 items-center text-center px-4 sm:px-0 py-6">
+			<AnimatePresence mode="wait">
+				<motion.div
+					key={`g-${subStep}`}
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: -10 }}
+					transition={{ duration: 0.5 }}
+					className="w-full"
+				>
+					{subSteps[subStep]}
+				</motion.div>
+			</AnimatePresence>
+		</div>
 	);
 }

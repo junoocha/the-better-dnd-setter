@@ -28,25 +28,28 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 		const variance =
 			arr.reduce((sum, v) => sum + (v - average) ** 2, 0) / arr.length;
 		const stdDev = Math.sqrt(variance);
-		return stdDev > 5; // tweak this threshold as needed
+		return stdDev > 3;
 	}
 
 	// biome-ignore lint/suspicious/noImplicitAnyLet:
 	let selectedSentences;
+
+	// bunch of stuff to determine the type of sentences.
 	if (isChaotic(finalSums)) {
 		selectedSentences = highSTDGambleText;
 	} else if (duplicates(finalSums)) {
 		selectedSentences = duplicateGambleText;
-	} else if (average > 17) {
+	} else if (average > 11) {
 		selectedSentences = goodGambleText;
-	} else if (average >= 6) {
+	} else if (average >= 8) {
 		selectedSentences = midGambleText;
 	} else {
 		selectedSentences = badGambleText;
 	}
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center px-4 max-w-lg sm:max-w-2xl md:max-w-3xl mx-auto">
+			{/* text animation */}
 			<TextAnimation
 				loopSentences={selectedSentences}
 				fadeTrue={false}
@@ -54,6 +57,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				showAndStay={true}
 			/>
 
+			{/* show stats */}
 			<motion.div
 				key="showing-final-results"
 				initial={{ opacity: 0, y: 10 }}
@@ -61,7 +65,13 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				transition={{ duration: 0.3 }}
 				className="flex justify-center pt-3 min-h-[4.5rem] overflow-hidden"
 			>
-				<h1 className="flex gap-20 select-none text-5xl font-bold text-green-400 relative">
+				<h1
+					className="						
+						grid grid-cols-3 grid-rows-2 gap-x-10 gap-y-4
+						sm:flex sm:gap-14 sm:px-6
+						text-5xl font-bold select-none text-green-400
+						relative min-h-[4.5rem] overflow-hidden"
+				>
 					{finalSums.map((val, i) => (
 						<motion.span
 							key={`ending-g-${i}`}
@@ -84,6 +94,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				</h1>
 			</motion.div>
 
+			{/* continue button */}
 			<motion.button
 				onClick={onComplete}
 				whileHover={{ scale: 1.05 }}

@@ -15,10 +15,12 @@ type ShopStatsProps = {
 
 export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 	const [subStep, setSubStep] = useState(0);
-	const [finalSums, setFinalSums] = useState<number[] | null>(null);
-	const [pointLimit, setPointLimit] = useState<number>(27);
 
-	// const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
+	// keep final sums aftershopkeeper to display and give back to parent
+	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+
+	// point limit before shopping
+	const [pointLimit, setPointLimit] = useState<number>(27);
 
 	const subSteps = [
 		<IntroShopText key="s-intro" onComplete={() => setSubStep(1)} />,
@@ -54,16 +56,18 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 	];
 
 	return (
-		<AnimatePresence mode="wait">
-			<motion.div
-				key={`s-${subStep}`}
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				exit={{ opacity: 0, y: -10 }}
-				transition={{ duration: 0.5 }}
-			>
-				{subSteps[subStep]}
-			</motion.div>
-		</AnimatePresence>
+		<div className="flex flex-col gap-6 items-center text-center px-4 sm:px-0 py-6">
+			<AnimatePresence mode="wait">
+				<motion.div
+					key={`s-${subStep}`}
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: -10 }}
+					transition={{ duration: 0.5 }}
+				>
+					{subSteps[subStep]}
+				</motion.div>
+			</AnimatePresence>
+		</div>
 	);
 }
