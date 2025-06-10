@@ -12,12 +12,14 @@ type GambleStatsProps = {
 
 export default function GambleStats({ onComplete, onBack }: GambleStatsProps) {
 	const [subStep, setSubStep] = useState(0);
+
+	// to grab the overall dice count
 	const [diceInfo, setDiceInfo] = useState<{
 		used: number;
 		discarded: number;
 	} | null>(null);
 
-	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+	const [finalSums, setFinalSums] = useState<number[] | null>(null); // keep this final sums from dice roll so we can display it in stats and move on
 
 	const subSteps = [
 		<IntroGambleText key="g-intro" onComplete={() => setSubStep(1)} />,

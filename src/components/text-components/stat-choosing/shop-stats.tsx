@@ -15,10 +15,12 @@ type ShopStatsProps = {
 
 export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 	const [subStep, setSubStep] = useState(0);
-	const [finalSums, setFinalSums] = useState<number[] | null>(null);
-	const [pointLimit, setPointLimit] = useState<number>(27);
 
-	// const [standardArray, setStandardArray] = useState([8, 8, 8, 8, 8, 8]);
+	// keep final sums aftershopkeeper to display and give back to parent
+	const [finalSums, setFinalSums] = useState<number[] | null>(null);
+
+	// point limit before shopping
+	const [pointLimit, setPointLimit] = useState<number>(27);
 
 	const subSteps = [
 		<IntroShopText key="s-intro" onComplete={() => setSubStep(1)} />,

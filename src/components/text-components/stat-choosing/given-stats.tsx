@@ -8,10 +8,12 @@ type Props = {
 };
 
 export default function StandardArrayText({ onComplete, onBack }: Props) {
+	// will always be this, so its here lol
 	const standardArray = [8, 10, 12, 13, 14, 15];
 
 	return (
 		<div className="flex flex-col gap-6 items-center text-center px-4 max-w-lg sm:max-w-2xl md:max-w-3xl mx-auto">
+			{/* what would you know, another text animation */}
 			<TextAnimation
 				loopSentences={standardArraySentences}
 				fadeTrue={false}
@@ -19,6 +21,7 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 				showAndStay={true}
 			/>
 
+			{/* whole thing for showing stats */}
 			<motion.div
 				key="showing-final-results"
 				initial={{ opacity: 0, y: 10 }}
@@ -55,6 +58,7 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 				</h1>
 			</motion.div>
 
+			{/* continue button */}
 			<motion.button
 				onClick={onComplete}
 				whileHover={{ scale: 1.05 }}
@@ -64,6 +68,7 @@ export default function StandardArrayText({ onComplete, onBack }: Props) {
 				Continue
 			</motion.button>
 
+			{/* go back button since someone might not like this no more */}
 			<motion.button
 				onClick={onBack}
 				whileHover={{ scale: 1.05 }}
