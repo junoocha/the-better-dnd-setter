@@ -137,6 +137,9 @@ export default function Home() {
 
 	return (
 		<LoopPhaseProvider>
+			<div className="relative sm:static sm:top-auto sm:left-auto">
+				<AudioToggle src="/personalityquiz.mp3" />
+			</div>
 			<div className="min-h-screen w-full bg-gray-950 text-white font-sans">
 				<div className="grid place-items-center px-4 py-8 sm:px-12 sm:py-20 min-h-screen">
 					<main className="w-full max-w-3xl -mt-5  mx-auto px-4">
@@ -152,7 +155,6 @@ export default function Home() {
 							</motion.div>
 						</AnimatePresence>
 					</main>
-					<AudioToggle src="/personalityquiz.mp3" />
 				</div>
 			</div>
 		</LoopPhaseProvider>

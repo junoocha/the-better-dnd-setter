@@ -93,7 +93,7 @@ export default function Results({ assignment, onComplete }: Props) {
 
 	return (
 		<div>
-			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-2">
+			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-24 sm:mt-10">
 				<TextAnimation
 					loopSentences={selectedSentences}
 					fadeTrue={false}
@@ -128,7 +128,7 @@ export default function Results({ assignment, onComplete }: Props) {
 					{/* Radial stat items */}
 					{Object.entries(assignment).map(([stat, value], index) => {
 						const angle = (360 / Object.keys(assignment).length) * index - 120;
-						const radius = isSmallScreen ? 120 : 140; // px distance from center
+						const radius = isSmallScreen ? 110 : 140; // px distance from center
 						const rad = (angle * Math.PI) / 180;
 						const x = radius * Math.cos(rad);
 						const y = radius * Math.sin(rad);

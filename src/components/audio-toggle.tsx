@@ -33,7 +33,7 @@ export default function AudioToggle({ src }: { src: string }) {
 	};
 
 	return (
-		<div className="fixed top-4 left-4 z-50 flex items-center gap-3">
+		<div className="absolute top-4 left-4 flex items-center gap-3">
 			<motion.button
 				animate={{
 					boxShadow: isPlaying

@@ -226,7 +226,7 @@ export default function RollDice({
 											})()}
 										</div>
 
-										<span className="ml-2 font-bold text-xl text-green-400 w-10 text-left">
+										<span className="ml-5 font-bold text-xl text-green-400 w-10 text-left">
 											{finalSums[i]}
 										</span>
 									</div>

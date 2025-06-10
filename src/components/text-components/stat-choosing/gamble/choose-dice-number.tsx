@@ -38,7 +38,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 	}
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center px-4 sm:px-0 max-w-md sm:max-w-none mx-auto">
+		<div className="flex flex-col gap-6 items-center text-center px-2 sm:px-0 max-w-xs sm:max-w-none mx-auto">
 			<TextAnimation
 				initialSentences={explanationGambleText}
 				fadeTrue={false}
@@ -49,7 +49,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				// 	setTimeout(onComplete, 2500); // tweak this number to match timing
 				// }}
 			/>
-			<div className="flex gap-4">
+			<div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none items-center justify-center">
 				{/* dropdown menu for dice number */}
 				<select
 					className="bg-gray-800 font-spectral text-xl text-white px-4 py-2 rounded"
