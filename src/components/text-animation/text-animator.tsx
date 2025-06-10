@@ -89,16 +89,10 @@ export const useTextAnimation = (
 		typeChar();
 
 		return () => timeouts.forEach(clearTimeout);
-	}, [
-		showAndStay,
-		numSentences,
-		initialSentences,
-		loopSentences,
-		speed,
-		singleSentenceMode,
-	]);
+	}, [showAndStay, numSentences, initialSentences, loopSentences, speed]);
 
 	// for all regular sentences
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (singleSentenceMode) return;
 
@@ -181,10 +175,6 @@ export const useTextAnimation = (
 		fadeDuration,
 		isInLoopPhase,
 		loopSentences,
-		currentLoopSentences,
-		onComplete,
-		onLoopStart,
-		singleSentenceMode,
 	]);
 
 	return {
