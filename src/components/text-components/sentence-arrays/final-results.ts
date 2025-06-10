@@ -650,7 +650,7 @@ export const midAvg = [
 	`Rolls just high enough to make the DM say 'ugh, fine.'`,
 	`Feels like trying to unlock your phone with a wet thumb.`,
 	`Not weak. Not strong. Just here for the group chat.`,
-	`Best described as “emotionally consistent.”`,
+	`Best described as "emotionally consistent".`,
 	`Statistically beige with a hint of chaos.`,
 	`Somehow this is the most stable thing about the character.`,
 	`Like an old laptop that still works but makes a weird noise.`,

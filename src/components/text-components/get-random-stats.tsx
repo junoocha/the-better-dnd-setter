@@ -5,6 +5,7 @@ import { supabase } from "../../../utils/supabase_public";
 import CopyStatsButton from "./final-results-stuff/copy-stats-button";
 import TextAnimation from "../text-animation/text-animation";
 import { getStatSentences } from "../../../utils/getFinalSentences";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {
 	onComplete: () => void;
@@ -22,6 +23,7 @@ export default function RandomStats({ onComplete }: Props) {
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [showLoading, setShowLoading] = useState(true);
+	const isSmallScreen = useMediaQuery({ maxWidth: 640 });
 
 	useEffect(() => {
 		const delayTimer = setTimeout(() => {
@@ -59,7 +61,7 @@ export default function RandomStats({ onComplete }: Props) {
 	const selectedSentences = getStatSentences(assignment, true);
 	return (
 		<div>
-			<div className="center min-h-[6rem] overflow-hidden">
+			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-2">
 				<TextAnimation
 					loopSentences={selectedSentences}
 					fadeTrue={false}
@@ -69,7 +71,7 @@ export default function RandomStats({ onComplete }: Props) {
 			</div>
 			<div className="flex justify-center items-center mb-20">
 				<motion.div
-					className="relative w-72 h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
+					className="relative w-52 h-48 sm:w-72 sm:h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
 					initial={{ scale: 1, opacity: 1 }}
 					animate={{
 						scale: [1, 1.02, 1],
@@ -94,7 +96,7 @@ export default function RandomStats({ onComplete }: Props) {
 					{/* Radial stat items */}
 					{Object.entries(assignment).map(([stat, value], index) => {
 						const angle = (360 / Object.keys(assignment).length) * index;
-						const radius = 140; // px distance from center
+						const radius = isSmallScreen ? 120 : 140; // px distance from center
 						const rad = (angle * Math.PI) / 180;
 						const x = radius * Math.cos(rad);
 						const y = radius * Math.sin(rad);
@@ -127,7 +129,7 @@ export default function RandomStats({ onComplete }: Props) {
 								}}
 							>
 								<span
-									className={`text-3xl font-spectral select-none font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
+									className={`text-2xl sm:text-3xl font-spectral select-none font-bold text-center block whitespace-nowrap ${textColor} [text-shadow:_0_0_30px]`}
 								>
 									{stat}: {value}
 								</span>
