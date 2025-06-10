@@ -39,7 +39,7 @@ export default function IntroText({ onComplete }: Props) {
 				whileTap={{ scale: 0.95 }}
 				className="relative px-4 py-3 sm:py-2 rounded-sm text-white bg-black border-[3px] border-white shadow-[0_0_0_1px_black] hover:shadow-[0_0_0_1px_black,0_0_0_2px_white] text-sm sm:text-base"
 			>
-				Grab a Pre-existing Hero's Stats
+				Grab a Pre-existing Hero&#39;s Stats
 			</motion.button>
 		</div>
 	);

@@ -1,7 +1,6 @@
 import TextAnimation from "@/components/text-animation/text-animation";
 import { explanationGambleText } from "../../sentence-arrays/gamble-text-data";
 import { useState } from "react";
-import Dice from "./dice-components/dice";
 import { motion } from "framer-motion";
 
 type Props = {
@@ -35,7 +34,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 		validationMessage = "Are you dumb? You tryna roll with 0 or negative dice?";
 	} else if (Number.parseInt(diceUsed) - Number.parseInt(diceDiscarded) > 4) {
 		validationMessage =
-			"Now that's real lame of you, rolling an insane amount of dice";
+			"Now that&#39;s real lame of you, rolling an insane amount of dice";
 	}
 
 	return (
@@ -119,7 +118,7 @@ export default function ChooseDice({ onComplete, onBack }: Props) {
 				onClick={onBack}
 				className="rounded-sm text-white bg-black border-[3px] border-white  px-6 py-2 "
 			>
-				I Don't Want To Gamble
+				I Don&#39;t Want To Gamble
 			</motion.button>
 		</div>
 	);

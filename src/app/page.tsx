@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { LoopPhaseProvider } from "@/components/text-animation/loop-phase-context";
 import { useState } from "react";
 import IntroText from "@/components/text-components/intro-text";

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import CopyStatsButton from "./final-results-stuff/copy-stats-button";
 import TextAnimation from "../text-animation/text-animation";
@@ -26,7 +26,7 @@ export default function Results({ assignment, onComplete }: Props) {
 	const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // determine if user is using phone
 
 	// use api to generate pdf
-	const generatePdf = async () => {
+	const generatePdf = useCallback(async () => {
 		setLoading(true);
 		setError(null);
 		try {
@@ -37,7 +37,6 @@ export default function Results({ assignment, onComplete }: Props) {
 			});
 			if (!response.ok) throw new Error("Failed to generate PDF");
 
-			// set data
 			const data = await response.json();
 			setPdfUrl(data.url);
 		} catch (err) {
@@ -45,7 +44,11 @@ export default function Results({ assignment, onComplete }: Props) {
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, [assignment]);
+
+	useEffect(() => {
+		generatePdf();
+	}, [generatePdf]);
 
 	// api to connect to database and store relevant information
 	const storeInfo = async () => {
@@ -187,7 +190,7 @@ export default function Results({ assignment, onComplete }: Props) {
 			<div className="mt-6 flex flex-col items-center gap-4">
 				{loading ? (
 					<p className="text-white font-medium">
-						Jerry's generating the PDF, please wait...
+						Jerry&#39;s generating the PDF, please wait...
 					</p>
 				) : (
 					// everything else, so all the buttons on the bottom.
@@ -212,8 +215,8 @@ export default function Results({ assignment, onComplete }: Props) {
 											`}
 								>
 									Your stats will be added to our magical archive for mysterious
-									analytical purposes. But beware! This won't save them for you
-									to return to later!
+									analytical purposes. But beware! This won&#39;t save them for
+									you to return to later!
 								</div>
 
 								{/* tooltip trigger */}

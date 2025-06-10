@@ -21,7 +21,6 @@ export default function RandomStats({ onComplete }: Props) {
 		null,
 	);
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-	const [error, setError] = useState<string | null>(null);
 	const [showLoading, setShowLoading] = useState(true);
 	const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // detectsmall screen
 
@@ -35,11 +34,9 @@ export default function RandomStats({ onComplete }: Props) {
 		const fetchRandomStats = async () => {
 			const { data, error } = (await supabase
 				.rpc("get_random_stat") // a little sql thing in the supabase
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-				.single()) as { data: CharacterStatsRow | null; error: any };
+				.single()) as { data: CharacterStatsRow | null; error: unknown };
 
 			if (error) {
-				setError("Failed to load stats");
 				console.error(error);
 
 				// set the data for both the stats and the pdf url
@@ -59,7 +56,7 @@ export default function RandomStats({ onComplete }: Props) {
 	if (showLoading || !assignment) {
 		return (
 			<div className="flex font-spectral items-center justify-center h-64 text-white text-xl">
-				Jerry's flipping through his notebook...
+				Jerry&#39;s flipping through his notebook...
 			</div>
 		);
 	}
