@@ -208,7 +208,7 @@ export default function Results({ assignment, onComplete }: Props) {
 												opacity-0 pointer-events-none
 												group-hover:opacity-100 group-hover:pointer-events-auto
 												${tooltipVisible ? "opacity-100 pointer-events-auto" : ""}
-												${isSmallScreen ? "left-full mr-2 w-20" : "left-full ml-2 w-30"}
+												${isSmallScreen ? "right-full mr-2 w-30" : "left-full ml-2 w-30"}
 											`}
 								>
 									Your stats will be added to our magical archive for mysterious
