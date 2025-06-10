@@ -9,20 +9,24 @@ type Props = {
 export default function CopyStatsButton({ stats }: Props) {
 	const [copied, setCopied] = useState(false);
 
+	// grabbing modifier for each skill
 	const getMod = (score: number) => {
 		const mod = Math.floor((score - 10) / 2);
 		return mod >= 0 ? `+${mod}` : `${mod}`;
 	};
 
+	// used to get the stuff on the clipboard
 	const handleCopy = async () => {
 		const lines: string[] = [];
 
 		lines.push("BASIC STATS");
+		// assigning mod to each stat
 		for (const stat of ["STR", "DEX", "CHA", "INT", "WIS", "CON"]) {
 			const val = stats[stat] ?? 0;
 			lines.push(`${stat} ${val} (${getMod(val)})`);
 		}
 
+		// setting up abilities
 		lines.push("\nABILITY CHECKS:");
 		const checks: [string, string][] = [
 			["Acrobatics", "DEX"],
@@ -45,11 +49,13 @@ export default function CopyStatsButton({ stats }: Props) {
 			["Survival", "WIS"],
 		];
 
+		// actually going through each skill, giving it the modifier. if undefined, its 0
 		for (const [skill, base] of checks) {
 			const val = stats[base] ?? 0;
 			lines.push(`${skill} (${base}): ${getMod(val)}`);
 		}
 
+		// actually doing it with the lines we have
 		try {
 			await navigator.clipboard.writeText(lines.join("\n"));
 			setCopied(true);
@@ -68,7 +74,6 @@ export default function CopyStatsButton({ stats }: Props) {
 				copied ? "hover:green-700" : ""
 			}`}
 		>
-			{/* // keep this same size */}
 			<span className="inline-block w-[100px] text-center">
 				{copied ? "Copied!" : "Copy Stats"}
 			</span>
