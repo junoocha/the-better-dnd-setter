@@ -47,7 +47,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 	};
 
 	return (
-		<div className="flex flex-col gap-6 items-center text-center">
+		<div className="flex flex-col gap-6 items-center text-center mt-6">
 			<motion.div
 				initial={{ opacity: 0, y: 10 }}
 				animate={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ export default function ShopStats({ onComplete, pointLimit }: ShopStatsProps) {
 			</motion.div>
 
 			{/* Outer container for animations */}
-			<div className="flex flex-col items-center justify-center gap-2 p-4 sm:p-6 md:p-8 m-2">
+			<div className="flex flex-col items-center justify-center gap-2  sm:p-6 md:p-8 ">
 				{/* Mobile-only signs row above the face */}
 				<div className="flex justify-between w-full px-4 mb-4 sm:hidden">
 					{/* Left sign */}

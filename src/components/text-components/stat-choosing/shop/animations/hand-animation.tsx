@@ -32,7 +32,7 @@ const HandsAnimation = ({
 	// 	});
 	// };
 	return (
-		<div className="flex items-center justify-center gap-4">
+		<div className="flex items-center justify-center gap-1 sm:gap-4">
 			{/* Left Hand with hover animation */}
 			<motion.img
 				src={leftHand}
@@ -56,7 +56,7 @@ const HandsAnimation = ({
 				transition={{ duration: 0.3 }}
 				className="flex justify-center pt-3"
 			>
-				<h1 className="flex gap-3 sm:gap-4 md:gap-6 text-2xl sm:text-4xl md:text-5xl font-bold text-green-400 relative">
+				<h1 className="flex gap-2 sm:gap-4 md:gap-6 text-2xl sm:text-4xl md:text-5xl font-bold text-green-400 relative">
 					{standardArray.map((val, i) => (
 						<div key={`stat-${i}`} className="flex flex-col items-center">
 							{/* Up Button */}
@@ -105,7 +105,7 @@ const HandsAnimation = ({
 			<motion.img
 				src={rightHand}
 				alt="Right Hand"
-				className="w-13 sm:w-24 md:w-47 h-auto max-w-[25%]"
+				className="w-14 sm:w-24 md:w-47 h-auto max-w-[25%]"
 				animate={{
 					y: [0, -5, 0],
 				}}

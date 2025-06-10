@@ -93,7 +93,7 @@ export default function Results({ assignment, onComplete }: Props) {
 
 	return (
 		<div>
-			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-24 sm:mt-10">
+			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-16 sm:mt-10">
 				<TextAnimation
 					loopSentences={selectedSentences}
 					fadeTrue={false}
