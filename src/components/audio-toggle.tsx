@@ -5,28 +5,38 @@ import { Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function AudioToggle({ src }: { src: string }) {
-	const audioRef = useRef<HTMLAudioElement | null>(null);
+	const audioRef = useRef<HTMLAudioElement | null>(null); // reference to audio element
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [volume, setVolume] = useState(0.5);
 
 	const toggleAudio = () => {
+		// if no audio, initialize it.
 		if (!audioRef.current) {
 			audioRef.current = new Audio(src);
 			audioRef.current.loop = true;
 			audioRef.current.volume = volume;
 		}
 
+		// pause
 		if (isPlaying) {
 			audioRef.current.pause();
+
+			// play
 		} else {
 			audioRef.current.play();
 		}
+
+		// then switcheroo
 		setIsPlaying(!isPlaying);
 	};
 
+	// update volume
 	const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		// set volume
 		const newVolume = Number.parseFloat(e.target.value);
 		setVolume(newVolume);
+
+		// update volume
 		if (audioRef.current) {
 			audioRef.current.volume = newVolume;
 		}
@@ -37,7 +47,7 @@ export default function AudioToggle({ src }: { src: string }) {
 			<motion.button
 				animate={{
 					boxShadow: isPlaying
-						? "0 0 10px 3px rgba(168,85,247,0.7)" // green glow
+						? "0 0 10px 3px rgba(168,85,247,0.7)" // purple glow
 						: "0 0 0px 0px rgba(0,0,0,0)",
 				}}
 				onClick={toggleAudio}
