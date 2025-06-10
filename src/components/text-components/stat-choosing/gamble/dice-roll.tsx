@@ -71,6 +71,7 @@ export default function RollDice({
 
 	return (
 		<div className="flex flex-col gap-4 items-center text-center w-full max-w-full px-4">
+			{/* show current roll (like what roll they're on) */}
 			<h2 className="text-4xl text-white">
 				{currentRoll === 6 ? "" : `Roll #${currentRoll + 1} of 6`}
 			</h2>
@@ -152,7 +153,7 @@ export default function RollDice({
 				</AnimatePresence>
 			</div>
 
-			{/* show Results So Far */}
+			{/* show results So Far */}
 			<div className="text-white w-full max-w-md">
 				<h3 className="text-2xl mt-4 pb-4">Results So Far:</h3>
 				<div className="flex flex-col justify-between items-center text-center h-[200px] w-full max-w-2xl mx-auto">

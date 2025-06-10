@@ -14,6 +14,7 @@ export default function Dice({
 	const [value, setValue] = useState<number>(1);
 	const [isRolling, setIsRolling] = useState(true);
 
+	// to switch faces animation and determining the actual roll value
 	useEffect(() => {
 		const interval = setInterval(() => {
 			// setInterval() is javascript function to run something repeatedly, given interval (switchInterval)
@@ -31,12 +32,14 @@ export default function Dice({
 		}, rollDelay);
 
 		return () => {
-			clearInterval(interval); //cleanup
-			clearTimeout(timeout); // cleanup
+			// cleanup
+			clearInterval(interval);
+			clearTimeout(timeout);
 		};
 	}, [rollDelay, switchInterval, onRollComplete]);
 
 	return (
+		// per dice image (just 1 shown, size dictated here)
 		<div className="w-8 h-8 sm:w-10 sm:h-10">
 			<img
 				src={`/dice/${value}.png`} // show dice image

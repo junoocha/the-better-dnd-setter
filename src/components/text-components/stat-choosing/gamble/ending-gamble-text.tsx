@@ -28,11 +28,13 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 		const variance =
 			arr.reduce((sum, v) => sum + (v - average) ** 2, 0) / arr.length;
 		const stdDev = Math.sqrt(variance);
-		return stdDev > 5; // tweak this threshold as needed
+		return stdDev > 3;
 	}
 
 	// biome-ignore lint/suspicious/noImplicitAnyLet:
 	let selectedSentences;
+
+	// bunch of stuff to determine the type of sentences.
 	if (isChaotic(finalSums)) {
 		selectedSentences = highSTDGambleText;
 	} else if (duplicates(finalSums)) {
@@ -47,6 +49,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 
 	return (
 		<div className="flex flex-col gap-6 items-center text-center px-4 max-w-lg sm:max-w-2xl md:max-w-3xl mx-auto">
+			{/* text animation */}
 			<TextAnimation
 				loopSentences={selectedSentences}
 				fadeTrue={false}
@@ -54,6 +57,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				showAndStay={true}
 			/>
 
+			{/* show stats */}
 			<motion.div
 				key="showing-final-results"
 				initial={{ opacity: 0, y: 10 }}
@@ -90,6 +94,7 @@ export default function EndingGambleText({ finalSums, onComplete }: Props) {
 				</h1>
 			</motion.div>
 
+			{/* continue button */}
 			<motion.button
 				onClick={onComplete}
 				whileHover={{ scale: 1.05 }}
