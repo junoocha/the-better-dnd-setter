@@ -54,16 +54,18 @@ export default function ShopStats({ onComplete, onBack }: ShopStatsProps) {
 	];
 
 	return (
-		<AnimatePresence mode="wait">
-			<motion.div
-				key={`s-${subStep}`}
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				exit={{ opacity: 0, y: -10 }}
-				transition={{ duration: 0.5 }}
-			>
-				{subSteps[subStep]}
-			</motion.div>
-		</AnimatePresence>
+		<div className="flex flex-col gap-6 items-center text-center px-4 sm:px-0 py-6">
+			<AnimatePresence mode="wait">
+				<motion.div
+					key={`s-${subStep}`}
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: -10 }}
+					transition={{ duration: 0.5 }}
+				>
+					{subSteps[subStep]}
+				</motion.div>
+			</AnimatePresence>
+		</div>
 	);
 }
