@@ -12,28 +12,9 @@ const HandsAnimation = ({
 	standardArray: number[];
 	onChange: (index: number, direction: "up" | "down") => void;
 }) => {
-	// const handleIncrement = (index: number) => {
-	// 	onChange((prev) => {
-	// 		const updated = [...prev];
-	// 		if (updated[index] < 15) {
-	// 			updated[index]++;
-	// 		}
-	// 		return updated;
-	// 	});
-	// };
-
-	// const handleDecrement = (index: number) => {
-	// 	setStandardArray((prev) => {
-	// 		const updated = [...prev];
-	// 		if (updated[index] > 8) {
-	// 			updated[index]--;
-	// 		}
-	// 		return updated;
-	// 	});
-	// };
 	return (
 		<div className="flex items-center justify-center gap-1 sm:gap-4">
-			{/* Left Hand with hover animation */}
+			{/* left Hand with hover animation */}
 			<motion.img
 				src={leftHand}
 				alt="Left Hand"
@@ -48,7 +29,7 @@ const HandsAnimation = ({
 				}}
 			/>
 
-			{/* Center Animated Text */}
+			{/* the numbers with buttons */}
 			<motion.div
 				key="shop-final-results"
 				initial={{ opacity: 0, y: 10 }}
@@ -59,7 +40,9 @@ const HandsAnimation = ({
 				<h1 className="flex gap-2 sm:gap-4 md:gap-6 text-2xl sm:text-4xl md:text-5xl font-bold text-green-400 relative">
 					{standardArray.map((val, i) => (
 						<div key={`stat-${i}`} className="flex flex-col items-center">
-							{/* Up Button */}
+							{/* */}
+
+							{/* up Button */}
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								className="text-xs sm:text-sm text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded mb-1"
@@ -69,7 +52,7 @@ const HandsAnimation = ({
 								<ChevronUp size={20} className="sm:w-5 sm:h-5 w-4 h-4" />
 							</button>
 
-							{/* Animated Stat Number */}
+							{/* animated stat Number */}
 							<motion.span
 								className="relative inline-block w-[2ch] text-center"
 								initial={{ scale: 0.8, opacity: 0.7 }}
@@ -87,7 +70,7 @@ const HandsAnimation = ({
 								{val}
 							</motion.span>
 
-							{/* Down Button */}
+							{/* down Button */}
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								className="text-xs sm:text-sm text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded mt-1"
@@ -101,7 +84,7 @@ const HandsAnimation = ({
 				</h1>
 			</motion.div>
 
-			{/* Right Hand with hover animation */}
+			{/* right Hand with hover animation */}
 			<motion.img
 				src={rightHand}
 				alt="Right Hand"

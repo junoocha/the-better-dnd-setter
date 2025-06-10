@@ -13,6 +13,7 @@ const MOUTH_FRAMES = [
 const MouthAnimation = () => {
 	const [currentFrame, setCurrentFrame] = useState(0);
 
+	// yeah just goes through frames
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		const timeout = setTimeout(() => {

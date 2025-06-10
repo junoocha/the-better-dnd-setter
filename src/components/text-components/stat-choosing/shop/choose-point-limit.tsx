@@ -9,15 +9,20 @@ type Props = {
 };
 
 export default function ChoosePointLimit({ onComplete, onBack }: Props) {
+	// point limit
 	const [pointLimit, setPointLimit] = useState("27");
 
+	// limit
 	const numericLimit = Number.parseInt(pointLimit);
+
+	// check if can submit
 	const submitDisabled =
 		!pointLimit || Number.isNaN(numericLimit) || numericLimit <= 0;
 
 	const showWarning = numericLimit > 35;
 	const showTooLow = numericLimit < 1;
 
+	// to move on
 	const handleSubmit = () => {
 		if (!Number.isNaN(numericLimit) && numericLimit > 0 && numericLimit <= 35) {
 			onComplete(numericLimit);
@@ -33,6 +38,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				showAndStay={true}
 			/>
 
+			{/* enter number input */}
 			<div className="flex gap-4">
 				<input
 					type="number"
@@ -44,16 +50,19 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				/>
 			</div>
 
+			{/* warnings is too high */}
 			{showWarning && (
 				<p className="text-red-400 text-sm italic">
 					Calm down bro, that number is way too high.
 				</p>
 			)}
 
+			{/* warnings too low */}
 			{showTooLow && (
 				<p className="text-red-400 text-sm italic">Shopping with no money?</p>
 			)}
 
+			{/* the submit button */}
 			<motion.button
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
@@ -70,6 +79,7 @@ export default function ChoosePointLimit({ onComplete, onBack }: Props) {
 				Summon Jerry
 			</motion.button>
 
+			{/* go back option */}
 			<motion.button
 				whileHover={{
 					scale: 1.05,

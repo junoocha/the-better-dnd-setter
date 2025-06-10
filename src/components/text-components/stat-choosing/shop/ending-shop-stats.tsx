@@ -13,6 +13,7 @@ export default function EndingShopText({
 }: EndingShopTextProps) {
 	return (
 		<div className="flex flex-col gap-6 items-center text-center px-4 max-w-lg sm:max-w-2xl md:max-w-3xl mx-auto">
+			{/* text animation if its not spelled out bru */}
 			<TextAnimation
 				loopSentences={shopKeeperResults}
 				fadeTrue={false}
@@ -20,6 +21,7 @@ export default function EndingShopText({
 				showAndStay={true}
 			/>
 
+			{/* show final results or numbers ya */}
 			<motion.div
 				key="showing-final-results"
 				initial={{ opacity: 0, y: 10 }}
@@ -56,6 +58,7 @@ export default function EndingShopText({
 				</h1>
 			</motion.div>
 
+			{/* continue button */}
 			<motion.button
 				onClick={onComplete}
 				whileHover={{ scale: 1.05 }}
