@@ -11,11 +11,11 @@ export default function IntroText({ onComplete }: Props) {
 	const { setIsIntroLoopPhase } = useLoopPhase();
 
 	const handleLoopStart = () => {
-		// console.log("Intro loop started, setting isIntroLoopPhase to true");
 		setIsIntroLoopPhase(true);
 	};
 
 	return (
+		// i think this is self explanatory, text animationControls, and 2 butotns
 		<div className="flex flex-col gap-6 sm:gap-8 items-center text-center px-4">
 			<TextAnimation
 				initialSentences={intro}

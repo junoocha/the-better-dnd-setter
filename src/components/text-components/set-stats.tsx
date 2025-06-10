@@ -24,6 +24,7 @@ type Props = {
 export default function StatAssignment({ statValues, onComplete }: Props) {
 	// current selected stat
 	const [selectedStat, setSelectedStat] = useState<string | null>(null);
+
 	// current index of the number
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -32,10 +33,14 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 		Object.fromEntries(statNames.map((stat) => [stat, null])),
 	);
 
+	// tool tip stuff
 	const [tooltipVisible, setTooltipVisible] = useState(false);
 	const tooltipRef = useRef<HTMLDivElement>(null);
+
+	// font size adjust for mobile. man i hate mobile
 	const [fontSize, setFontSize] = useState(30);
 
+	// for clicking on a stat
 	const handleStatClick = (stat: string) => {
 		setSelectedStat(stat);
 
@@ -46,6 +51,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 		}
 	};
 
+	// for clicking on a number
 	const handleNumberClick = (idx: number) => {
 		// if stat is selected, assign number to the stat
 		if (selectedStat) {
@@ -57,10 +63,11 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 		}
 	};
 
+	// assign number to stat
 	const assign = (stat: string, idx: number) => {
-		const updated: Record<string, number | null> = { ...assignments }; // assign number of the index to a stat
+		const updated: Record<string, number | null> = { ...assignments }; // update record/assignment
 
-		// remove this index from any stat that currently has it. just match by the idx name
+		// remove this index from any stat that currently has it. just match by the idx name. happens when user clicks on an assigned number
 		for (const key of statNames) {
 			if (updated[key] === idx) {
 				updated[key] = null;
@@ -75,6 +82,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 	// the conditional for the confirm button, want all stats at least allocated
 	const canSubmit = Object.values(assignments).every((val) => val !== null);
 
+	// tooltip disappear when clicking outside
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -90,6 +98,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 		};
 	}, []);
 
+	// for updating font for mobile because tailwind css hates me
 	useEffect(() => {
 		const updateFontSize = () => {
 			setFontSize(window.innerWidth <= 640 ? 25 : 30);
@@ -106,6 +115,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				className="group relative self-end mt-1 sm:self-end sm:mt-1"
 				ref={tooltipRef}
 			>
+				{/* the bubble */}
 				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 				<div
 					className="w-5 h-5 bg-gray-300 text-black text-xs rounded-full flex items-center justify-center cursor-pointer select-none"
@@ -113,6 +123,8 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				>
 					?
 				</div>
+
+				{/* the explanation */}
 				<div
 					className={`absolute right-full top-1/2 -translate-y-1/2 mr-3 w-48 bg-black text-white text-xs p-2 rounded
 								opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 z-10
@@ -122,15 +134,19 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				</div>
 			</div>
 
+			{/* text animation */}
 			<div className="min-h-[4.5rem] overflow-hidden text-center">
 				<TextAnimation loopSentences={setArrayRamble} fadeTrue={false} />
 			</div>
 
-			{/* Main content layout */}
+			{/* main content layout */}
 			<div className="flex flex-col sm:flex-col gap-6 w-full items-center">
+				{/**/}
+
 				{/* stat buttons */}
 				<div className="flex flex-wrap justify-center gap-4 w-full max-w-[800px]">
 					{statNames.map((stat) => {
+						// constant to determine what is currently being selected and if a stat is assigned already
 						const isAssigned = assignments[stat] !== null;
 						const isSelected = selectedStat === stat;
 
@@ -200,7 +216,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				</div>
 			</div>
 
-			{/* Submit button */}
+			{/* submit button */}
 			<motion.button
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
@@ -225,6 +241,7 @@ export default function StatAssignment({ statValues, onComplete }: Props) {
 				Lock In Stats
 			</motion.button>
 
+			{/* reset choice button */}
 			<motion.button
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}

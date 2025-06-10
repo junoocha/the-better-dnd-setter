@@ -20,18 +20,16 @@ const descriptions = {
 };
 
 export default function ChooseStats({ onComplete }: Props) {
-	// const [selectedOption, setSelectedOption] = useState<
-	// 	null | keyof typeof descriptions
-	// >(null);
 	const [tooltipVisible, setTooltipVisible] = useState(false);
-	const tooltipRef = useRef<HTMLDivElement>(null);
-	const [selectedOption, setSelectedOption] =
+	const tooltipRef = useRef<HTMLDivElement>(null); // detect cliks outside tooltip for mobile
+	const [selectedOption, setSelectedOption] = // track which option is selected
 		useState<keyof typeof descriptions>("default");
 
 	const handleSelect = (option: keyof typeof descriptions) => {
 		setSelectedOption((prev) => (prev === option ? "default" : option));
 	};
 
+	// hide tooltip when user clikcs out of it
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -49,13 +47,13 @@ export default function ChooseStats({ onComplete }: Props) {
 
 	return (
 		<div className="flex flex-col gap-6 items-center text-center w-full px-4 -mt-15">
-			{/* Container for tooltip + text */}
 			<div className="w-full max-w-md relative flex flex-col gap-2 mx-auto">
+				{/**/}
+
 				{/* Tooltip container with group */}
 				<div
 					ref={tooltipRef}
 					className="group flex justify-end items-center space-x-2 mb-1"
-					// 'space-x-2' adds gap between tooltip info and trigger
 				>
 					{/* Tooltip info text */}
 					<div
@@ -98,7 +96,7 @@ export default function ChooseStats({ onComplete }: Props) {
 				)}
 			</div>
 
-			{/* buttons */}
+			{/* buttons all in one, just map it lol */}
 			<div className="flex flex-wrap justify-center gap-2 w-full max-w-md">
 				{(["gamble", "boring", "shop"] as const).map((option) => (
 					<motion.button
@@ -121,6 +119,7 @@ export default function ChooseStats({ onComplete }: Props) {
 				))}
 			</div>
 
+			{/* Confirm button, only when something is chosen */}
 			<motion.button
 				disabled={selectedOption === "default"}
 				onClick={() => onComplete(selectedOption)}

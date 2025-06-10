@@ -16,12 +16,16 @@ export default function Results({ assignment, onComplete }: Props) {
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false); // for PDF gen
 	const [storing, setStoring] = useState(false); // for DB store
-	const [stored, setStored] = useState(false);
+
+	const [stored, setStored] = useState(false); // determine when data is stored once
 	const [error, setError] = useState<string | null>(null);
+
 	const [tooltipVisible, setTooltipVisible] = useState(false);
 	const tooltipRef = useRef<HTMLDivElement>(null);
-	const isSmallScreen = useMediaQuery({ maxWidth: 640 });
 
+	const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // determine if user is using phone
+
+	// use api to generate pdf
 	const generatePdf = async () => {
 		setLoading(true);
 		setError(null);
@@ -32,6 +36,8 @@ export default function Results({ assignment, onComplete }: Props) {
 				body: JSON.stringify({ assignments: assignment }),
 			});
 			if (!response.ok) throw new Error("Failed to generate PDF");
+
+			// set data
 			const data = await response.json();
 			setPdfUrl(data.url);
 		} catch (err) {
@@ -41,7 +47,9 @@ export default function Results({ assignment, onComplete }: Props) {
 		}
 	};
 
+	// api to connect to database and store relevant information
 	const storeInfo = async () => {
+		// if stored alreadu, don't store more
 		if (!pdfUrl || storing || stored) return;
 
 		setStoring(true);
@@ -57,8 +65,9 @@ export default function Results({ assignment, onComplete }: Props) {
 				}),
 			});
 			if (!response.ok) throw new Error("Failed to store info");
+
+			// confirm storage
 			setStored(true);
-			// onComplete();
 		} catch (err) {
 			setError(err instanceof Error ? err.message : String(err));
 		} finally {
@@ -66,11 +75,13 @@ export default function Results({ assignment, onComplete }: Props) {
 		}
 	};
 
+	// generate PDF on initial mount
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		generatePdf();
 	}, []);
 
+	// hide tooltip when clicking outside it
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -86,6 +97,7 @@ export default function Results({ assignment, onComplete }: Props) {
 		};
 	}, []);
 
+	// generate summary sentences once. kept remaking itself with the remounts from storage
 	const selectedSentences = useMemo(
 		() => getStatSentences(assignment, true),
 		[assignment],
@@ -93,6 +105,7 @@ export default function Results({ assignment, onComplete }: Props) {
 
 	return (
 		<div>
+			{/* animated sentence */}
 			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-16 sm:mt-10">
 				<TextAnimation
 					loopSentences={selectedSentences}
@@ -101,7 +114,10 @@ export default function Results({ assignment, onComplete }: Props) {
 					showAndStay={true}
 				/>
 			</div>
+
+			{/* results container */}
 			<div className="flex justify-center items-center mb-22">
+				{/* container but with cool animation */}
 				<motion.div
 					className="relative w-52 h-48 sm:w-72 sm:h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
 					initial={{ scale: 1, opacity: 1 }}
@@ -120,15 +136,10 @@ export default function Results({ assignment, onComplete }: Props) {
 						duration: 6,
 					}}
 				>
-					{/* Center content */}
-					{/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-					<span className="text-white font-bold">Your Stats</span>
-				</div> */}
-
-					{/* Radial stat items */}
+					{/* stat items in circle */}
 					{Object.entries(assignment).map(([stat, value], index) => {
 						const angle = (360 / Object.keys(assignment).length) * index - 120;
-						const radius = isSmallScreen ? 110 : 140; // px distance from center
+						const radius = isSmallScreen ? 110 : 140; // px distance from center, smaller circle if small screen
 						const rad = (angle * Math.PI) / 180;
 						const x = radius * Math.cos(rad);
 						const y = radius * Math.sin(rad);
@@ -145,6 +156,7 @@ export default function Results({ assignment, onComplete }: Props) {
 						const textColor = statColors[stat] || "text-white";
 
 						return (
+							// the actual stats now, like generating it through map and stuff
 							<motion.div
 								key={stat}
 								className="absolute"
@@ -171,20 +183,24 @@ export default function Results({ assignment, onComplete }: Props) {
 				</motion.div>
 			</div>
 
+			{/* loading screen but with jerry woo */}
 			<div className="mt-6 flex flex-col items-center gap-4">
 				{loading ? (
 					<p className="text-white font-medium">
 						Jerry's generating the PDF, please wait...
 					</p>
 				) : (
+					// everything else, so all the buttons on the bottom.
 					<div>
 						<div className="relative w-full max-w-md mx-auto mt-2">
-							{/* tooltip floated right, not part of flex to keep it there*/}
+							{/* */}
+
+							{/* tool tip */}
 							<div
 								ref={tooltipRef}
 								className="absolute -top-5 right-[-2rem] group z-10"
 							>
-								{/* Tooltip text */}
+								{/* tooltip text */}
 								<div
 									className={`absolute top-1/2 transform -translate-y-1/2
 												bg-black text-white text-xs p-2 rounded whitespace-normal
@@ -200,7 +216,7 @@ export default function Results({ assignment, onComplete }: Props) {
 									to return to later!
 								</div>
 
-								{/* Tooltip trigger */}
+								{/* tooltip trigger */}
 								{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 								<div
 									onClick={() => setTooltipVisible((prev) => !prev)}
@@ -209,6 +225,8 @@ export default function Results({ assignment, onComplete }: Props) {
 									?
 								</div>
 							</div>
+
+							{/* button row for see pdf, copy, and store. vertical stack mobile */}
 							<div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-md mx-auto">
 								<motion.a
 									href={pdfUrl ?? "#"}
@@ -243,6 +261,8 @@ export default function Results({ assignment, onComplete }: Props) {
 								</motion.button>
 							</div>
 						</div>
+
+						{/* final button, own row */}
 						<div className="relative mt-5 flex justify-center">
 							<motion.button
 								whileHover={{ scale: 1.05 }}

@@ -10,8 +10,9 @@ type Props = {
 };
 
 export default function WakeUpText({ onComplete }: Props) {
-	const { isIntroLoopPhase } = useLoopPhase();
+	const { isIntroLoopPhase } = useLoopPhase(); // determine a specific phase set for the first wake up
 
+	// different sentence arrays depending on loop phase
 	const selectedSentences = isIntroLoopPhase
 		? annoyedWakeupSentences
 		: wakeupSentences;
@@ -23,10 +24,6 @@ export default function WakeUpText({ onComplete }: Props) {
 				fadeTrue={true}
 				numSentences={1}
 				onComplete={onComplete}
-				// onLoopStart={() => {
-				// 	// Delay so the first loop sentence has time to show before moving on
-				// 	setTimeout(onComplete, 3000); // 2500 for testing, seems like 4000 works for regular
-				// }}
 			/>
 		</div>
 	);

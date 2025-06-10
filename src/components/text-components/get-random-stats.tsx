@@ -23,33 +23,39 @@ export default function RandomStats({ onComplete }: Props) {
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [showLoading, setShowLoading] = useState(true);
-	const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+	const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // detectsmall screen
 
 	useEffect(() => {
+		// wait 1 second before hiding loading state because i want to show the jerry line
 		const delayTimer = setTimeout(() => {
 			setShowLoading(false);
-		}, 1000); // Wait 1 second before hiding loading state
+		}, 1000);
+
+		// fetch random stats from supabase
 		const fetchRandomStats = async () => {
 			const { data, error } = (await supabase
-				.rpc("get_random_stat")
+				.rpc("get_random_stat") // a little sql thing in the supabase
 				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				.single()) as { data: CharacterStatsRow | null; error: any };
 
 			if (error) {
 				setError("Failed to load stats");
 				console.error(error);
+
+				// set the data for both the stats and the pdf url
 			} else if (data) {
 				setAssignment(data.stats);
 				setPdfUrl(data.file_url);
 			}
 		};
 
-		// Run once immediately so user doesn't always wait 1s minimum
+		// run once immediately so user doesn't always wait 1s minimum
 		fetchRandomStats();
 
-		return () => clearInterval(delayTimer); // Cleanup on unmount
+		return () => clearInterval(delayTimer); // cleanup on unmount
 	}, []);
 
+	// little funny loading screen
 	if (showLoading || !assignment) {
 		return (
 			<div className="flex font-spectral items-center justify-center h-64 text-white text-xl">
@@ -57,10 +63,12 @@ export default function RandomStats({ onComplete }: Props) {
 			</div>
 		);
 	}
-
+	// generate text. send assignment for the type of sentence, and boolean is to differ between 2 sets of sentences
 	const selectedSentences = getStatSentences(assignment, true);
+
 	return (
 		<div>
+			{/* text animation */}
 			<div className="center min-h-[6rem] overflow-hidden mb-2 mt-2">
 				<TextAnimation
 					loopSentences={selectedSentences}
@@ -69,7 +77,12 @@ export default function RandomStats({ onComplete }: Props) {
 					showAndStay={true}
 				/>
 			</div>
+
+			{/* the stats */}
 			<div className="flex justify-center items-center mb-20">
+				{/* */}
+
+				{/* the animation for the div */}
 				<motion.div
 					className="relative w-52 h-48 sm:w-72 sm:h-72 mx-auto rounded-full bg-gray-900 shadow-inner"
 					initial={{ scale: 1, opacity: 1 }}
@@ -88,15 +101,11 @@ export default function RandomStats({ onComplete }: Props) {
 						duration: 6,
 					}}
 				>
-					{/* Center content */}
-					{/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <span className="text-white font-bold">Your Stats</span>
-                </div> */}
-
-					{/* Radial stat items */}
+					{/* */}
+					{/* stats in a circle  */}
 					{Object.entries(assignment).map(([stat, value], index) => {
 						const angle = (360 / Object.keys(assignment).length) * index;
-						const radius = isSmallScreen ? 110 : 140; // px distance from center
+						const radius = isSmallScreen ? 110 : 140; // px distance from center, determines circle size
 						const rad = (angle * Math.PI) / 180;
 						const x = radius * Math.cos(rad);
 						const y = radius * Math.sin(rad);
@@ -113,6 +122,7 @@ export default function RandomStats({ onComplete }: Props) {
 						const textColor = statColors[stat] || "text-white";
 
 						return (
+							// the actual stats for real, like with name and value
 							<motion.div
 								key={stat}
 								className="absolute"
@@ -139,8 +149,10 @@ export default function RandomStats({ onComplete }: Props) {
 				</motion.div>
 			</div>
 
+			{/* buttons */}
 			<div className="mt-6 flex flex-col items-center gap-4">
 				<div>
+					{/* button row for viewing pdf and copying stats */}
 					<div className="relative flex justify-center">
 						<div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
 							<motion.a
@@ -162,6 +174,8 @@ export default function RandomStats({ onComplete }: Props) {
 							<CopyStatsButton stats={assignment} />
 						</div>
 					</div>
+
+					{/* separate row for just going back */}
 					<div className="relative mt-5 flex justify-center">
 						<motion.button
 							whileHover={{ scale: 1.05 }}
