@@ -89,14 +89,7 @@ export const useTextAnimation = (
 		typeChar();
 
 		return () => timeouts.forEach(clearTimeout);
-	}, [
-		showAndStay,
-		numSentences,
-		initialSentences,
-		loopSentences,
-		speed,
-		singleSentenceMode,
-	]);
+	}, [showAndStay, numSentences, initialSentences, loopSentences, speed]);
 
 	// for all regular sentences
 	useEffect(() => {
@@ -181,10 +174,6 @@ export const useTextAnimation = (
 		fadeDuration,
 		isInLoopPhase,
 		loopSentences,
-		currentLoopSentences,
-		onComplete,
-		onLoopStart,
-		singleSentenceMode,
 	]);
 
 	return {
